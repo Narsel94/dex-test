@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  list-style: none;
+  justify-content: center;
+  font-family: var(--AvenirM), Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--grey);
+  margin: 0;
+  padding: 0;
+
+}
+
+.container > * {
+  cursor: pointer;
+}
+
+.pageClassName {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.desctop {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+}
+
+.mobile {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+}
+
+.pageClassName {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.activePage {
+  color: #fff;
+  background-color: var(--red);
+}
+

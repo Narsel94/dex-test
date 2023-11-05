@@ -1,0 +1,150 @@
+.wrapper {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  height: fit-content;
+  gap: 4px;
+}
+
+.subtitleDesctop {
+  margin: 0;
+  padding: 0;
+}
+
+.textDesctop {
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  padding: 0.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  background-color: white;
+  border-top-right-radius: 2em;
+  border-top-left-radius: 2em;
+}
+
+.headerMob {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(276.45deg, #707070 0%, #393939 100.28%);
+}
+
+.sectionDesc {
+  gap: 10%;
+  padding: 5%;
+  justify-content: space-around;
+  border-bottom-left-radius: 2em;
+  border-bottom-right-radius: 2em;
+}
+
+.sectionMob {
+  padding-top: 1em;
+  flex-direction: column;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2em;
+}
+
+.infoBlock {
+  color: white;
+  font-family: var(--AvenirM), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  display: flex;
+  gap: 18px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.infoBlockDesc > h1 {
+  font-size: 36px;
+}
+
+.infoBlockMob {
+  align-items: center;
+}
+
+.infoBlockMob > h1 {
+  font-size: 17px;
+}
+
+.grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.dataBlockDesc {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dataBlockDesc > h3 {
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+.dataBlockDesc > p {
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+.dataBlockMob {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dataBlockMob > h3 {
+  font-size: 17px;
+  margin: 0;
+  padding: 0;
+}
+
+.dataBlockMob > p {
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.imageUrl {
+  object-fit: cover;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.imageUrlDesc {
+  width: 210px;
+  height: 210px;
+}
+
+.imageUrlMob {
+  width: 90px;
+  height: 90px;
+}

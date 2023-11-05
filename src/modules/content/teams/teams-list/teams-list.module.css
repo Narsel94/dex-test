@@ -1,0 +1,39 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+:root {
+  --mobile-x: 880px;
+
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  justify-items: end;
+}
+
+.headerMobile {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+  padding: 1%;
+  flex-direction: column;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.test {
+  width: 100%;
+  height: 20px;
+  background-color: orange;
+}
+

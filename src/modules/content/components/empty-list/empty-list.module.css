@@ -1,0 +1,56 @@
+.wrapper {
+  min-width: 375px;
+  min-height: 434px;
+  max-width: 556px;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  border-radius: 1em;
+}
+
+
+.title {
+  font-family: "Avenir-Black", Arial, Helvetica, sans-serif;
+  color: var(--lightest-red);
+  font-weight: 800;
+}
+
+.titleDescto {
+  font-size: 36px;
+  margin-top: 30px;
+}
+
+.titleMobile {
+  font-size: 17px;
+  margin-top: 16px;
+}
+
+.subtitle {
+  font-family: "Avenir-Book", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  color: var(--grey);
+}
+
+.subtitleMobile {
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.subtitleDesctop {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.imageDesctop {
+  width: 380px;
+  height: 212px;
+}
+
+.imageMobile {
+  width: 275px;
+  height: 153px;
+}

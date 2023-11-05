@@ -1,0 +1,12 @@
+.app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    text-align: center;
+    max-width: 1440px;
+    min-width: 375px;
+    position: relative;
+    height: 100vh;
+}
+

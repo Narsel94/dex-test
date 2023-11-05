@@ -1,0 +1,15 @@
+.form {
+  display: flex;
+  flex-direction: row;
+  padding-right: 10%;
+  justify-content: space-around;
+}
+
+.formMobile {
+  margin-top: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+}

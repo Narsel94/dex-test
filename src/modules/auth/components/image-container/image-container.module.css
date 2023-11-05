@@ -1,0 +1,16 @@
+.container {
+  background-color: var(--light-blue);
+  height: 100vh;
+  width: 100%;
+  max-width: 834px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.image {
+  max-width: 660px;
+
+  width: fit-content;
+}

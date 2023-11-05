@@ -1,0 +1,47 @@
+.wrapper {
+  background-color: white;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  border-radius: 2%;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: 2%;
+}
+
+.fileInput {
+  outline: 1px solid red;
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-around;
+}
+
+.formMobile {
+  margin-top: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.gridContainer {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: repeat(2);
+  gap: 0 12px;
+}
+
+.fieldsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

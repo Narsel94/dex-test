@@ -1,0 +1,21 @@
+.button {
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.button:hover {
+  box-shadow: 0 0 3px 0 var(--lightest-grey);
+
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 0 0 3px 0 var(--lightest-grey);
+}
+
+button:disabled {
+  background-color: var(--light-grey);
+
+}

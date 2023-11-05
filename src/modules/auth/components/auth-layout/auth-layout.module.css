@@ -1,0 +1,14 @@
+.layout {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+
+}

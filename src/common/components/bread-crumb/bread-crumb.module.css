@@ -1,0 +1,34 @@
+.link {
+  font-family: var(--AvenirM), Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--red);
+  list-style: none;
+}
+
+.span {
+  font-family: var(--AvenirM), Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--light-grey);
+}
+
+.container {
+  /* display: flex;
+  flex-direction: row;
+  gap: 4px; */
+  width: fit-content;
+  /* padding: 8px; */
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  flex-direction: row;
+  gap: 4px;
+  width: fit-content;
+  padding: 8px;
+}
