@@ -7,23 +7,26 @@ import {
   StyledSelect,
   UrlInput
 } from "../../../../common/components/exports";
+import { useNavigate } from "react-router";
 import { AddFormContainer, ErrorBlock,  } from "../../components/exports";
-import Select from "react-select";
 import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
 import { useForm, Controller } from "react-hook-form";
-import { usePositions } from "../components/exports";
-// import { useTeamsOptions } from "../components/get-teams-options.ts/get-teams-options";
+import { usePositions, useTeamsOptions } from "../components/exports";
+import { addPlayerRequest } from "../../../../api/players/players-api";
 import classNames from "classnames";
 import styles from "./add-new-player.module.css";
 
-type TAddNewPlayer = {
+type TAddNewPlayerForm = {
   name: string;
   number: number;
   position: {
     label: string;
     value: string;
   };
-  team: number;
+  team: {
+    label: string;
+    value: number;
+  };
   birthday: string;
   height: number;
   weight: number;
@@ -38,32 +41,28 @@ export const AddNewPlayer = () => {
 
   const { positions, error, errorMessage, isLoading } = usePositions();
 
-  // const teams = useTeamsOptions();
+  const teamsOptions = useTeamsOptions();
+  const navigate = useNavigate()
 
   const { reset, control, handleSubmit, formState, setValue } =
-    useForm<TAddNewPlayer>({ mode: "onBlur" });
+    useForm<TAddNewPlayerForm>({ mode: "onBlur" });
   const { isValid, errors } = formState;
 
-  const options = [
-    { label: "Center Forward", value: "Center Forward" },
-    { label: "Guard Forward", value: "Guard Forward" },
-    { label: "Forward", value: "Forward" },
-    { label: "Center", value: "Center" },
-    { label: "Guard", value: "Guard" },
-  ];
-
-  const onSub = (data: TAddNewPlayer) => {
+  const onSub = (data: TAddNewPlayerForm) => {
     const preparedData = {
       name: data.name,
       number: data.number,
-      position: data.position?.value,
-      team: data.team,
+      position: data.position.value,
+      team: data.team?.value,
       birthday: new Date(data.birthday).toISOString(),
       height: data.height,
       weight: data.weight,
       avatarUrl: data.avatarUrl,
     };
-    console.log(preparedData);
+    addPlayerRequest(preparedData)?.then(()=> {
+      reset();
+      navigate('/players')
+    });
   };
 
   if (isLoading) {
@@ -117,14 +116,14 @@ export const AddNewPlayer = () => {
               />
             )}
           />
-          {/* <Controller
+          <Controller
             control={control}
             name="team"
             rules={{
               required: "Required",
             }}
-            render={({ field }) => <StyledSelect {...field} options={teams} />}
-          /> */}
+            render={({ field }) => <StyledSelect {...field} options={teamsOptions} />}
+          />
           <Controller
             control={control}
             name="position"
@@ -211,7 +210,7 @@ export const AddNewPlayer = () => {
             <Button htmlType="reset" onClick={() => reset()}>
               Cancel
             </Button>
-            <Button htmlType="submit" isPrime>
+            <Button htmlType="submit" disabled={!isValid} isPrime>
               Save
             </Button>
           </div>

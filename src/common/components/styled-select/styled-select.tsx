@@ -21,6 +21,7 @@ export const StyledSelect: FC<StyledSelect> = React.forwardRef<
   return (
     <div className={styles.wrapper}>
       <Select
+        
         unstyled
         options={options}
         isClearable
@@ -34,7 +35,7 @@ export const StyledSelect: FC<StyledSelect> = React.forwardRef<
           indicatorSeparator: () => styles.indicator,
           clearIndicator: () => styles.clearIndicator,
           input: () => styles.input,
-          placeholder: () => styles.inputPlaceholder
+          placeholder: () => styles.inputPlaceholder,
         }               
       }
         {...props}

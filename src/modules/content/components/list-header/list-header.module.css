@@ -1,0 +1,24 @@
+.twoCols {
+  display: grid;
+  grid-template-columns: minmax(200px, 364px) 2fr;
+  justify-items: end;
+  position: relative;
+}
+
+.threeCols {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(200px, 364px));
+  justify-content: space-between;
+  justify-items: flex-end;  
+}
+
+
+
+.headerMobile {
+  display: flex;
+  gap: 6px;
+  padding: 1%;
+  flex-direction: column;
+}

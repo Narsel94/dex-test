@@ -16,8 +16,8 @@
 
 @font-face {
   font-family: "Avenir-Medium";
-  src: url("./avenir/Avenir-Medium.woff2") format("woff2"),
-    url("./avenir/Avenir-Medium.woff") format("woff");
+  src: url(./avenir/Avenir-Medium.woff2) format("woff2"),
+    url(./avenir/Avenir-Medium.woff) format("woff");
   font-weight: normal;
   font-style: normal;
 }

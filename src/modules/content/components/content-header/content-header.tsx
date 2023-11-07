@@ -13,7 +13,7 @@ export const ContentHeader = () => {
 
   return (
     <div className={headerClasses}>
-      <Logo to="/" size={isMobile ? "small" : "medium"} />
+      <Logo to="/teams" size={isMobile ? "small" : "medium"} />
       {!isMobile && <UserInfo />}
     </div>
   );

@@ -14,6 +14,7 @@ import { InvalidMessage } from "./invalid-message/invalid-message";
 import { StyledReactPaginate } from "./styled-react-paginate/styled-react-paginate";
 import { StyledSelect } from "./styled-select/styled-select";
 import { CountSelect } from "./styled-count-select/styled-count-select";
+import { CardContainer } from "./card-container/card-container";
 
 
 export {
@@ -30,5 +31,6 @@ export {
   Preloader,
   StyledReactPaginate,
   StyledSelect,
-  CountSelect
+  CountSelect,
+  CardContainer
 };

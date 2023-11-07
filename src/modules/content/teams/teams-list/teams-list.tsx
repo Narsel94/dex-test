@@ -7,8 +7,10 @@ import {
   StyledReactPaginate,
   Preloader,
   CountSelect,
+  CardContainer
 } from "../../../../common/components/exports";
-import { ErrorBlock, SearchInput, EmptyList } from "../../components/exports";
+import { ErrorBlock, SearchInput, EmptyList, ListPageWrapper, ListFooter, ListHeader } from "../../components/exports";
+import { TeamCard } from "../exports";
 import {
   teamsPageDataSelector,
   teamsSelector,
@@ -33,10 +35,7 @@ export const TeamsList = () => {
   const teamsData = useAppSelector(teamsSelector);
 
   const isMobile = useMobileMediaQuery();
-  const headerClasses = classNames({
-    [styles.header]: !isMobile,
-    [styles.headerMobile]: isMobile,
-  });
+
   const navigate = useNavigate();
 
   const onButtonClick = () => {
@@ -85,8 +84,8 @@ export const TeamsList = () => {
   }, [params.name, params.page, params.size]);
 
   return (
-    <div className={styles.wrapper}>
-      <header className={headerClasses}>
+    <ListPageWrapper>
+      <ListHeader cols={2}>
         <SearchInput value={name} onChange={handleSearchChange} />
         <Button
           htmlType="button"
@@ -96,7 +95,7 @@ export const TeamsList = () => {
         >
           Add +
         </Button>
-      </header>
+      </ListHeader>
 
       {isLoading && <Preloader />}
       {!isLoading && !isError && teamsData?.length === 0 && (
@@ -112,16 +111,14 @@ export const TeamsList = () => {
         />
       )}
       {!isLoading && !isError && teamsData?.length > 0 && (
-        <div className={styles.container}>
-          {teamsData.map((team, index) => (
-            <Link key={index} to={team.id.toString()}>
-              <h3>{team.name}</h3>
-            </Link>
-          ))}
-          <div className={styles.test}></div>
-        </div>
+        <CardContainer>
+          {!isLoading && !isError && teamsData?.length > 0 && 
+            teamsData.map((team)=> <TeamCard data={team} key={team.id}/>)
+          }
+        </CardContainer>
       )}
-      <footer className={styles.footer}>
+
+      <ListFooter>
         <StyledReactPaginate
           pageCount={inputsData.count}
           onPageChange={handlePageChange}
@@ -131,7 +128,7 @@ export const TeamsList = () => {
           value={{ label: inputsData.size, value: inputsData.size }}
           onChange={handleSizeChage}
         />
-      </footer>
-    </div>
+      </ListFooter>
+    </ListPageWrapper>
   );
 };

@@ -8,7 +8,7 @@ type TPosititon = {
 };
 
 export const usePositions = () => {
-  const [positions, setPositions] = useState<any[]>([]);
+  const [positions, setPositions] = useState<TPosititon[]>([]);
   const [isLoading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -21,31 +21,33 @@ export const usePositions = () => {
       setLoading(false);
       setErrorMessage("Not authorized");
     }
+
     const fetchPositions = async () => {
+      setLoading(true);
+      setError(false);
       try {
-        setLoading(true);
-        const response = await get('/Player/GetPositions', token) 
-        
-        console.log(typeof response)
-        // const data = response.map((item) => {
-        //   return { label: item, value: item };
-        // });
-        // setPositions([...new Set(result)]);
-        setLoading(false);
-        setError(false);
-      } catch (err) {
+        await get("/Player/GetPositions", token)
+          .then((res: string[]) => {
+            setLoading(false);
+            const result = res.map((position) => {
+              return { label: position, value: position };
+            });
+            return result;
+          })
+          .then((result) => {
+            setPositions([...new Set(result)]);
+          });
+      } catch (error) {
         setLoading(false);
         setError(true);
-        if (err instanceof Error) {
-          setErrorMessage(err.message);
-        } else {
-          setErrorMessage("An error occurred");
+        if (error instanceof Error) {
+          setErrorMessage(error?.message);
         }
+        setErrorMessage("Something went wrong");
       }
     };
-    {
-      token && fetchPositions();
-    }
+
+    fetchPositions();
   }, []);
   return { positions, error, errorMessage, isLoading };
 };

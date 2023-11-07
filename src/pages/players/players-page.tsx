@@ -1,6 +1,7 @@
 import React, {FC} from "react";
 import styles from "./players-page.module.css";
-import { Outlet } from "react-router";
+import { Outlet } from "react-router-dom";
+
 import { useNavigate } from "react-router";
 
 
@@ -11,7 +12,6 @@ export const PlayersPage:FC = () => {
  }
   return (
     <section className={styles.page}>
-      <button onClick={onClick} >Click</button>
       <Outlet/>
     </section>
   );

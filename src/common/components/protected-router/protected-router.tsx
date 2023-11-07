@@ -8,18 +8,17 @@ type TProtectedRoute = {
 };
 
 const ProtectedRoute: FC<TProtectedRoute> = ({ enabledAuth, element }) => {
-   const isAuth = () => {
-    const token = getCookie("token")
-    return !!token
-  }
-  const [auth2, setAuth2] = useState<boolean>(isAuth())
-
+  const isAuth = () => {
+    const token = getCookie("token");
+    return !!token;
+  };
+  const [auth2, setAuth2] = useState<boolean>(isAuth());
 
   if (enabledAuth) {
     if (auth2) {
-      return element
+      return element;
     } else {
-      return <Navigate to="/"  replace={true} />;
+      return <Navigate to="/sign-in" replace={true} />;
     }
   }
 
@@ -27,7 +26,7 @@ const ProtectedRoute: FC<TProtectedRoute> = ({ enabledAuth, element }) => {
     if (!auth2) {
       return element;
     } else {
-      return <Navigate to="/" replace={true} />;
+      return <Navigate to="/teams" replace={true} />;
     }
   }
 
@@ -45,4 +44,3 @@ export const PrivateRoutes: FC<Pick<TProtectedRoute, "element">> = ({
 }) => {
   return <ProtectedRoute enabledAuth={true} element={element} />;
 };
-
