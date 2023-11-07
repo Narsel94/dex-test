@@ -7,11 +7,10 @@
 
 .desctop {
   grid-template-columns: repeat(3, minmax(220px, 364px));
-  grid-auto-rows: minmax(250px, 370px);
+  grid-auto-rows: minmax(250px, 340px);
   justify-content: space-between;
-  max-height: 82vh;
+  max-height: 80vh;
 
-  gap: 10px;
 }
 
 .mobile {

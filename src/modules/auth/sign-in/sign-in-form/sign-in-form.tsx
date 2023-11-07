@@ -1,5 +1,5 @@
 import React from "react";
-import { Form } from "../exports";
+import { Form } from "../../components/exports";
 import { useForm, Controller } from "react-hook-form";
 import { signInRequest } from "../../../../api/auth/sign-in";
 import { useNavigate } from "react-router";
@@ -24,7 +24,7 @@ export const SignInForm = () => {
   const { isValid, errors } = formState;
   const navigate = useNavigate()
   const onSubmit = (data: TSignInFormValue) => {
-    signInRequest(data).then(()=> navigate('/'));
+    signInRequest(data).then(()=> navigate('/teams'));
     reset();
   };
 

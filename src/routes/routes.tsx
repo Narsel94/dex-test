@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import {
-  createBrowserRouter,
-  json,
-} from "react-router-dom";
+import { createBrowserRouter, json } from "react-router-dom";
 import { AuthLayout } from "../modules/auth/components/exports";
 import {
   NotFound,
@@ -13,7 +10,11 @@ import {
 } from "../pages/exports";
 import { ContentLayout } from "../modules/content/components/exports";
 import { PrivateRoutes, PublicRoutes } from "../common/components/exports";
-import { AddNewPlayer, PlayersList } from "../modules/content/players/exports";
+import {
+  AddNewPlayer,
+  PlayersList,
+  PlayerInfo,
+} from "../modules/content/players/exports";
 import {
   AddNewTeam,
   TeamsList,
@@ -22,8 +23,10 @@ import {
 } from "../modules/content/teams/exports";
 import { getCookie } from "../common/helpers/helpers";
 import { getTeamLoader } from "../api/teams/teams-api";
+import { getPlayerLoader } from "../api/players/players-api";
 
 import { AppLayout } from "../pages/app-layout/app-layout";
+import { TPlayerData } from "../api/players/types";
 
 export const router = createBrowserRouter([
   {
@@ -46,13 +49,12 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/teams",
-        element: <TeamsPage />, 
+        element: <TeamsPage />,
         handle: { title: "Teams", url: "/teams" },
         children: [
           {
             path: "/teams",
             element: <TeamsList />,
-           
           },
           {
             path: `/teams/:teamId`,
@@ -82,7 +84,6 @@ export const router = createBrowserRouter([
         element: <PlayersPage />,
         handle: { title: "Players", url: "/players" },
         children: [
-         
           {
             path: "/players/add-player",
             element: <AddNewPlayer />,
@@ -253,7 +254,24 @@ export const router2 = createBrowserRouter([
             children: [
               {
                 path: "/players",
-                element: <PlayersList/>
+                element: <PlayersList />,
+              },
+              {
+                path: "/players/:playerId",
+                element: <PlayerInfo />,
+                handle: { title: "playerId", url: "/players/:playerId" },
+                // вариант через роутер
+                loader: async ({ params }): Promise<TPlayerData> => {
+                  const playerData = getPlayerLoader(params.playerId);
+                  if (!playerData) {
+                    throw json(
+                      { message: "Not Found", reason: "Wrong Url" },
+                      { status: 404 }
+                    );
+                  }
+                  return playerData;
+                },
+                errorElement: <ErrroElement />,
               },
               {
                 path: "/players/add-player",

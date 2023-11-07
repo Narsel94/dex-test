@@ -1,4 +1,4 @@
-import React, { FormEvent } from "react";
+import React, { FC, FormEvent } from "react";
 import {
   BreadCrumbs,
   Preloader,
@@ -33,7 +33,7 @@ type TAddNewPlayerForm = {
   avatarUrl: string;
 };
 
-export const AddNewPlayer = () => {
+export const AddNewPlayer:FC = () => {
   const isMobile = useMobileMediaQuery();
   const formClasses = classNames(styles.form, {
     [styles.formMobile]: isMobile,

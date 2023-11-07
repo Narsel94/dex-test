@@ -15,9 +15,11 @@ import { StyledReactPaginate } from "./styled-react-paginate/styled-react-pagina
 import { StyledSelect } from "./styled-select/styled-select";
 import { CountSelect } from "./styled-count-select/styled-count-select";
 import { CardContainer } from "./card-container/card-container";
+import { BurgerButton } from "./burger-button/burger-button";
 
 
 export {
+  BurgerButton,
   InvalidMessage,
   BreadCrumbs,
   SmallButton,

@@ -1,6 +1,6 @@
 import { FC, useEffect, useState, useLayoutEffect } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { getCookie } from "../../../modules/auth/helpers/helpers";
+import { getCookie } from "../../helpers/helpers";
 
 type TProtectedRoute = {
   enabledAuth: boolean;

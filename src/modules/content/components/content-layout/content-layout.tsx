@@ -5,6 +5,7 @@ import classNames from "classnames";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { BurgerButton } from "../../../../common/components/exports";
 import styles from "./content-layout.module.css";
 
 export const ContentLayout = () => {
@@ -45,10 +46,7 @@ export const ContentLayout = () => {
 
   return (
     <div className={styles.layout}>
-      <button className={styles.button} onClick={() => setOpen(!isOpen)}>
-        Click
-      </button>
-
+      {isMobile && <BurgerButton extraClasses={styles.button} onClick={() => setOpen(!isOpen)}/>}
       <ContentHeader />
       <div className={styles.contentDesctop}>
         <div className={nanWrapperClasses} onClick={onWrapperClick}>

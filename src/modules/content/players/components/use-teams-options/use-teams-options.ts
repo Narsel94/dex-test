@@ -1,6 +1,6 @@
 import React from "react";
-import { useAppSelector } from "../../../../common/hooks/useAppSelector";
-import { teamsSelector } from "../../teams/selectors";
+import { useAppSelector } from "../../../../../common/hooks/useAppSelector";
+import { teamsSelector } from "../../../teams/selectors";
 
 type TTeamOption = {
   value: number;

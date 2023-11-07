@@ -1,11 +1,3 @@
-.wrapper {
-  display: flex;
-  box-sizing: border-box;
-  flex-direction: column;
-  height: fit-content;
-  gap: 4px;
-}
-
 .subtitleDesctop {
   margin: 0;
   padding: 0;
@@ -15,46 +7,6 @@
   font-size: 18px;
   margin: 0;
   padding: 0;
-}
-
-.header {
-  padding: 0.5em;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  background-color: white;
-  border-top-right-radius: 2em;
-  border-top-left-radius: 2em;
-}
-
-.headerMob {
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
-}
-
-.section {
-  display: flex;
-  align-items: center;
-  background: linear-gradient(276.45deg, #707070 0%, #393939 100.28%);
-}
-
-.sectionDesc {
-  gap: 10%;
-  padding: 5%;
-  justify-content: space-around;
-  border-bottom-left-radius: 2em;
-  border-bottom-right-radius: 2em;
-}
-
-.sectionMob {
-  padding-top: 1em;
-  flex-direction: column;
-  box-sizing: border-box;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 2em;
 }
 
 .infoBlock {
@@ -92,6 +44,11 @@
   flex-direction: column;
   gap: 16px;
   align-items: center;
+}
+
+
+.section {
+  padding: 5%;
 }
 
 .dataBlockDesc {

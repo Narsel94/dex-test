@@ -12,8 +12,18 @@ import { EmptyList } from "./empty-list/empty-list";
 import { ListPageWrapper } from "./list-page-wrapper/list-page-wrapper";
 import { ListFooter } from "./list-footer/list-footer";
 import { ListHeader } from "./list-header/list-header";
+import { InfoContainer } from "./info-container/info-container";
+import { InfoWrapper } from "./info-wrapper/info-wrapper";
+import { InfoHeader } from "./info-header/info-header";
+import { InfoSection } from "./info-section/info-section";
+import { InfoBlock } from "./info-block/info-block";
+
 
 export {
+  InfoWrapper,
+  InfoHeader,
+  InfoSection,
+  InfoBlock,
   NavigationBar,
   ContentHeader,
   ContentLayout,
@@ -23,6 +33,7 @@ export {
   NavLinkWithIcon,
   AddFormContainer,
   ErrorBlock,
+  InfoContainer as GridContainer,
   SearchInput,
   EmptyList,
   ListPageWrapper,

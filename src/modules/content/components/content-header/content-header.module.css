@@ -10,7 +10,7 @@
 }
 
 .headerMobile {
-  min-height: 62px;
+  height: 62px;
   display: flex;
   flex-direction: row;
   justify-content: center;

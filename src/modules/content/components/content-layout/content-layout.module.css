@@ -73,7 +73,7 @@
 }
 
 .button {
-  position: absolute;
-  top: 50px;
-  left: 50%;
+  position: fixed;
+  top: 18px;
+  left: 10%;
 }

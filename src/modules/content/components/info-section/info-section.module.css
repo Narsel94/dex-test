@@ -1,0 +1,22 @@
+.section {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  background: linear-gradient(276.45deg, #707070 0%, #393939 100.28%);
+}
+
+.sectionDesc {
+  justify-content: space-evenly;
+  border-bottom-left-radius: 2em;
+  border-bottom-right-radius: 2em;
+}
+
+.sectionMob {
+  display: flex;
+  padding-top: 1em;
+  flex-direction: column;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2em;
+}

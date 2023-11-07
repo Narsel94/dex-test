@@ -6,6 +6,7 @@ import { useLoaderData, useNavigate } from "react-router";
 import { IconDelete, IconCreate } from "../../../../assests/icons/exports";
 import { SmallButton } from "../../../../common/components/exports";
 import { removeTeam } from "../../../../api/teams/teams-api";  
+import { InfoHeader, InfoWrapper, InfoSection } from "../../components/exports";
 import classNames from "classnames";
 import styles from "./team-info.module.css";
 
@@ -19,15 +20,6 @@ export const SingleTeam = () => {
   const imageClasses = classNames(styles.imageUrl, {
     [styles.imageUrlDesc]: !isMobile,
     [styles.imageUrlMob]: isMobile,
-  });
-
-  const headerClasses = classNames(styles.header, {
-    [styles.headerMob]: isMobile,
-  });
-
-  const sectionClasses = classNames(styles.section, {
-    [styles.sectionDesc]: !isMobile,
-    [styles.sectionMob]: isMobile,
   });
 
   const infoBlockClasses = classNames(styles.infoBlock, {
@@ -57,19 +49,9 @@ export const SingleTeam = () => {
     
 
   return (
-    <div className={styles.wrapper}>
-      <div className={headerClasses}>
-        <BreadCrumbs title={data.name} />
-        <div className={headerClasses}>
-          <SmallButton onClick={onClick}>
-            <IconCreate size={16} type="primary" />
-          </SmallButton>
-          <SmallButton onClick={onDelete}>
-            <IconDelete size={16} type="secondary" />
-          </SmallButton>
-        </div>
-      </div>
-      <div className={sectionClasses}>
+    <InfoWrapper>
+      <InfoHeader title={data.name}/>
+      <InfoSection extraClass={styles.section}>
         <img src={data.imageUrl} className={imageClasses} alt={data.name} />
         <div className={infoBlockClasses}>
           <h1>{data.name}</h1>
@@ -88,7 +70,7 @@ export const SingleTeam = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </InfoSection>
+    </InfoWrapper>
   );
 };

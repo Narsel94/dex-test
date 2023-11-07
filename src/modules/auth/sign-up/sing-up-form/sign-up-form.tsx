@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Form } from "../exports";
+import { Form } from "../../components/exports";
 import { useForm, Controller } from "react-hook-form";
 import { signUpRequest } from "../../../../api/auth/sign-up";
 import {
