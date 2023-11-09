@@ -34,15 +34,15 @@ export const NavigationBar = () => {
       {isMobile && <UserInfo isMobile={isMobile} />}
       <div className={styles.block}>
         <div className={styles.links}>
-          <NavLinkWithIcon
-            text="Players"
-            to="/players"
+        <NavLinkWithIcon
+            text="Teams"
+            to="/teams"
             type={isMobile ? "row" : "column"}
             iconType="IconGroup"
           />
           <NavLinkWithIcon
-            text="Teams"
-            to="/teams"
+            text="Players"
+            to="/players"
             type={isMobile ? "row" : "column"}
             iconType="IconPerson"
           />

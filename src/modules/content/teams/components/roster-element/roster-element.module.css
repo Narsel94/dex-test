@@ -1,0 +1,42 @@
+.wrapper {
+  height: 56px;
+  width: 100%;
+  border-top: .5px solid var(--light-grey);
+  display: flex;
+  
+  align-items: center;
+  font-family: var(--AvenirM);
+  font-size: 14px;
+  color: var(--grey);
+}
+
+.number {
+  width: 70px;
+}
+
+.bio {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.info {
+  width: 400px;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 25px;
+}
+
+.image {
+  margin: 0 20px;
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
+  object-fit: contain;
+}
+
+.span {
+  width: 80px;
+  text-align: start;
+}

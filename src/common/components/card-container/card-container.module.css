@@ -6,8 +6,8 @@
 }
 
 .desctop {
-  grid-template-columns: repeat(3, minmax(220px, 364px));
-  grid-auto-rows: minmax(250px, 340px);
+  grid-template-columns: repeat(3, minmax(290px, 364px));
+  grid-auto-rows: minmax(300px, 340px);
   justify-content: space-between;
   max-height: 80vh;
 
@@ -16,7 +16,7 @@
 .mobile {
   grid-template-columns: repeat(2, minmax(170px, 230px));
   grid-auto-rows: minmax(200px);
-  justify-content: space-around;
+  justify-content: space-evenly;
   gap: 6px;
   max-height: 72vh;
 

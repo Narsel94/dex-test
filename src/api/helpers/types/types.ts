@@ -13,15 +13,12 @@ export type TSignInResponse = {
   token: string;
 };
 
+export type TSignUpResponse = TSignInResponse;
+
 export type TSignUpRequest = {
   login: string;
   password: string;
   userName: string;
 };
 
-export type TSignUpResponse = {
-  name: string;
-  avatarUrl: string;
-  token: string;
-};
 

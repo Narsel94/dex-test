@@ -1,4 +1,4 @@
-import {get, post } from '../base-request'
+import {get, post, remove } from '../base-request'
 import { getCookie } from '../../common/helpers/helpers'
 import { TAddPlayerRequest } from './types'
 import { TGetPlayersResponse } from './types'
@@ -14,11 +14,16 @@ export const getPlayerLoader = (id?: string) => {
   }
 };
 
-  export const getPlayersRequest = (search?: string):Promise<TGetPlayersResponse> =>
-  get(`/Player/GetPlayers${search}`, getCookie("token"));
-
-
-
-
-  export const getAllPlayersRequest = () =>
+export const getAllPlayersRequest = ():Promise<TGetPlayersResponse> =>
   get(`/Player/GetPlayers`, getCookie("token"));
+
+export const getCurrentPlayersRequest = (search: string):Promise<TGetPlayersResponse> =>
+get(`/Player/GetPlayers${search}`, getCookie("token"));
+
+
+  export const removePlayerRequest = (id: number) => {
+    const token = getCookie("token");
+    if (token && id) {
+      return remove(`/Player/Delete?id=${id}`, token);
+    }
+  };

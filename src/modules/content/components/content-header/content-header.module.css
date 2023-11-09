@@ -1,12 +1,13 @@
 .headerDesctop {
-  height: 80px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
   padding-left: 4%;
-  padding-right: 3%;
+  padding-right: 3%;  
+  min-height: 80px;
+
 }
 
 .headerMobile {
@@ -15,4 +16,5 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
 }

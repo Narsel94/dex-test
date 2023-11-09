@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { useLoaderData, useParams } from "react-router";
 import { useAppSelector } from "../../../../common/hooks/useAppSelector";
 import { teamsSelector } from "../../teams/selectors";
+import { useNavigate } from "react-router";
 import {
   InfoWrapper,
   InfoHeader,
@@ -14,11 +15,13 @@ import styles from "./player-info.module.css";
 import { TPlayerData } from "../../../../api/players/types";
 import classNames from "classnames";
 import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
+import { removePlayerRequest } from "../../../../api/players/players-api";
 
 export const PlayerInfo: FC = () => {
   const playerData = useLoaderData() as TPlayerData;
 
   const isMobile = useMobileMediaQuery();
+  const navigate = useNavigate()
 
   const nameClasses = classNames({
     [styles.name]: !isMobile,
@@ -33,10 +36,17 @@ export const PlayerInfo: FC = () => {
   const team = useAppSelector(teamsSelector).find(
     (team) => team.id === playerData?.team
   );
-  //
+  
+  const removePlayer = () => {
+    if (playerData) {
+      removePlayerRequest(playerData.id)?.then(()=> navigate('/players'))
+    }
+  }
+
+
   return (
     <InfoWrapper>
-      <InfoHeader title={playerData.name} />
+      <InfoHeader title={playerData.name} onTrashClick={removePlayer}/>
       <InfoSection extraClass={styles.section}>
         <img
           className={imageClasses}

@@ -4,7 +4,8 @@
   box-sizing: border-box;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 100dvh;
+
   overflow-y: auto;
 }
 
@@ -13,6 +14,9 @@
   display: flex;
   position: relative;
   background-color: var(--lightest-grey1);
+  overflow-x: hidden;
+  
+
 }
 
 .main {
@@ -28,17 +32,17 @@
 .mainDesc {
   padding: 10px 2em 10px;
   gap: 8px;
-
 }
 
 .mainMobile {
-  padding: 10px;
+  padding: 10px 2px;
+  height: fit-content;
 }
 
 .navWrapper {
   background-color: #fff;
   box-sizing: border-box;
-  height: 100%;
+  /* height: 100%; */
 }
 
 .navWrapperDesctop {
@@ -49,6 +53,8 @@
   transition: 1s ease;
   position: absolute;
   width: 200px;
+  height: 100%;
+
   z-index: -50;
 }
 
@@ -61,15 +67,17 @@
   transform: translateX(0);
   z-index: 50;
   opacity: 1;
+  
 }
 
 .navWrapperOpen::before {
+
   content: "";
   background-color: rgba(65, 65, 65, 0.3);
-  width: 600vw;
-  height: 400%;
+  width: 100vw;
+  height: 100%;
   transform: translateX(100px);
-  position: fixed;
+  position: absolute;
 }
 
 .button {
