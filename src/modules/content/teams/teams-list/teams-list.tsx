@@ -21,10 +21,7 @@ import {
 import { setSize, setPage } from "../teams-slice";
 import { getTeamsThunk } from "../async-thunk";
 import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
-import { Link } from "react-router-dom";
 import image from "../../../../assests/images/empty-teams.svg";
-import classNames from "classnames";
-import styles from "./teams-list.module.css";
 
 export const TeamsList = () => {
   const [name, setName] = useState<string>("");

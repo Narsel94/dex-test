@@ -16,6 +16,7 @@ import { StyledSelect } from "./styled-select/styled-select";
 import { CountSelect } from "./styled-count-select/styled-count-select";
 import { CardContainer } from "./card-container/card-container";
 import { BurgerButton } from "./burger-button/burger-button";
+import { InfoInput } from "./info-input/info-input";
 
 
 export {
@@ -34,5 +35,6 @@ export {
   StyledReactPaginate,
   StyledSelect,
   CountSelect,
-  CardContainer
+  CardContainer,
+  InfoInput
 };

@@ -2,6 +2,7 @@
   display: flex;
   box-sizing: border-box;
   align-items: center;
+  gap: 2%;
   background: linear-gradient(276.45deg, #707070 0%, #393939 100.28%);
 }
 
@@ -20,7 +21,6 @@
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
-  padding-bottom: 2em;
   max-height: 542px;
-
+  height: max-content;
 }

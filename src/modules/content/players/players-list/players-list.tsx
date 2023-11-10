@@ -14,7 +14,7 @@ import {
   CardContainer,
   Preloader,
 } from "../../../../common/components/exports";
-import image from "../../../../assests/images/empty-players.png";
+import image from "../../../../assests/images/empty-players.svg";
 import { StyledMultiselect, PlayerCard } from "../components/exports";
 import { SearchInput } from "../../components/exports";
 import { useTeamsOptions } from "../components/use-teams-options/use-teams-options";
@@ -29,8 +29,8 @@ import {
   playersPageDataSelector,
   playersErrorSelector,
   playersErrorDataSelector,
+  allPlayersSelector,
 } from "../selectors";
-import styles from "./players-list.module.css";
 import { ActionMeta, MultiValue, OnChangeValue } from "react-select";
 import { TPlayerData } from "../../../../api/players/types";
 
@@ -45,44 +45,15 @@ export const PlayersList: FC = () => {
   const errorData = useAppSelector(playersErrorDataSelector);
   const inputsData = useAppSelector(playersPageDataSelector);
   const playersData = useAppSelector(playersSelector);
+  const allPlayers = useAppSelector(allPlayersSelector);
 
-  const [selectedOptions, setSelectedOptions] = useState<readonly TeamOption[]>(
-    []
-  );
+  const [selectedOptions, setSelectedOptions] = useState<TeamOption[]>([]);
   const [search, setSearch] = useState<string>("");
-
-  const [curPlayers, setCurPlayers] = useState<TPlayerData[]>(playersData);
 
   const isMobile = useMobileMediaQuery();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const teams = useTeamsOptions();
-
-  const filterPlayers = () => {
-    if (selectedOptions.length === 0) {
-      setCurPlayers(playersData)
-      console.log(curPlayers)
-      return playersData;
-    }
-    const result: TPlayerData[] = [];
-    selectedOptions.map((opt) => {
-      curPlayers.map((player) => {
-        if (player.team === opt.value) {
-          result.push(player);
-        }
-      });
-    });
-
-    return result;
-  };
-
-  // useEffect(() => {
-  //   setCurPlayers(playersData)
-  // }, [])
-
-  useEffect(() => {
-   setCurPlayers(filterPlayers());
-  }, [selectedOptions]);
 
   const params = {
     name: search,
@@ -90,11 +61,27 @@ export const PlayersList: FC = () => {
     size: inputsData.size,
   };
 
+  const filterPlayers = () => {
+    if (selectedOptions.length === 0) {
+      return playersData;
+    }
+    const result: TPlayerData[] = [];
+
+    selectedOptions.map((opt) => {
+      allPlayers.map((player) => {
+        if (player.team === opt.value) {
+          result.push(player);
+        }
+      });
+    });
+    return result;
+  };
+
+  const playersForRender = filterPlayers();
+
   useEffect(() => {
     dispatch(getCurrentPlayersThunk(params));
-    setCurPlayers(playersData)
-    setSelectedOptions([])
-
+    setSelectedOptions([]);
   }, [params.name, params.page, params.size]);
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -114,6 +101,7 @@ export const PlayersList: FC = () => {
   const onButtonClick = () => {
     navigate("/players/add-player");
   };
+
   const options = [
     {
       label: 6,
@@ -130,7 +118,6 @@ export const PlayersList: FC = () => {
   ];
 
   const handleChange = (newValue: unknown, actionMeta: ActionMeta<unknown>) => {
-    console.log(selectedOptions);
     if (newValue instanceof Array) {
       const options = newValue as TeamOption[];
       setSelectedOptions(options);
@@ -140,19 +127,17 @@ export const PlayersList: FC = () => {
     }
   };
 
+  const render = selectedOptions.slice(-3);
+
   return (
     <ListPageWrapper>
       <ListHeader cols={3}>
         <SearchInput value={search} onChange={handleSearchChange}></SearchInput>
         <StyledMultiselect
-          classNames={{
-            multiValue: () => styles.container,
-          }}
           options={teams}
           onChange={handleChange}
-          value={selectedOptions}
+          value={render}
         />
-
         <Button
           htmlType="button"
           onClick={onButtonClick}
@@ -163,7 +148,7 @@ export const PlayersList: FC = () => {
         </Button>
       </ListHeader>
       {isLoading && <Preloader />}
-      {!isLoading && !isError && curPlayers?.length === 0 && (
+      {!isLoading && !isError && playersForRender?.length === 0 && (
         <EmptyList image={image} message={"Add new player to continue"} />
       )}
       {isError && !isLoading && (
@@ -176,9 +161,9 @@ export const PlayersList: FC = () => {
         />
       )}
 
-      {!isLoading && !isError && curPlayers?.length > 0 && (
+      {!isLoading && !isError && playersForRender?.length > 0 && (
         <CardContainer>
-          {curPlayers.map((player) => (
+          {playersForRender.map((player) => (
             <PlayerCard key={player.id} data={player} />
           ))}
         </CardContainer>

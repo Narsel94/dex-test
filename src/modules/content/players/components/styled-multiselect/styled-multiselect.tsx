@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import Select, { Props } from "react-select";
+import Select, { GroupBase, Props, PropsValue } from "react-select";
 import classNames from "classnames";
 import styles from "./styled-multiselect.module.css";
 
@@ -10,30 +10,20 @@ type TOption = {
 
 interface StyledSelect extends Omit<Props, "options"> {
   options: TOption[];
-  // value:TOption[];
+  value:any
   error?: string;
 }
 
-export const StyledMultiselect: FC<StyledSelect> = ({ options, ...rest }) => {
-  const [renderValue, setRenderValue] = useState<TOption[]>([]);
+export const StyledMultiselect: FC<StyledSelect> = ({value, options, ...rest }) => {
   const { onChange } = rest;
-
-  // useEffect(() => {
-  //   if (value.length < 3) {
-  //     console.log(value)
-  //     setRenderValue(value)
-  //   } else {
-  //     setRenderValue([value[0], value[1], {label: '...', value: value[3].value}])
-  //   }
-  // }, [value])
 
   return (
     <Select
       isMulti
       onChange={onChange}
+      value={value}
       unstyled
       options={options}
-      hideSelectedOptions
       classNames={{
         container: () => styles.container,
         menuList: () => styles.group,
@@ -46,6 +36,7 @@ export const StyledMultiselect: FC<StyledSelect> = ({ options, ...rest }) => {
         valueContainer: () => styles.val,
         input: () => styles.input,
       }}
+      {...rest}
     />
   );
 };
