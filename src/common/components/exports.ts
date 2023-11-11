@@ -17,6 +17,8 @@ import { CountSelect } from "./styled-count-select/styled-count-select";
 import { CardContainer } from "./card-container/card-container";
 import { BurgerButton } from "./burger-button/burger-button";
 import { InfoInput } from "./info-input/info-input";
+import { FormWrapper } from "./form-wrapper/form-wrapper";
+import { GridContainer } from "./grid-container/grid-container";
 
 
 export {
@@ -36,5 +38,7 @@ export {
   StyledSelect,
   CountSelect,
   CardContainer,
-  InfoInput
+  InfoInput,
+  FormWrapper,
+  GridContainer
 };

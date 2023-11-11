@@ -2,6 +2,7 @@ import { Params } from "react-router";
 import {
   TAddTeamRequest,
   TAddTeamResponse,
+  TGetTeamsRequest, TGetTeamsResponse
 } from "../../modules/content/teams/types";
 import { remove, get, post } from "../base-request";
 
@@ -26,3 +27,7 @@ export const postTeamRequest = (data: TAddTeamRequest) =>
 
 export const getTeamsRequest = (search?: string) =>
   get(`/Team/GetTeams${search}`, getCookie("token"));
+
+
+  export const getAllTeamsRequest = ():Promise<TGetTeamsResponse> =>
+  get(`/Team/GetTeams`, getCookie("token"));

@@ -5,7 +5,9 @@ import {
   ControledInput,
   Button,
   StyledSelect,
-  UrlInput
+  UrlInput,
+  FormWrapper,
+  GridContainer
 } from "../../../../common/components/exports";
 import { useNavigate } from "react-router";
 import { AddFormContainer, ErrorBlock,  } from "../../components/exports";
@@ -13,25 +15,10 @@ import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuer
 import { useForm, Controller } from "react-hook-form";
 import { usePositions, useTeamsOptions } from "../components/exports";
 import { addPlayerRequest } from "../../../../api/players/players-api";
+import { TAddNewPlayerForm } from "../types";
 import classNames from "classnames";
 import styles from "./add-new-player.module.css";
 
-type TAddNewPlayerForm = {
-  name: string;
-  number: number;
-  position: {
-    label: string;
-    value: string;
-  };
-  team: {
-    label: string;
-    value: number;
-  };
-  birthday: string;
-  height: number;
-  weight: number;
-  avatarUrl: string;
-};
 
 export const AddNewPlayer:FC = () => {
   const isMobile = useMobileMediaQuery();
@@ -73,7 +60,7 @@ export const AddNewPlayer:FC = () => {
   }
 
   return (
-    <div className={styles.wrapper}>
+    <FormWrapper>
       <BreadCrumbs />
       <AddFormContainer
         className={formClasses}
@@ -138,7 +125,7 @@ export const AddNewPlayer:FC = () => {
               />
             )}
           />
-          <div className={styles.gridContainer}>
+          <GridContainer>
             <Controller
               control={control}
               name="height"
@@ -213,9 +200,9 @@ export const AddNewPlayer:FC = () => {
             <Button htmlType="submit" disabled={!isValid} isPrime>
               Save
             </Button>
-          </div>
+          </GridContainer>
         </div>
       </AddFormContainer>
-    </div>
+    </FormWrapper>
   );
 };

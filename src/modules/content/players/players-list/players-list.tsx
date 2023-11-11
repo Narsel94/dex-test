@@ -33,6 +33,7 @@ import {
 } from "../selectors";
 import { ActionMeta, MultiValue, OnChangeValue } from "react-select";
 import { TPlayerData } from "../../../../api/players/types";
+import { TGetParams } from "../../../../common/helpers/get-queries";
 
 type TeamOption = {
   label: string;
@@ -47,7 +48,7 @@ export const PlayersList: FC = () => {
   const playersData = useAppSelector(playersSelector);
   const allPlayers = useAppSelector(allPlayersSelector);
 
-  const [selectedOptions, setSelectedOptions] = useState<TeamOption[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const [search, setSearch] = useState<string>("");
 
   const isMobile = useMobileMediaQuery();
@@ -55,34 +56,36 @@ export const PlayersList: FC = () => {
   const dispatch = useAppDispatch();
   const teams = useTeamsOptions();
 
-  const params = {
+  const params: TGetParams = {
     name: search,
     page: inputsData.page,
     size: inputsData.size,
+    teams: selectedOptions,
   };
 
-  const filterPlayers = () => {
-    if (selectedOptions.length === 0) {
-      return playersData;
-    }
-    const result: TPlayerData[] = [];
+  // const filterPlayers = () => {
+  //   if (selectedOptions.length === 0) {
+  //     return playersData;
+  //   }
+  //   const result: TPlayerData[] = [];
 
-    selectedOptions.map((opt) => {
-      allPlayers.map((player) => {
-        if (player.team === opt.value) {
-          result.push(player);
-        }
-      });
-    });
-    return result;
-  };
+  //   selectedOptions.map((opt) => {
+  //     allPlayers.map((player) => {
+  //       if (player.team === opt.value) {
+  //         result.push(player);
+  //       }
+  //     });
+  //   });
+  //   return result;
+  // };
 
-  const playersForRender = filterPlayers();
+  // const playersForRender = filterPlayers();
 
   useEffect(() => {
+
     dispatch(getCurrentPlayersThunk(params));
-    setSelectedOptions([]);
-  }, [params.name, params.page, params.size]);
+    console.log(params);
+  }, [params.name, params.page, params.size, params.teams]);
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -120,14 +123,14 @@ export const PlayersList: FC = () => {
   const handleChange = (newValue: unknown, actionMeta: ActionMeta<unknown>) => {
     if (newValue instanceof Array) {
       const options = newValue as TeamOption[];
-      setSelectedOptions(options);
+      setSelectedOptions(options.map((opt)=> opt.value));
+      console.log(params);
     } else {
       const option = newValue as TeamOption;
-      setSelectedOptions((prev) => [...prev, option]);
+      setSelectedOptions((prev) => [...prev, option.value]);
     }
   };
 
-  const render = selectedOptions.slice(-3);
 
   return (
     <ListPageWrapper>
@@ -136,7 +139,6 @@ export const PlayersList: FC = () => {
         <StyledMultiselect
           options={teams}
           onChange={handleChange}
-          value={render}
         />
         <Button
           htmlType="button"
@@ -148,7 +150,7 @@ export const PlayersList: FC = () => {
         </Button>
       </ListHeader>
       {isLoading && <Preloader />}
-      {!isLoading && !isError && playersForRender?.length === 0 && (
+      {!isLoading && !isError && playersData?.length === 0 && (
         <EmptyList image={image} message={"Add new player to continue"} />
       )}
       {isError && !isLoading && (
@@ -161,9 +163,9 @@ export const PlayersList: FC = () => {
         />
       )}
 
-      {!isLoading && !isError && playersForRender?.length > 0 && (
+      {!isLoading && !isError && playersData?.length > 0 && (
         <CardContainer>
-          {playersForRender.map((player) => (
+          {playersData.map((player) => (
             <PlayerCard key={player.id} data={player} />
           ))}
         </CardContainer>
@@ -171,7 +173,7 @@ export const PlayersList: FC = () => {
 
       <ListFooter>
         <StyledReactPaginate
-          pageCount={inputsData.count || 1}
+          pageCount={Math.ceil(inputsData.count / inputsData.size) || 1}
           onPageChange={handlePageChange}
         />
         <CountSelect options={options} onChange={handleSizeChage} />

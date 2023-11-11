@@ -1,6 +1,8 @@
 .twoCols {
   display: grid;
-  grid-template-columns: minmax(200px, 364px) 2fr;
+  grid-template-columns: minmax(200px, 1fr) 2fr;
+  gap: 36px;
+
   justify-items: end;
   position: relative;
 }
@@ -9,16 +11,15 @@
   position: relative;
 
   display: grid;
-  grid-template-columns: repeat(3, minmax(200px, 364px));
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
   justify-content: space-between;
-  justify-items: flex-end;  
+  gap: 24px;
+  justify-items: flex-end;
 }
-
-
 
 .headerMobile {
   display: flex;
-  gap: 6px;
+  gap: 16px;
   padding: 1%;
   flex-direction: column;
 }

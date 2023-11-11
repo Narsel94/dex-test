@@ -6,7 +6,7 @@ import {
   TGetTeamsResponse,
 } from "./types";
 import { postTeamRequest, getTeamsRequest } from "../../../api/teams/teams-api";
-import { getQueries } from "./helpers/get-queries";
+import { getQueries } from "../../../common/helpers/get-queries";
 
 export const addTeamThunk = createAsyncThunk<TAddTeamResponse, TAddTeamRequest>(
   "teams/addTeam",

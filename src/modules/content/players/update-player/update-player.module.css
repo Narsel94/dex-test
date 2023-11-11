@@ -1,0 +1,13 @@
+.wrapper {
+  background-color: white;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  border-radius: 2%;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: 2%;
+}

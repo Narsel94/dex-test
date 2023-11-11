@@ -10,7 +10,7 @@ type TInfoBlock = PropsWithChildren & {
   subtitle?: string | number;
 };
 
-export const InfoBlock: FC<TInfoBlock> = ({ title, children, subtitle }) => {
+export const InfoBlock: FC<TInfoBlock> = ({ title, subtitle }) => {
   const isMobile = useMobileMediaQuery();
 
   const dataClasses = classNames({
@@ -18,12 +18,19 @@ export const InfoBlock: FC<TInfoBlock> = ({ title, children, subtitle }) => {
     [styles.dataBlockMob]: isMobile,
   });
 
+  const titleClasses = classNames(styles.title, {
+    [styles.titleDesc]:!isMobile,
+    [styles.titleMob]: isMobile
+  })
+
+  const subtitleClasses = classNames(styles.subtitle, {
+    [styles.subtitleDesc]:!isMobile,
+    [styles.subtitleMob]: isMobile
+  })
   return (
     <div className={dataClasses}>
-      <h3>{title}</h3>
-      {children}
-      {/* <InfoInput value={subtitle}/> */}
-      {subtitle &&<p>{subtitle}</p>}
+      <h3 className={titleClasses}>{title}</h3>
+      {subtitle &&<p className={subtitleClasses}>{subtitle}</p>}
     </div>
   );
 };

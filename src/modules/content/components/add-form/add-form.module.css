@@ -1,8 +1,10 @@
 .form {
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   padding-right: 10%;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .formMobile {

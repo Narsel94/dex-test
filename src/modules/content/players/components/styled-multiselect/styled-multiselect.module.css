@@ -10,7 +10,6 @@
   border: 1px solid var(--lightest-grey);
   padding-left: 4px;
   color: var(--light-grey);
-
 }
 
 .container:hover {
@@ -62,6 +61,9 @@
   border-bottom: 0.5px solid var(--lightest-grey);
   color: var(--lightest-grey);
   height: 40px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-weight: 500;
   letter-spacing: 1.05px;
   box-sizing: border-box;
@@ -83,6 +85,7 @@
   display: flex;
   align-items: center;
   gap: 3px;
+  max-width: 33%;
   letter-spacing: 1.1px;
   height: 24px;
   border-radius: 4px;
@@ -91,7 +94,11 @@
 
 .val {
   display: flex; 
+  flex-wrap: nowrap !important;
   gap: 4px;
+  overflow: hidden;
+  -webkit-box-flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
 }
 
 
@@ -99,4 +106,11 @@
   font-family: "Avenir-Book", Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-weight: 500;
+}
+
+
+.placeholder {
+  align-self: flex-start;
+  text-align: left;
+  margin-left: 6px;
 }

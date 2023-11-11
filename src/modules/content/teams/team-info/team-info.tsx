@@ -4,12 +4,12 @@ import { TeamData } from "../types";
 import { useLoaderData, useNavigate } from "react-router";
 import { removeTeam } from "../../../../api/teams/teams-api";
 import { InfoHeader, InfoWrapper, InfoSection } from "../../components/exports";
+import { InfoBlock } from "../../components/exports";
 import { Roster } from "../exports";
 import classNames from "classnames";
 import styles from "./team-info.module.css";
 
 export const SingleTeam = () => {
-  const [disabled, setDisabled] = useState<boolean>(true);
   const navigate = useNavigate();
   const data = useLoaderData() as TeamData;
 
@@ -30,15 +30,6 @@ export const SingleTeam = () => {
     [styles.flex]: isMobile,
   });
 
-  const dataClasses = classNames({
-    [styles.dataBlockDesc]: !isMobile,
-    [styles.dataBlockMob]: isMobile,
-  });
-
-  const onClick = () => {
-    setDisabled(!disabled);
-  };
-
   const onDelete = () => {
     if (data) {
       removeTeam(data.id)?.then(() => navigate("/teams", { replace: true }));
@@ -56,18 +47,12 @@ export const SingleTeam = () => {
           <div className={infoBlockClasses}>
             <h1 className={styles.title}>{data.name}</h1>
             <div className={containerClasses}>
-              <div className={dataClasses}>
-                <h3>Year of foundation</h3>
-                <p>{data.foundationYear}</p>
-              </div>
-              <div className={dataClasses}>
-                <h3>Division</h3>
-                <p>{data.division}</p>
-              </div>
-              <div className={dataClasses}>
-                <h3>Conference</h3>
-                <p>{data.conference}</p>
-              </div>
+              <InfoBlock
+                title="Year of foundation"
+                subtitle={data.foundationYear}
+              />
+              <InfoBlock title="Division" subtitle={data.division} />
+              <InfoBlock title="Conference" subtitle={data.conference} />
             </div>
           </div>
         </InfoSection>

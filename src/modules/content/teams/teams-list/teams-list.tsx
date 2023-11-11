@@ -117,7 +117,7 @@ export const TeamsList = () => {
 
       <ListFooter>
         <StyledReactPaginate
-          pageCount={inputsData.count}
+          pageCount={Math.ceil(inputsData.count/inputsData.size) || 1}
           onPageChange={handlePageChange}
         />
         <CountSelect

@@ -2,24 +2,20 @@
   width: 100%;
   display: grid;
   overflow-y: auto;
-  gap: 10px;
 }
 
 .desctop {
-  grid-template-columns: repeat(3, minmax(290px, 364px));
-  grid-auto-rows: minmax(300px, 340px);
-  justify-content: space-between;
-  max-height: 80vh;
-
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
+  grid-auto-rows: minmax(300px, 1fr);
+  gap: 24px;
 }
 
 .mobile {
-  grid-template-columns: repeat(2, minmax(170px, 230px));
-  grid-auto-rows: minmax(200px);
+  grid-template-columns: repeat(2, minmax(170px, 1fr));
+  grid-auto-rows: minmax(200px, 1fr);
   justify-content: space-evenly;
-  gap: 6px;
+  gap: 12px;
   max-height: 72vh;
-
 }
 
 .container::-webkit-scrollbar {

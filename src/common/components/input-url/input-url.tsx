@@ -1,15 +1,10 @@
-import React, {
-  useCallback,
-  useState,
-  FC,
-} from "react";
+import React, { useCallback, useState, FC, useEffect } from "react";
 import { InvalidMessage } from "../exports";
 import { useMobileMediaQuery } from "../../hooks/useMobileMediaQuery";
 
 import classNames from "classnames";
 
 import styles from "./input-url.module.css";
-
 
 type DropEvent = React.DragEvent<HTMLElement>;
 
@@ -78,7 +73,13 @@ export const UrlInput: FC<UrlInput> = ({
     e.preventDefault();
   };
 
-  const handleDrop = (e:DropEvent) => {
+  useEffect(() => {
+    if (value) {
+      setLink(value);
+    }
+  }, []);
+
+  const handleDrop = (e: DropEvent) => {
     e.preventDefault();
     e.dataTransfer.dropEffect = "link";
     if (e.dataTransfer.getData("URL")) {

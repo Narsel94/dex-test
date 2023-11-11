@@ -2,7 +2,7 @@
   background-color: var(--light-blue);
   height: 100vh;
   width: 100%;
-  max-width: 834px;
+  max-width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,7 +10,7 @@
 }
 
 .image {
-  max-width: 660px;
-
-  width: fit-content;
+  max-width: 80%;
+  /* height: 40%; */
+  /* width: fit-content; */
 }

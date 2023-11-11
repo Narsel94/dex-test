@@ -8,6 +8,7 @@ export type TAddTeamRequest = {
   imageUrl?: string;
 };
 
+
 export type TAddTeamResponse = TAddTeamRequest & { id: number };
 export type TeamData = TAddTeamResponse;
 

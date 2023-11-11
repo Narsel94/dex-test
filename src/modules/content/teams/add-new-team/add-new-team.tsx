@@ -4,7 +4,11 @@ import {
   ControledInput,
   Button,
   UrlInput,
+  FormWrapper,
+  GridContainer
+
 } from "../../../../common/components/exports";
+import { useNavigate, useNavigation } from "react-router";
 import { AddFormContainer } from "../../components/exports";
 import { Controller, useForm } from "react-hook-form";
 import { useAppDispatch } from "../../../../common/hooks/useAppDispatch";
@@ -26,15 +30,16 @@ export const AddNewTeam = () => {
     });
   const { isValid, errors } = formState;
   const dispatch = useAppDispatch();
+  const navigate = useNavigate()
 
   const onSubmit = (data: TAddForm) => {
-    dispatch(addTeamThunk(data)).finally(() => {
+    dispatch(addTeamThunk(data)).then(()=>navigate('/teams')).finally(() => {
       reset();
     });
   };
 
   return (
-    <div className={styles.wrapper}>
+    <FormWrapper>
       <BreadCrumbs />
       <AddFormContainer
         onSubmit={handleSubmit(onSubmit)}
@@ -121,16 +126,16 @@ export const AddNewTeam = () => {
               />
             )}
           />
-          <div className={styles.gridContainer}>
+          <GridContainer>
             <Button htmlType="reset" onClick={() => reset()}>
               Cancel
             </Button>
             <Button htmlType="submit" disabled={!isValid} isPrime>
               Save
             </Button>
-          </div>
+          </GridContainer>
         </div>
       </AddFormContainer>
-    </div>
+    </FormWrapper>
   );
 };

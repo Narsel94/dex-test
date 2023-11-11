@@ -1,0 +1,21 @@
+.wrapper {
+  background-color: white;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  border-radius: 2%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.desctop {
+  padding: 24px 32px 48px;
+  gap: 72px;
+}
+
+.mobile {
+  padding: 16px 16px 48px;
+  gap: 64px;
+}

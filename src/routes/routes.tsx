@@ -14,6 +14,7 @@ import {
   AddNewPlayer,
   PlayersList,
   PlayerInfo,
+  UpdatePlayer,
 } from "../modules/content/players/exports";
 import {
   AddNewTeam,
@@ -21,7 +22,6 @@ import {
   SingleTeam,
   ErrroElement,
 } from "../modules/content/teams/exports";
-import { getCookie } from "../common/helpers/helpers";
 import { getTeamLoader } from "../api/teams/teams-api";
 import { getPlayerLoader } from "../api/players/players-api";
 
@@ -96,16 +96,10 @@ export const router2 = createBrowserRouter([
                 path: "/players/:playerId",
                 element: <PlayerInfo />,
                 handle: { title: "playerId", url: "/players/:playerId" },
-                // вариант через роутер
-                loader: async ({ params }): Promise<TPlayerData> => {
-                  const playerData = getPlayerLoader(params.playerId);
-                  if (!playerData) {
-                    throw json(
-                      { message: "Not Found", reason: "Wrong Url" },
-                      { status: 404 }
-                    );
+                loader: async ({ params }) => {
+                  if (params.playerId) {
+                    return getPlayerLoader(params);
                   }
-                  return playerData;
                 },
                 errorElement: <ErrroElement />,
               },
@@ -113,6 +107,20 @@ export const router2 = createBrowserRouter([
                 path: "/players/add-player",
                 element: <AddNewPlayer />,
                 handle: { title: "Add New Player", url: "/players/add-player" },
+              },
+              {
+                path: "/players/update-player/:playerId",
+                element: <UpdatePlayer />,
+                handle: {
+                  title: "Update Player",
+                  url: "/players/update-player",
+                },
+                loader: async ({ params }) => {
+                  if (params.playerId) {
+                    return getPlayerLoader(params);
+                  }
+                },
+                errorElement: <ErrroElement />,
               },
             ],
           },

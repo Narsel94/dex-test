@@ -10,7 +10,7 @@ type TOption = {
 
 interface StyledSelect extends Omit<Props, "options"> {
   options: TOption[];
-  value:any
+  value?:any
   error?: string;
 }
 
@@ -35,6 +35,7 @@ export const StyledMultiselect: FC<StyledSelect> = ({value, options, ...rest }) 
         multiValue: () => styles.multiValue,
         valueContainer: () => styles.val,
         input: () => styles.input,
+        placeholder:() => styles.placeholder
       }}
       {...rest}
     />
