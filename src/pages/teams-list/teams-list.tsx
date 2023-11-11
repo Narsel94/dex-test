@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { useAppDispatch } from "../../../../common/hooks/useAppDispatch";
-import { useAppSelector } from "../../../../common/hooks/useAppSelector";
+import { useAppDispatch } from "../../common/hooks/useAppDispatch";
+import { useAppSelector } from "../../common/hooks/useAppSelector";
 import { useNavigate, useLocation } from "react-router";
 import {
   Button,
@@ -8,20 +8,20 @@ import {
   Preloader,
   CountSelect,
   CardContainer
-} from "../../../../common/components/exports";
-import { ErrorBlock, SearchInput, EmptyList, ListPageWrapper, ListFooter, ListHeader } from "../../components/exports";
-import { TeamCard } from "../exports";
+} from "../../common/components/exports";
+import { ErrorBlock, SearchInput, EmptyList, ListPageWrapper, ListFooter, ListHeader } from "../../modules/content/components/exports";
+import { TeamCard } from "../../modules/content/teams/exports";
 import {
   teamsPageDataSelector,
   teamsSelector,
   teamsErrorSelector,
   teamsErrorDataSelector,
   teamsLoadingSelector,
-} from "../selectors";
-import { setSize, setPage } from "../teams-slice";
-import { getTeamsThunk } from "../async-thunk";
-import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
-import image from "../../../../assests/images/empty-teams.svg";
+} from "../../modules/content/teams/selectors";
+import { setSize, setPage } from "../../modules/content/teams/teams-slice";
+import { getTeamsThunk } from "../../modules/content/teams/async-thunk";
+import { useMobileMediaQuery } from "../../common/hooks/useMobileMediaQuery";
+import image from "../../assests/images/empty-teams.svg";
 
 export const TeamsList = () => {
   const [name, setName] = useState<string>("");

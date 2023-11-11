@@ -6,23 +6,23 @@ import {
   ListHeader,
   EmptyList,
   ErrorBlock,
-} from "../../components/exports";
+} from "../../modules/content/components/exports";
 import {
   Button,
   StyledReactPaginate,
   CountSelect,
   CardContainer,
   Preloader,
-} from "../../../../common/components/exports";
-import image from "../../../../assests/images/empty-players.svg";
-import { StyledMultiselect, PlayerCard } from "../components/exports";
-import { SearchInput } from "../../components/exports";
-import { useTeamsOptions } from "../components/use-teams-options/use-teams-options";
-import { setSize, setPage, setPlayers } from "../players-slice";
-import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
-import { useAppDispatch } from "../../../../common/hooks/useAppDispatch";
-import { useAppSelector } from "../../../../common/hooks/useAppSelector";
-import { getCurrentPlayersThunk } from "../asynk-thunk";
+} from "../../common/components/exports";
+import image from "../../assests/images/empty-players.svg";
+import { StyledMultiselect, PlayerCard } from "../../modules/content/players/components/exports";
+import { SearchInput } from "../../modules/content/components/exports";
+import { useTeamOptions1 } from "../../modules/content/players/components/use-teams-options/use-teams-options";
+import { setSize, setPage } from "../../modules/content/players/players-slice";
+import { useMobileMediaQuery } from "../../common/hooks/useMobileMediaQuery";
+import { useAppDispatch } from "../../common/hooks/useAppDispatch";
+import { useAppSelector } from "../../common/hooks/useAppSelector";
+import { getCurrentPlayersThunk } from "../../modules/content/players/asynk-thunk";
 import {
   playersSelector,
   playersLoadingSelector,
@@ -30,10 +30,9 @@ import {
   playersErrorSelector,
   playersErrorDataSelector,
   allPlayersSelector,
-} from "../selectors";
-import { ActionMeta, MultiValue, OnChangeValue } from "react-select";
-import { TPlayerData } from "../../../../api/players/types";
-import { TGetParams } from "../../../../common/helpers/get-queries";
+} from "../../modules/content/players/selectors";
+import { ActionMeta } from "react-select";
+import { TGetParams } from "../../common/helpers/get-queries";
 
 type TeamOption = {
   label: string;
@@ -54,7 +53,8 @@ export const PlayersList: FC = () => {
   const isMobile = useMobileMediaQuery();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const teams = useTeamsOptions();
+  const teamsOpt = useTeamOptions1();
+
 
   const params: TGetParams = {
     name: search,
@@ -63,28 +63,8 @@ export const PlayersList: FC = () => {
     teams: selectedOptions,
   };
 
-  // const filterPlayers = () => {
-  //   if (selectedOptions.length === 0) {
-  //     return playersData;
-  //   }
-  //   const result: TPlayerData[] = [];
-
-  //   selectedOptions.map((opt) => {
-  //     allPlayers.map((player) => {
-  //       if (player.team === opt.value) {
-  //         result.push(player);
-  //       }
-  //     });
-  //   });
-  //   return result;
-  // };
-
-  // const playersForRender = filterPlayers();
-
   useEffect(() => {
-
     dispatch(getCurrentPlayersThunk(params));
-    console.log(params);
   }, [params.name, params.page, params.size, params.teams]);
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -124,7 +104,6 @@ export const PlayersList: FC = () => {
     if (newValue instanceof Array) {
       const options = newValue as TeamOption[];
       setSelectedOptions(options.map((opt)=> opt.value));
-      console.log(params);
     } else {
       const option = newValue as TeamOption;
       setSelectedOptions((prev) => [...prev, option.value]);
@@ -137,7 +116,7 @@ export const PlayersList: FC = () => {
       <ListHeader cols={3}>
         <SearchInput value={search} onChange={handleSearchChange}></SearchInput>
         <StyledMultiselect
-          options={teams}
+          options={teamsOpt}
           onChange={handleChange}
         />
         <Button

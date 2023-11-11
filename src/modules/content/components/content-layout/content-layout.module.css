@@ -31,7 +31,6 @@
 
 .headerMobile {
   box-sizing: border-box;
-  outline: 1px solid red;
   width: 100%;
   z-index: 1;
   height: 62px;
@@ -57,7 +56,6 @@
 
 .mainMobile {
   padding: 10px 2px;
-  height: fit-content;
 }
 
 .navWrapper {

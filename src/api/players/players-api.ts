@@ -3,6 +3,7 @@ import { getCookie } from "../../common/helpers/helpers";
 import { TAddPlayerRequest, TPlayerData, TUpdatePlayerRequest } from "./types";
 import { TGetPlayersResponse } from "./types";
 import { Params, json } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export const addPlayerRequest = (data: TAddPlayerRequest) => {
   return post("/Player/Add", JSON.stringify(data), getCookie("token"));
@@ -42,6 +43,27 @@ export const updatePlayerRequest = (data: TUpdatePlayerRequest) => {
   const token = getCookie("token")
   if (token) {
     return put("/Player/Update", JSON.stringify(data), token);
-  }
-  
+  } 
+};
+
+
+
+export const usePlayersOfTeam =  (teamId:number) => {
+  const [players, setPlayers] = useState<TPlayerData[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response:TGetPlayersResponse = await get(`/Player/GetPlayers?TeamIds=${teamId}`, getCookie("token"));
+       
+        setPlayers(response.data);
+      } catch (error) {
+        console.error('Error fetching team options:', error);
+      }
+    };
+
+    fetchData();
+  }, []); 
+
+  return players;
 };

@@ -7,18 +7,18 @@ import {
   SignUpPage,
   TeamsPage,
   PlayersPage,
+  AddNewTeam,
+  UpdatePlayer,
+  PlayersList,
+  TeamsList,
+  AddNewPlayer,
 } from "../pages/exports";
 import { ContentLayout } from "../modules/content/components/exports";
 import { PrivateRoutes, PublicRoutes } from "../common/components/exports";
 import {
-  AddNewPlayer,
-  PlayersList,
   PlayerInfo,
-  UpdatePlayer,
 } from "../modules/content/players/exports";
 import {
-  AddNewTeam,
-  TeamsList,
   SingleTeam,
   ErrroElement,
 } from "../modules/content/teams/exports";

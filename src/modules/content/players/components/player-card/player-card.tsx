@@ -6,6 +6,7 @@ import { useAppSelector } from "../../../../../common/hooks/useAppSelector";
 import { teamsSelector } from "../../../teams/selectors";
 import classNames from "classnames";
 import styles from "./player-card.module.css";
+import { useTeamName } from "../use-teams-options/use-teams-options";
 
 type TPlayerCard = {
   data: TPlayerData;
@@ -17,7 +18,7 @@ export const PlayerCard: FC<TPlayerCard> = ({ data }) => {
   const teams = useAppSelector(teamsSelector)
   const teamName = teams.find((team) => team.id === data.team)
 
-
+  const teamName1 = useTeamName(data.team)
   const nameClasses = classNames(styles.name, {
     [styles.nameDesc]: !isMobile,
     [styles.nameMob]: isMobile,
@@ -33,7 +34,7 @@ export const PlayerCard: FC<TPlayerCard> = ({ data }) => {
         <h3 className={nameClasses}>
           {data.name} <span className={styles.number}>#{data.number || "-"}</span>
         </h3>
-        <p className={styles.team}>{teamName?.name || data.team}</p>
+        <p className={styles.team}>{teamName1 || data.team}</p>
       </div>
     </Link>
   );

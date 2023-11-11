@@ -9,7 +9,7 @@ import { Roster } from "../exports";
 import classNames from "classnames";
 import styles from "./team-info.module.css";
 
-export const SingleTeam = () => {
+export const TeamInfo = () => {
   const navigate = useNavigate();
   const data = useLoaderData() as TeamData;
 

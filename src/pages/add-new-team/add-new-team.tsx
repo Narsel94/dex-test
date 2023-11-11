@@ -7,12 +7,12 @@ import {
   FormWrapper,
   GridContainer
 
-} from "../../../../common/components/exports";
+} from "../../common/components/exports";
 import { useNavigate, useNavigation } from "react-router";
-import { AddFormContainer } from "../../components/exports";
+import { AddFormContainer } from "../../modules/content/components/exports";
 import { Controller, useForm } from "react-hook-form";
-import { useAppDispatch } from "../../../../common/hooks/useAppDispatch";
-import { addTeamThunk } from "../async-thunk";
+import { useAppDispatch } from "../../common/hooks/useAppDispatch";
+import { addTeamThunk } from "../../modules/content/teams/async-thunk";
 import styles from "./add-new-team.module.css";
 
 type TAddForm = {

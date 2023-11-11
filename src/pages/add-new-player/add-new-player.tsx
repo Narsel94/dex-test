@@ -8,14 +8,14 @@ import {
   UrlInput,
   FormWrapper,
   GridContainer
-} from "../../../../common/components/exports";
+} from "../../common/components/exports";
 import { useNavigate } from "react-router";
-import { AddFormContainer, ErrorBlock,  } from "../../components/exports";
-import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
+import { AddFormContainer, ErrorBlock,  } from "../../modules/content/components/exports";
+import { useMobileMediaQuery } from "../../common/hooks/useMobileMediaQuery";
 import { useForm, Controller } from "react-hook-form";
-import { usePositions, useTeamsOptions } from "../components/exports";
-import { addPlayerRequest } from "../../../../api/players/players-api";
-import { TAddNewPlayerForm } from "../types";
+import { usePositions, useTeamsOptions } from "../../modules/content/players/components/exports";
+import { addPlayerRequest } from "../../api/players/players-api";
+import { TAddNewPlayerForm } from "../../modules/content/players/types";
 import classNames from "classnames";
 import styles from "./add-new-player.module.css";
 

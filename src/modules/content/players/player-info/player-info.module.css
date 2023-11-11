@@ -1,5 +1,6 @@
 .image {
-  width: 40%;
+  width: 45%;
+  object-fit: contain;
   margin-left: 3%;
   align-self: flex-end;
   object-fit: contain;

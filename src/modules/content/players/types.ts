@@ -38,4 +38,5 @@ export type TUpdatePlayerForm = Omit<Partial<TAddNewPlayerForm>, 'name' | 'posit
     label: string;
     value: string;
   },
+  id: number
 } 

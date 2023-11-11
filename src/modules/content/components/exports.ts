@@ -1,5 +1,4 @@
 import { NavigationBar } from "./navigation-bar/navigation-bar";
-import { ContentHeader } from "./content-header/content-header";
 import { ContentLayout } from "./content-layout/content-layout";
 import { UserInfo } from "./user-info/user-info";
 import { Logo } from "./logo/logo";
@@ -25,7 +24,6 @@ export {
   InfoSection,
   InfoBlock,
   NavigationBar,
-  ContentHeader,
   ContentLayout,
   Logo,
   UserInfo,

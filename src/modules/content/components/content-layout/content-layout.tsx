@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { ContentHeader, Logo, UserInfo } from "../exports";
+import { Logo, UserInfo } from "../exports";
 import classNames from "classnames";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
@@ -56,15 +56,14 @@ export const ContentLayout = () => {
 
   return (
     <div className={styles.layout}>
-      
       <div className={headerClasses}>
         {isMobile && (
-        <BurgerButton
-          extraClasses={styles.button}
-          onClick={() => setOpen(!isOpen)}
-          status={isOpen}
-        />
-      )}
+          <BurgerButton
+            extraClasses={styles.button}
+            onClick={() => setOpen(!isOpen)}
+            status={isOpen}
+          />
+        )}
         <Logo to="/teams" size={isMobile ? "small" : "medium"} />
         {!isMobile && <UserInfo />}
       </div>

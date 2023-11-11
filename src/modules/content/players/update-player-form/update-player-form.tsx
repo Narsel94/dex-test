@@ -1,27 +1,23 @@
 import React, { FC, useEffect } from "react";
 import {
-  BreadCrumbs,
-  Preloader,
   ControledInput,
   Button,
   StyledSelect,
   UrlInput,
 } from "../../../../common/components/exports";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 import { AddFormContainer, ErrorBlock } from "../../components/exports";
 import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
 import { useForm, Controller } from "react-hook-form";
-import {
-  TPlayerData,
-
-} from "../../../../api/players/types";
+import { TPlayerData } from "../../../../api/players/types";
 import { usePositions } from "../components/exports";
 import { useTeamOptions1 } from "../components/use-teams-options/use-teams-options";
-import classNames from "classnames";
-import styles from "./player-form.module.css";
+
 import { TUpdatePlayerForm } from "../types";
 import { updatePlayerRequest } from "../../../../api/players/players-api";
+import classNames from "classnames";
+import styles from "./update-player-form.module.css";
 
 type TPlayerForm = {
   data?: TPlayerData;
@@ -29,28 +25,31 @@ type TPlayerForm = {
 
 export const PlayerForm: FC<TPlayerForm> = ({ data }) => {
   const isMobile = useMobileMediaQuery();
-  const navigate = useNavigate()
+  const { playerId } = useParams();
+  const navigate = useNavigate();
 
-  const { reset, control, handleSubmit, setValue } = useForm<TUpdatePlayerForm>({
-    mode: "onBlur",
-  });
-
-  const onSubmit = (data: TUpdatePlayerForm) => {
-    const preparedData = {
-      name: data.name,
-      number: data.number,
-      position: data.position?.value,
-      team: data.team?.value,
-      birthday: data.birthday? new Date(data?.birthday).toISOString() : '',
-      height: data.height,
-      weight: data.weight,
-      avatarUrl: data.avatarUrl,
-    };
-    if (preparedData !== undefined) {
-       updatePlayerRequest(preparedData).then(()=> navigate('/players'))
+  const { reset, control, handleSubmit, setValue } = useForm<TUpdatePlayerForm>(
+    {
+      mode: "onBlur",
     }
-   
+  );
+
+  const onSubmit = (FormData: TUpdatePlayerForm) => {
+    const preparedData = {
+      id: Number(playerId),
+      name: FormData.name,
+      number: FormData.number,
+      position: FormData.position?.value,
+      team: FormData.team?.value,
+      birthday: FormData.birthday
+        ? new Date(FormData?.birthday).toISOString()
+        : "",
+      height: FormData.height,
+      weight: FormData.weight,
+      avatarUrl: FormData.avatarUrl,
+    };
     console.log(preparedData);
+    updatePlayerRequest(preparedData)?.then(() => navigate("/players"));
   };
 
   const teamsOpt = useTeamOptions1();
@@ -62,7 +61,7 @@ export const PlayerForm: FC<TPlayerForm> = ({ data }) => {
   }
 
   const { positions } = usePositions();
-const formClasses = classNames(styles.form, {
+  const formClasses = classNames(styles.form, {
     [styles.formMobile]: isMobile,
   });
 

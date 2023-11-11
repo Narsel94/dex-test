@@ -1,7 +1,5 @@
 import React, { ChangeEvent, FC, useState } from "react";
-import { useLoaderData, useParams } from "react-router";
-import { useAppSelector } from "../../../../common/hooks/useAppSelector";
-import { teamsSelector } from "../../teams/selectors";
+import { useLoaderData } from "react-router";
 import { useNavigate } from "react-router";
 import {
   InfoWrapper,
@@ -16,10 +14,11 @@ import { TPlayerData } from "../../../../api/players/types";
 import classNames from "classnames";
 import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
 import { removePlayerRequest } from "../../../../api/players/players-api";
+import { useTeamName } from "../components/use-teams-options/use-teams-options";
 
 export const PlayerInfo: FC = () => {
   const playerData = useLoaderData() as TPlayerData;
-
+  const teamName = useTeamName(playerData.team);
 
   const isMobile = useMobileMediaQuery();
   const navigate = useNavigate();
@@ -34,9 +33,6 @@ export const PlayerInfo: FC = () => {
     [styles.imageMobile]: isMobile,
   });
   const age = getAge(playerData.birthday);
-  const team = useAppSelector(teamsSelector).find(
-    (team) => team.id === playerData?.team
-  );
 
   const removePlayer = () => {
     if (playerData) {
@@ -46,8 +42,7 @@ export const PlayerInfo: FC = () => {
 
   const onUpdateClick = () => {
     navigate(`/players/update-player/${playerData.id}`);
-  }
-
+  };
 
   return (
     <InfoWrapper>
@@ -71,7 +66,7 @@ export const PlayerInfo: FC = () => {
             <InfoBlock title="Position" subtitle={playerData.position} />
             <InfoBlock
               title="Team"
-              subtitle={team?.name || playerData.team}
+              subtitle={teamName || playerData.team}
             ></InfoBlock>
             <InfoBlock
               title="Height"
