@@ -19,7 +19,7 @@
   height: 70%;
   display: flex;
   justify-content: center;
-  align-items: end;
+  align-items: flex-end;
   background: linear-gradient(121.57deg, #707070 1.62%, #393939 81.02%);
 }
 
