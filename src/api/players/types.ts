@@ -9,23 +9,26 @@ export type TAddPlayerRequest = {
   avatarUrl?: string;
 };
 
-export type TUpdatePlayerRequest = Omit<Partial<TAddPlayerRequest>, 'name' | 'position'> & {
+export type TUpdatePlayerRequest = Omit<
+  Partial<TAddPlayerRequest>,
+  "name" | "position"
+> & {
   name: string;
   position: string;
-
-}
+};
 
 export type TPlayerData = TAddPlayerRequest & {
   id: number;
 };
 
-export type TGetPlayersRequest = {
-  count?: number;
-  page?: number;
-  size?: number;
-  teams?: number[];
-} | undefined;
-
+export type TGetPlayersRequest =
+  | {
+      count?: number;
+      page?: number;
+      size?: number;
+      teams?: number[];
+    }
+  | undefined;
 
 export type TGetPlayersResponse = {
   data: TPlayerData[];

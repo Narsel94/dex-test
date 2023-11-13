@@ -8,7 +8,9 @@ import { PlayersList } from "./players-list/players-list";
 import { UpdatePlayer } from "./update-player/update-player";
 import { AddNewTeam } from "./add-new-team/add-new-team";
 import { AddNewPlayer } from "./add-new-player/add-new-player";
+import { UpdateTeam } from "./update-team/update-team";
+import { ProfilePage } from "./profile-page/profile-page";
 
 
 
-export {NotFound, SignInPage, SignUpPage, TeamsPage, PlayersPage, AddNewTeam, UpdatePlayer, PlayersList, TeamsList, AddNewPlayer}
+export {NotFound, SignInPage, SignUpPage, TeamsPage, PlayersPage, AddNewTeam, UpdatePlayer, PlayersList, TeamsList, AddNewPlayer, UpdateTeam, ProfilePage}

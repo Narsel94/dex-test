@@ -19,9 +19,11 @@ import { BurgerButton } from "./burger-button/burger-button";
 import { InfoInput } from "./info-input/info-input";
 import { FormWrapper } from "./form-wrapper/form-wrapper";
 import { GridContainer } from "./grid-container/grid-container";
+import { FileInput } from "./file-input/file-input";
 
 
 export {
+  FileInput,
   BurgerButton,
   InvalidMessage,
   BreadCrumbs,

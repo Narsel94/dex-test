@@ -1,12 +1,11 @@
-import { Params } from "react-router";
 import {
   TAddTeamRequest,
-  TAddTeamResponse,
-  TGetTeamsRequest, TGetTeamsResponse
+  TGetTeamsResponse,
+  TUpdateTeamRequest,
 } from "../../modules/content/teams/types";
-import { remove, get, post } from "../base-request";
+import { remove, get, post, put } from "../base-request";
 
-import { getCookie } from "../../common/helpers/helpers";
+import { getCookie } from "../../common/helpers/cookies";
 
 export const removeTeam = (id: number) => {
   const token = getCookie("token");
@@ -28,6 +27,12 @@ export const postTeamRequest = (data: TAddTeamRequest) =>
 export const getTeamsRequest = (search?: string) =>
   get(`/Team/GetTeams${search}`, getCookie("token"));
 
-
-  export const getAllTeamsRequest = ():Promise<TGetTeamsResponse> =>
+export const getAllTeamsRequest = (): Promise<TGetTeamsResponse> =>
   get(`/Team/GetTeams`, getCookie("token"));
+
+export const updateTeamRequest = (data: TUpdateTeamRequest) => {
+  const token = getCookie("token");
+  if (token) {
+    return put("/Team/Update", JSON.stringify(data), token);
+  }
+};

@@ -14,7 +14,7 @@ import { TPlayerData } from "../../../../api/players/types";
 import classNames from "classnames";
 import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
 import { removePlayerRequest } from "../../../../api/players/players-api";
-import { useTeamName } from "../components/use-teams-options/use-teams-options";
+import { useTeamName } from "../hooks/use-teams-options/use-teams-options";
 
 export const PlayerInfo: FC = () => {
   const playerData = useLoaderData() as TPlayerData;
@@ -43,6 +43,19 @@ export const PlayerInfo: FC = () => {
   const onUpdateClick = () => {
     navigate(`/players/update-player/${playerData.id}`);
   };
+
+  if (typeof playerData === "boolean") {
+    return (
+      <div className={styles.wrapper}>
+        <InfoWrapper>
+          <InfoHeader />
+          <InfoSection extraClass={styles.notFoundSection}>
+            <h1 className={styles.notFoundTitle}>Sorry, player not found!</h1>
+          </InfoSection>
+        </InfoWrapper>
+      </div>
+    );
+  }
 
   return (
     <InfoWrapper>

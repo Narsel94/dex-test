@@ -1,6 +1,6 @@
 import { post } from "../base-request";
 import { TSignUpRequest, TSignUpResponse } from "../helpers/types/types"
-import { setCookie } from "../../common/helpers/helpers";
+import { setCookie } from "../../common/helpers/cookies";
 
 
 export const signUpRequest = (data:TSignUpRequest) => post('/Auth/SignUp',  JSON.stringify(data))

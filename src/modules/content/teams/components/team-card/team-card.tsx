@@ -2,11 +2,11 @@ import React, { FC } from 'react'
 import { useMobileMediaQuery } from '../../../../../common/hooks/useMobileMediaQuery'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
-import { TeamData } from '../../types'
+import { TTeamData } from '../../types'
 import styles from './team-card.module.css'
 
 type TTeamCard = {
-  data: TeamData
+  data: TTeamData
 }
 
 export const TeamCard:FC<TTeamCard> = ({data}) => {

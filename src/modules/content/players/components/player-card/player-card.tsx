@@ -6,7 +6,7 @@ import { useAppSelector } from "../../../../../common/hooks/useAppSelector";
 import { teamsSelector } from "../../../teams/selectors";
 import classNames from "classnames";
 import styles from "./player-card.module.css";
-import { useTeamName } from "../use-teams-options/use-teams-options";
+import { useTeamName } from "../../hooks/use-teams-options/use-teams-options";
 
 type TPlayerCard = {
   data: TPlayerData;

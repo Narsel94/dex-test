@@ -1,9 +1,10 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import {
   ControledInput,
   Button,
   StyledSelect,
   UrlInput,
+  InvalidMessage,
 } from "../../../../common/components/exports";
 import { useNavigate, useParams } from "react-router";
 
@@ -12,7 +13,7 @@ import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuer
 import { useForm, Controller } from "react-hook-form";
 import { TPlayerData } from "../../../../api/players/types";
 import { usePositions } from "../components/exports";
-import { useTeamOptions1 } from "../components/use-teams-options/use-teams-options";
+import { useTeamOptions1 } from "../hooks/use-teams-options/use-teams-options";
 
 import { TUpdatePlayerForm } from "../types";
 import { updatePlayerRequest } from "../../../../api/players/players-api";
@@ -28,12 +29,11 @@ export const PlayerForm: FC<TPlayerForm> = ({ data }) => {
   const { playerId } = useParams();
   const navigate = useNavigate();
 
-  const { reset, control, handleSubmit, setValue } = useForm<TUpdatePlayerForm>(
-    {
+  const { reset, control, handleSubmit, setValue, formState } =
+    useForm<TUpdatePlayerForm>({
       mode: "onBlur",
-    }
-  );
-
+    });
+  const { errors, isValid } = formState;
   const onSubmit = (FormData: TUpdatePlayerForm) => {
     const preparedData = {
       id: Number(playerId),
@@ -48,7 +48,6 @@ export const PlayerForm: FC<TPlayerForm> = ({ data }) => {
       weight: FormData.weight,
       avatarUrl: FormData.avatarUrl,
     };
-    console.log(preparedData);
     updatePlayerRequest(preparedData)?.then(() => navigate("/players"));
   };
 
@@ -100,6 +99,7 @@ export const PlayerForm: FC<TPlayerForm> = ({ data }) => {
               propValue={value}
               onChange={onChange}
               onBlur={onBlur}
+              error={errors.name?.message}
             />
           )}
         />
@@ -111,10 +111,16 @@ export const PlayerForm: FC<TPlayerForm> = ({ data }) => {
         <Controller
           control={control}
           name="position"
+          rules={{
+            required: "Required",
+          }}
           render={({ field }) => (
             <StyledSelect {...field} options={positions} />
           )}
         />
+        {errors.position?.message && (
+          <InvalidMessage message={errors.position?.message} />
+        )}
         <div className={styles.gridContainer}>
           <Controller
             control={control}
@@ -181,7 +187,7 @@ export const PlayerForm: FC<TPlayerForm> = ({ data }) => {
           <Button htmlType="reset" onClick={() => reset()}>
             Cancel
           </Button>
-          <Button htmlType="submit" isPrime>
+          <Button htmlType="submit" isPrime disabled={!isValid}>
             Save
           </Button>
         </div>

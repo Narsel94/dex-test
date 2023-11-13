@@ -12,23 +12,19 @@ import {
   PlayersList,
   TeamsList,
   AddNewPlayer,
+  UpdateTeam,
+  ProfilePage
 } from "../pages/exports";
 import { ContentLayout } from "../modules/content/components/exports";
 import { PrivateRoutes, PublicRoutes } from "../common/components/exports";
-import {
-  PlayerInfo,
-} from "../modules/content/players/exports";
-import {
-  SingleTeam,
-  ErrroElement,
-} from "../modules/content/teams/exports";
+import { PlayerInfo } from "../modules/content/players/exports";
+import { TeamInfo, ErrroElement } from "../modules/content/teams/exports";
 import { getTeamLoader } from "../api/teams/teams-api";
 import { getPlayerLoader } from "../api/players/players-api";
 
 import { AppLayout } from "../pages/app-layout/app-layout";
-import { TPlayerData } from "../api/players/types";
 
-export const router2 = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
@@ -52,6 +48,10 @@ export const router2 = createBrowserRouter([
         element: <PrivateRoutes element={<ContentLayout />} />,
         children: [
           {
+            path: '/profile',
+            element: <ProfilePage/>
+          },
+          {
             path: "/teams",
             element: <TeamsPage />,
             handle: { title: "Teams", url: "/teams" },
@@ -62,17 +62,26 @@ export const router2 = createBrowserRouter([
               },
               {
                 path: `/teams/:teamId`,
-                element: <SingleTeam />,
+                element: <TeamInfo />,
                 handle: { title: "teamId", url: "/teams/:teamId" },
                 loader: async ({ params }) => {
-                  const teamData = getTeamLoader(params.teamId);
-                  if (!teamData) {
-                    throw json(
-                      { message: "Not Found", reason: "Wrong Url" },
-                      { status: 404 }
-                    );
+                  if (params.teamId) {
+                    return getTeamLoader(params.teamId);
                   }
-                  return teamData;
+                },
+                errorElement: <ErrroElement />,
+              },
+              {
+                path: "/teams/update-team/:teamId",
+                element: <UpdateTeam />,
+                handle: {
+                  title: "Update Team",
+                  url: "/teams/update-team",
+                },
+                loader: async ({ params }) => {
+                  if (params.teamId) {
+                    return getTeamLoader(params.teamId);
+                  }
                 },
                 errorElement: <ErrroElement />,
               },

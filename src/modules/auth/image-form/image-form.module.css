@@ -1,8 +1,9 @@
-.container {
+.form {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 606px;
   align-items: center;
+  justify-content: center;
+  width: 50%;
   gap: 10px;
+  margin: 0 auto;
 }

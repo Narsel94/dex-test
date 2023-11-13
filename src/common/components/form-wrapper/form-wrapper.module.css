@@ -5,7 +5,7 @@
   width: 100%;
   height: fit-content;
   display: flex;
-  border-radius: 2%;
+  border-radius: 10px;
   flex-direction: column;
   justify-content: center;
 }

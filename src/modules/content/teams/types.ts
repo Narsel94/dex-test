@@ -8,20 +8,28 @@ export type TAddTeamRequest = {
   imageUrl?: string;
 };
 
+export type TUpdateTeamRequest = {
+  id: number;
+  name: string;
+  foundationYear?: number;
+  division?: string;
+  conference?: string;
+  imageUrl?: string;
+};
 
 export type TAddTeamResponse = TAddTeamRequest & { id: number };
-export type TeamData = TAddTeamResponse;
+export type TTeamData = TAddTeamResponse;
 
 export type TInitialState = {
-  teams: TeamData[];
+  teams: TTeamData[];
   error: boolean;
   errorData: SerializedError | undefined;
   loading: boolean;
   pageData: {
-    count: number,
-    page: number,
-    size: number
-  }
+    count: number;
+    page: number;
+    size: number;
+  };
 };
 
 export type TGetTeamsRequest = {
@@ -31,7 +39,7 @@ export type TGetTeamsRequest = {
 };
 
 export type TGetTeamsResponse = {
-  data: TeamData[];
+  data: TTeamData[];
   size: number;
   page: number;
   count: number;
@@ -39,6 +47,5 @@ export type TGetTeamsResponse = {
 
 export type TSelectedValue = {
   label: number;
-  value: number
-}
-
+  value: number;
+};

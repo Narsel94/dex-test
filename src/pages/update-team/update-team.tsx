@@ -1,19 +1,17 @@
 import React from "react";
 import { useLoaderData } from "react-router";
-import { PlayerForm } from "../../modules/content/players/exports";
 import { BreadCrumbs } from "../../common/components/exports";
-import {
-  TPlayerData,
-} from "../../api/players/types";
+import { UpdateTeamForm } from "../../modules/content/teams/exports";
+import { TTeamData } from "../../modules/content/teams/types";
 import { FormWrapper } from "../../common/components/exports";
 
-export const UpdatePlayer = () => {
-  const playerData = useLoaderData() as TPlayerData;
+export const UpdateTeam = () => {
+  const teamData = useLoaderData() as TTeamData;
 
   return (
     <FormWrapper>
       <BreadCrumbs />
-      <PlayerForm data={playerData} />
+      <UpdateTeamForm data={teamData} />
     </FormWrapper>
   );
 };

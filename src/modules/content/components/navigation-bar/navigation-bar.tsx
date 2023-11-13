@@ -6,7 +6,7 @@ import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuer
 import { useNavigate, Navigate } from "react-router";
 import { useAppDispatch } from "../../../../common/hooks/useAppDispatch";
 import { useAppSelector } from "../../../../common/hooks/useAppSelector";
-import { removeCookie } from "../../../../common/helpers/helpers";
+import { removeCookie } from "../../../../common/helpers/cookies";
 
 import styles from "./navigation-bar.module.css";
 

@@ -7,7 +7,6 @@ export const getCookie = (name: string) => {
   }
 };
 
-
 export const setCookie = (name: string, cookie: string) => {
   const now = new Date();
   now.setTime(now.getTime() + 6 * 60 * 60 * 1000);

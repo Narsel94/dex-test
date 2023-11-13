@@ -1,7 +1,8 @@
 import React, { FC } from "react";
-import { getCookie } from "../../../../common/helpers/helpers";
+import { getCookie } from "../../../../common/helpers/cookies";
 import nullAvatar from '../../../../assests/icons/profile.svg'
 import classNames from "classnames";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./user-info.module.css";
 
 type TUserInfo = {
@@ -10,7 +11,8 @@ type TUserInfo = {
 
 export const UserInfo: FC<TUserInfo> = ({ isMobile = false }: TUserInfo) => {
   const name = getCookie("name");
-  const avatarUrl = getCookie("avatar");
+  const avatarUrl = getCookie("avatarUrl");
+  const navigate = useNavigate()
 
   const wrapperClasses = classNames({
     [styles.userInfoDesctop]: !isMobile,
@@ -22,10 +24,11 @@ export const UserInfo: FC<TUserInfo> = ({ isMobile = false }: TUserInfo) => {
     [styles.avatarDesctop]: !isMobile,
   });
 
-  const avatarImg = avatarUrl? avatarUrl : nullAvatar;
 
+
+  const avatarImg = avatarUrl? avatarUrl : nullAvatar;
   return (
-    <div className={wrapperClasses}>
+    <div onClick={()=> navigate('/profile')} className={wrapperClasses}>
       <p className={styles.text}>{name || "Unknown"}</p>
       <img src={avatarImg} alt="Аватар" className={avatarClasses} />
     </div>

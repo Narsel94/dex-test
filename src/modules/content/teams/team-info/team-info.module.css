@@ -17,11 +17,26 @@
 
 .title {
   font-family: var(--AvBlack);
+  color: white;
   padding: 0;
   margin: 0;
   max-width: 300px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.notFoundTitle {
+  font-family: var(--AvBlack);
+  color: var(--red);
+  padding: 0;
+  margin: 0;
+  font-size: 1.7em;
+  letter-spacing: .2em;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 1px 1px 2px var(--lightest-red);
+
 }
 
 .infoBlockDesc > h1 {
@@ -54,10 +69,6 @@
 
 .imageWrapper {
   display: flex;
-}
-
-.section {
-  padding: 3%;
 }
 
 .dataBlockDesc {

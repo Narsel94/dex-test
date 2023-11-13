@@ -17,7 +17,7 @@ import {
 import image from "../../assests/images/empty-players.svg";
 import { StyledMultiselect, PlayerCard } from "../../modules/content/players/components/exports";
 import { SearchInput } from "../../modules/content/components/exports";
-import { useTeamOptions1 } from "../../modules/content/players/components/use-teams-options/use-teams-options";
+import { useTeamOptions1 } from "../../modules/content/players/hooks/use-teams-options/use-teams-options";
 import { setSize, setPage } from "../../modules/content/players/players-slice";
 import { useMobileMediaQuery } from "../../common/hooks/useMobileMediaQuery";
 import { useAppDispatch } from "../../common/hooks/useAppDispatch";

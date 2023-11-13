@@ -22,3 +22,8 @@ export type TSignUpRequest = {
 };
 
 
+export type TUpdateUser = {
+  userName?: string;
+  avatarUrl?: string;
+}
+

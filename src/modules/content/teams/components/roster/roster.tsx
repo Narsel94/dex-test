@@ -1,10 +1,8 @@
-import React, { FC } from "react";
-import { useAppSelector } from "../../../../../common/hooks/useAppSelector";
-import { allPlayersSelector } from "../../../players/selectors";
+import { FC } from "react";
 import { RosterElement } from "../roster-element/roster-element";
-import styles from "./roster.module.css";
-import { usePlayersOfTeam } from "../../../../../api/players/players-api";
+import { usePlayersOfTeam } from "../../hooks/usePlayersOfTeam";
 import { useMobileMediaQuery } from "../../../../../common/hooks/useMobileMediaQuery";
+import styles from "./roster.module.css";
 
 type TRoster = {
   id: number;

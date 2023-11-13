@@ -20,7 +20,9 @@ type UrlInput = React.DetailedHTMLProps<
   onBlur?(e?: React.FocusEvent<HTMLInputElement>): void;
   onFocus?(e?: React.FocusEvent<HTMLInputElement>): void;
   onChange?(e?: React.ChangeEvent<HTMLInputElement>): void;
+  extraClass?: string,
   [x: string]: any;
+  
 };
 
 export const UrlInput: FC<UrlInput> = ({
@@ -30,6 +32,7 @@ export const UrlInput: FC<UrlInput> = ({
   onFocus,
   onChange,
   setValue,
+  extraClass,
   name,
   ...rest
 }) => {
@@ -91,20 +94,20 @@ export const UrlInput: FC<UrlInput> = ({
   };
 
   return (
-    <div className={styles.wrapper}>
-      <label
+    <div className={`${styles.wrapper} ${extraClass}`}>
+      <div
         draggable
         onDragOver={handleDragOver}
         onDrop={handleDrop}
         className={inputClasses}
       >
-        <img className={imageClasses} src={link || ""} />
+        {link && <img className={imageClasses} src={link || ""} />}
         <input
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
           className={styles.input}
         />
-      </label>
+      </div>
       <InvalidMessage message={error} />
     </div>
   );

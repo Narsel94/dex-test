@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getCookie } from "../../../../../common/helpers/helpers";
+import { getCookie } from "../../../../../common/helpers/cookies";
 import { get } from "../../../../../api/base-request";
 
 type TPosititon = {
