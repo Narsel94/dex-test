@@ -1,0 +1,12 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  padding: 2% 0;
+  height: fit-content;
+  justify-content: space-around;
+  flex-direction: column;
+  gap: 10px;
+  background-color: white;
+  border-radius: 10px;
+}

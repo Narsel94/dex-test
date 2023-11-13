@@ -49,16 +49,17 @@
 }
 
 .labelDesctop {
-  width: 336px;
-  height: 261px;
+  max-width: 336px;
+  max-height: 261px;
 }
 
 .labelMobile {
   max-width: 185px;
-  min-height: 144px;
+  max-height: 144px;
 }
 
 .input {
+  position: absolute;
   width: 0.1px;
   height: 0.1px;
   z-index: -999;

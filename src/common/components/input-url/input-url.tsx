@@ -95,7 +95,7 @@ export const UrlInput: FC<UrlInput> = ({
 
   return (
     <div className={`${styles.wrapper} ${extraClass}`}>
-      <div
+      <label
         draggable
         onDragOver={handleDragOver}
         onDrop={handleDrop}
@@ -107,7 +107,7 @@ export const UrlInput: FC<UrlInput> = ({
           onBlur={handleInputBlur}
           className={styles.input}
         />
-      </div>
+      </label>
       <InvalidMessage message={error} />
     </div>
   );

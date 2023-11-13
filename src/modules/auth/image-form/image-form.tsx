@@ -1,10 +1,11 @@
-import React, {
-  FormEvent,
-  useState,
-} from "react";
-import { Button, FileInput } from "../../../common/components/exports";
+import React, { FormEvent, useState } from "react";
+import {
+  Button,
+  FileInput,
+  GridContainer,
+} from "../../../common/components/exports";
 import { saveImageRequest } from "../../../api/auth/save-image";
-import styles from './image-form.module.css'
+import styles from "./image-form.module.css";
 
 export const SaveImageForm = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -25,17 +26,16 @@ export const SaveImageForm = () => {
   };
   return (
     <div>
-      <form
-        className={styles.form}
-        onSubmit={onSubmit}
-      >
+      <form className={styles.form} onSubmit={onSubmit}>
         {" "}
-        
         <FileInput onFileSelect={handleFileSelect} />
         <p>Перетащите или кликните, чтобы выбрать файл</p>
-        <Button htmlType="submit" isPrime>
-          Save
-        </Button>
+        <GridContainer>
+          <Button htmlType="submit" mode="small" isPrime>
+            Save
+          </Button>
+          <Button htmlType="reset" mode="small">Cancel</Button>
+        </GridContainer>
       </form>
     </div>
   );
