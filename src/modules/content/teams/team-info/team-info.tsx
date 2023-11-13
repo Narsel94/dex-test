@@ -1,7 +1,6 @@
-import React, { useState } from "react";
 import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
-import { TTeamData } from "../types";
 import { useLoaderData, useNavigate } from "react-router";
+import { TTeamData } from "../../../../api/teams/types";
 import { removeTeam } from "../../../../api/teams/teams-api";
 import { InfoHeader, InfoWrapper, InfoSection } from "../../components/exports";
 import { InfoBlock } from "../../components/exports";
@@ -34,14 +33,14 @@ export const TeamInfo = () => {
     }
   };
   const onChangeClick = () => {
-     navigate(`/teams/update-team/${data.id}`)
-  }
+    navigate(`/teams/update-team/${data.id}`);
+  };
 
   if (typeof data === "boolean") {
     return (
       <div className={styles.wrapper}>
         <InfoWrapper>
-          <InfoHeader  />
+          <InfoHeader />
           <InfoSection extraClass={styles.section}>
             <h1 className={styles.notFoundTitle}>Sorry, team not found!</h1>
           </InfoSection>
@@ -53,7 +52,11 @@ export const TeamInfo = () => {
   return (
     <div className={styles.wrapper}>
       <InfoWrapper>
-        <InfoHeader title={data.name} onTrashClick={onDelete} onUpdateClick={onChangeClick} />
+        <InfoHeader
+          title={data.name}
+          onTrashClick={onDelete}
+          onUpdateClick={onChangeClick}
+        />
         <InfoSection>
           <div className={styles.imageWrapper}>
             <img src={data.imageUrl} className={imageClasses} alt={data.name} />

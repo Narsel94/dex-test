@@ -1,11 +1,11 @@
+import { remove, get, post, put } from "../base-request";
+
+import { getCookie } from "../../common/helpers/cookies";
 import {
   TAddTeamRequest,
   TGetTeamsResponse,
   TUpdateTeamRequest,
-} from "../../modules/content/teams/types";
-import { remove, get, post, put } from "../base-request";
-
-import { getCookie } from "../../common/helpers/cookies";
+} from "./types";
 
 export const removeTeam = (id: number) => {
   const token = getCookie("token");

@@ -10,8 +10,9 @@ import {
 } from "../../../../common/components/exports";
 import { AddFormContainer } from "../../components/exports";
 import { updateTeamRequest } from "../../../../api/teams/teams-api";
+import { TTeamData } from "../../../../api/teams/types";
+
 import styles from "./update-team-form.module.css";
-import { TTeamData } from "../types";
 
 type TUpdateForm = {
   name: string;

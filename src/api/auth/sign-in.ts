@@ -2,7 +2,7 @@ import { post } from "../base-request";
 import { TSignInRequest, TSignInResponse } from "../helpers/types/types";
 import { setCookie } from "../../common/helpers/cookies";
 
-export const signInRequest = (data: TSignInRequest) =>
+export const signInRequest = (data: TSignInRequest, ) =>
   post("/Auth/SignIn", JSON.stringify(data))
     .then((data: TSignInResponse) => {
       setCookie("token", data.token);
@@ -13,6 +13,9 @@ export const signInRequest = (data: TSignInRequest) =>
         setCookie("name", data.name);
       }
     })
-    .catch((error) => {
-      console.error("An error occurred:", error);
-    });
+    // .catch((error) => {
+    //   cb && cb(error)
+    //   console.error("An error occurred:", error);
+    // } cb?:(e?: any) =>void
+    
+    // );

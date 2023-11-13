@@ -2,8 +2,9 @@ import React, { FC } from 'react'
 import { useMobileMediaQuery } from '../../../../../common/hooks/useMobileMediaQuery'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
-import { TTeamData } from '../../types'
+import { TTeamData } from '../../../../../api/teams/types'
 import styles from './team-card.module.css'
+
 
 type TTeamCard = {
   data: TTeamData
