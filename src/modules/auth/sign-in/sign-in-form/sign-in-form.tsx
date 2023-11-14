@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Form } from "../../components/exports";
 import { useForm, Controller } from "react-hook-form";
 import { signInRequest } from "../../../../api/auth/sign-in";
@@ -36,13 +36,15 @@ export const SignInForm = () => {
             message: 'Wrong password. Please, try again.'
           })
         }
+        if (error.status === 404) {
+          setError('password', {
+            type: error.status.toString(),
+            message: `Server Error. Error: ${error.status}`
+          })
+        }
       });
     reset();
   };
-
-  useEffect(()=> {
-    console.log(errors)
-  }, [errors])
 
   return (
     <>

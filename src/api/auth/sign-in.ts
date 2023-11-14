@@ -13,9 +13,3 @@ export const signInRequest = (data: TSignInRequest, ) =>
         setCookie("name", data.name);
       }
     })
-    // .catch((error) => {
-    //   cb && cb(error)
-    //   console.error("An error occurred:", error);
-    // } cb?:(e?: any) =>void
-    
-    // );

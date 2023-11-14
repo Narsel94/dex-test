@@ -20,6 +20,5 @@
 .headerMobile {
   display: flex;
   gap: 16px;
-  padding: 1%;
   flex-direction: column;
 }
