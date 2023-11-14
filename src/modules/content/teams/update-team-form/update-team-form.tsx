@@ -34,7 +34,6 @@ export const UpdateTeamForm: FC<TFormProp> = ({ data }) => {
   const navigate = useNavigate();
   const onSubmit = (formData: TUpdateForm) => {
     const { id } = data;
-    console.log({ ...formData, id });
     updateTeamRequest({ ...formData, id })
       ?.then(() => navigate("/teams"))
       .finally(() => {

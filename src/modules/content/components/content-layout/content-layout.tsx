@@ -23,9 +23,9 @@ export const ContentLayout = () => {
     }
   }, [location.pathname]);
 
-  useEffect(() => {
-    dispatch(getAllPlayersThunk());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getAllPlayersThunk());
+  // }, []);
 
   useEffect(() => {
     if (isMobile) {

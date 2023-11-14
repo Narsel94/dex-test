@@ -48,7 +48,6 @@ export const TeamInfo = () => {
       </div>
     );
   }
-
   return (
     <div className={styles.wrapper}>
       <InfoWrapper>

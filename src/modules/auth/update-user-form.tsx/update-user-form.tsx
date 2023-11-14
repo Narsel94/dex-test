@@ -7,8 +7,10 @@ import {
 } from "../../../common/components/exports";
 import { useForm, Controller } from "react-hook-form";
 import { updateUserRequest } from "../../../api/auth/update-user";
-import { getCookie } from "../../../common/helpers/cookies";
+import { getCookie, setCookie } from "../../../common/helpers/cookies";
+
 import styles from "./update-form.module.css";
+import { useNavigate } from "react-router";
 
 
 type TUserForm = {
@@ -23,10 +25,15 @@ export const UpdateUserForm = () => {
     });
   const avatarUrl = getCookie('avatarUrl')
   const userName = getCookie('name')
-
+  const navigate = useNavigate()
   const {errors, isValid} = formState
   const onSubmit = (data:TUserForm) => {
-    updateUserRequest(data)
+    updateUserRequest(data)?.then((res) => {
+      if (res) {
+        if (data.avatarUrl) setCookie('avatarUrl', data.avatarUrl);
+        if (data.userName) setCookie('name', data.userName);
+      }
+    }).then(()=> navigate('/teams'))
   };
 
   return (

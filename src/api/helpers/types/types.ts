@@ -1,5 +1,3 @@
-import { type } from "os";
-
 export type RequestGenericType = string;
 
 export type TSignInRequest = {
