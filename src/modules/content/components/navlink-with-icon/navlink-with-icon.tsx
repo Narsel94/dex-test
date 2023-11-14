@@ -1,5 +1,5 @@
 import React, { FC, useMemo, } from "react";
-import { NavLink, NavLinkProps, useMatch, useLocation } from "react-router-dom";
+import { NavLink, NavLinkProps, useLocation } from "react-router-dom";
 import classNames from "classnames";
 import styles from "./navlink-with-icon.module.css";
 import {
@@ -23,7 +23,6 @@ export const NavLinkWithIcon: FC<TNavLinkWithIcon> = ({
   to,
   ...rest
 }) => {
-  const isMatch = useMatch(to);
   const location = useLocation()
   const linkClasses = classNames(styles.base, {
       [styles.column]: type === "column",

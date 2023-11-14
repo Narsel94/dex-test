@@ -6,7 +6,7 @@ import styles from "./logo.module.css";
 
 type TLogo = {
   size: "medium" | "small";
-  to?: string | undefined;
+  to?: string;
 };
 
 export const Logo: FC<TLogo> = ({ size, to }) => {

@@ -1,6 +1,5 @@
-import React, { FC, useEffect, useState } from "react";
-import Select, { GroupBase, Props, PropsValue } from "react-select";
-import classNames from "classnames";
+import React, { FC } from "react";
+import Select, { Props } from "react-select";
 import styles from "./styled-multiselect.module.css";
 
 type TOption = {
@@ -10,11 +9,15 @@ type TOption = {
 
 interface StyledSelect extends Omit<Props, "options"> {
   options: TOption[];
-  value?:any
+  value?: any;
   error?: string;
 }
 
-export const StyledMultiselect: FC<StyledSelect> = ({value, options, ...rest }) => {
+export const StyledMultiselect: FC<StyledSelect> = ({
+  value,
+  options,
+  ...rest
+}) => {
   const { onChange } = rest;
 
   return (
@@ -35,7 +38,7 @@ export const StyledMultiselect: FC<StyledSelect> = ({value, options, ...rest }) 
         multiValue: () => styles.multiValue,
         valueContainer: () => styles.val,
         input: () => styles.input,
-        placeholder:() => styles.placeholder
+        placeholder: () => styles.placeholder,
       }}
       {...rest}
     />

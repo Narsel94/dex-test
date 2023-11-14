@@ -3,9 +3,7 @@ import classNames from "classnames";
 import { IconInput } from "../../../../assests/icons/icon-input";
 import { NavLinkWithIcon, ButtonWithIcon, UserInfo } from "../exports";
 import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
-import { useNavigate, Navigate } from "react-router";
-import { useAppDispatch } from "../../../../common/hooks/useAppDispatch";
-import { useAppSelector } from "../../../../common/hooks/useAppSelector";
+import { useNavigate } from "react-router";
 import { removeCookie } from "../../../../common/helpers/cookies";
 
 import styles from "./navigation-bar.module.css";
@@ -19,13 +17,10 @@ export const NavigationBar = () => {
     [styles.mob]: isMobile,
   });
 
-  const dispatch = useAppDispatch();
-
   const onLogoutClick = () => {
     removeCookie("token");
     removeCookie("name");
     removeCookie("avatarUrl");
-    // return <Navigate to='/' />
     navigate("/", {replace: true});
   };
 
@@ -47,7 +42,6 @@ export const NavigationBar = () => {
             iconType="IconPerson"
           />
         </div>
-
         <ButtonWithIcon
           onClick={onLogoutClick}
           colored

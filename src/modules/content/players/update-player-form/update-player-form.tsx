@@ -8,13 +8,12 @@ import {
 } from "../../../../common/components/exports";
 import { useNavigate, useParams } from "react-router";
 
-import { AddFormContainer, ErrorBlock } from "../../components/exports";
+import { AddFormContainer } from "../../components/exports";
 import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
 import { useForm, Controller } from "react-hook-form";
 import { TPlayerData } from "../../../../api/players/types";
 import { usePositions } from "../components/exports";
 import { useTeamOptions1 } from "../hooks/use-teams-options/use-teams-options";
-
 import { TUpdatePlayerForm } from "../types";
 import { updatePlayerRequest } from "../../../../api/players/players-api";
 import classNames from "classnames";

@@ -2,8 +2,6 @@ import React, { FC } from "react";
 import { useMobileMediaQuery } from "../../../../../common/hooks/useMobileMediaQuery";
 import { Link } from "react-router-dom";
 import { TPlayerData } from "../../../../../api/players/types";
-import { useAppSelector } from "../../../../../common/hooks/useAppSelector";
-import { teamsSelector } from "../../../teams/selectors";
 import classNames from "classnames";
 import styles from "./player-card.module.css";
 import { useTeamName } from "../../hooks/use-teams-options/use-teams-options";
@@ -14,16 +12,11 @@ type TPlayerCard = {
 
 export const PlayerCard: FC<TPlayerCard> = ({ data }) => {
   const isMobile = useMobileMediaQuery();
-
-  const teams = useAppSelector(teamsSelector)
-  const teamName = teams.find((team) => team.id === data.team)
-
   const teamName1 = useTeamName(data.team)
   const nameClasses = classNames(styles.name, {
     [styles.nameDesc]: !isMobile,
     [styles.nameMob]: isMobile,
   });
-
 
   return (
     <Link to={`/players/${data.id}`} className={styles.link}>

@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { getCookie } from "../../../../common/helpers/cookies";
 import nullAvatar from '../../../../assests/icons/profile.svg'
 import classNames from "classnames";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./user-info.module.css";
 
 type TUserInfo = {

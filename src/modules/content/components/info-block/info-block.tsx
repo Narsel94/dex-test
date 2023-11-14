@@ -1,7 +1,6 @@
 import React, { FC, PropsWithChildren } from "react";
 import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
 import classNames from "classnames";
-import { InfoInput } from "../../../../common/components/exports";
 
 import styles from "./info-block.module.css";
 
