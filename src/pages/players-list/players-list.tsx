@@ -10,7 +10,7 @@ import {
 import {
   Button,
   StyledReactPaginate,
-  CountSelect,
+  MemoCountSelect,
   CardContainer,
   Preloader,
 } from "../../common/components/exports";
@@ -29,7 +29,6 @@ import {
   playersPageDataSelector,
   playersErrorSelector,
   playersErrorDataSelector,
-  allPlayersSelector,
 } from "../../modules/content/players/selectors";
 import { ActionMeta } from "react-select";
 import { TGetParams } from "../../common/helpers/get-queries";
@@ -45,7 +44,6 @@ export const PlayersList: FC = () => {
   const errorData = useAppSelector(playersErrorDataSelector);
   const inputsData = useAppSelector(playersPageDataSelector);
   const playersData = useAppSelector(playersSelector);
-  const allPlayers = useAppSelector(allPlayersSelector);
 
   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const [search, setSearch] = useState<string>("");
@@ -155,7 +153,7 @@ export const PlayersList: FC = () => {
           pageCount={Math.ceil(inputsData.count / inputsData.size) || 1}
           onPageChange={handlePageChange}
         />
-        <CountSelect options={options} onChange={handleSizeChage} />
+        <MemoCountSelect options={options} onChange={handleSizeChage} />
       </ListFooter>
     </ListPageWrapper>
   );

@@ -6,15 +6,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { BurgerButton } from "../../../../common/components/exports";
-import { useAppDispatch } from "../../../../common/hooks/useAppDispatch";
-import { getAllPlayersThunk } from "../../players/asynk-thunk";
 import styles from "./content-layout.module.css";
 
 export const ContentLayout = () => {
   const isMobile = useMobileMediaQuery();
   const [isOpen, setOpen] = useState(!isMobile);
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const location = useLocation();
 
   useEffect(() => {
@@ -22,10 +19,6 @@ export const ContentLayout = () => {
       navigate("/teams");
     }
   }, [location.pathname]);
-
-  // useEffect(() => {
-  //   dispatch(getAllPlayersThunk());
-  // }, []);
 
   useEffect(() => {
     if (isMobile) {

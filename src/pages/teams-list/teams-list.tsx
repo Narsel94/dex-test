@@ -6,7 +6,7 @@ import {
   Button,
   StyledReactPaginate,
   Preloader,
-  CountSelect,
+  MemoCountSelect,
   CardContainer
 } from "../../common/components/exports";
 import { ErrorBlock, SearchInput, EmptyList, ListPageWrapper, ListFooter, ListHeader } from "../../modules/content/components/exports";
@@ -120,7 +120,7 @@ export const TeamsList = () => {
           pageCount={Math.ceil(inputsData.count/inputsData.size) || 1}
           onPageChange={handlePageChange}
         />
-        <CountSelect
+        <MemoCountSelect
           options={options}
           value={{ label: inputsData.size, value: inputsData.size }}
           onChange={handleSizeChage}

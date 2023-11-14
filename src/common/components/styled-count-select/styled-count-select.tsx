@@ -36,3 +36,5 @@ export const CountSelect: FC<IPageSelect> = React.forwardRef<
   }}
   />;
 });
+
+export const MemoCountSelect = React.memo(CountSelect)

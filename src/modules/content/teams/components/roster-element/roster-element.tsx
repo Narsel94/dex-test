@@ -19,8 +19,8 @@ export const RosterElement:FC<TRosterElement> = ({player}) => {
       <span className={styles.number}>{player.number || '-'}</span>
       <img className={styles.image} src={player.avatarUrl} alt={player.name} />
       <div className={styles.bio}>
-        <span>{player.name}</span>
-        <span>{player.position}</span>
+        <span className={styles.name}>{player.name}</span>
+        <span className={styles.position}>{player.position}</span>
       </div>
       {!isMobile && <div className={styles.info}>
         <span className={styles.span}>{player.height} cm</span>

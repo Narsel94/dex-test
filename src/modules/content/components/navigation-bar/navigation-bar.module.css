@@ -34,3 +34,9 @@
   justify-content: center;
   gap: 24px;
 }
+
+.link {
+  text-decoration: none;
+  width: 100%;
+  padding: 0;
+}
