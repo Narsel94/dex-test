@@ -1,4 +1,4 @@
-import { createBrowserRouter, json } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import { AuthLayout } from "../modules/auth/components/exports";
 import {
   NotFound,
@@ -12,7 +12,7 @@ import {
   TeamsList,
   AddNewPlayer,
   UpdateTeam,
-  ProfilePage
+  ProfilePage,
 } from "../pages/exports";
 import { ContentLayout } from "../modules/content/components/exports";
 import { PrivateRoutes, PublicRoutes } from "../common/components/exports";
@@ -20,7 +20,6 @@ import { PlayerInfo } from "../modules/content/players/exports";
 import { TeamInfo, ErrroElement } from "../modules/content/teams/exports";
 import { getTeamLoader } from "../api/teams/teams-api";
 import { getPlayerLoader } from "../api/players/players-api";
-
 import { AppLayout } from "../pages/app-layout/app-layout";
 
 export const router = createBrowserRouter([
@@ -47,8 +46,8 @@ export const router = createBrowserRouter([
         element: <PrivateRoutes element={<ContentLayout />} />,
         children: [
           {
-            path: '/profile',
-            element: <ProfilePage/>
+            path: "/profile",
+            element: <ProfilePage />,
           },
           {
             path: "/teams",
@@ -82,6 +81,7 @@ export const router = createBrowserRouter([
                     return getTeamLoader(params.teamId);
                   }
                 },
+
                 errorElement: <ErrroElement />,
               },
               {

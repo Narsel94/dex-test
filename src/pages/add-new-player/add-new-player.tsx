@@ -13,7 +13,7 @@ import { useNavigate } from "react-router";
 import { AddFormContainer, ErrorBlock,  } from "../../modules/content/components/exports";
 import { useMobileMediaQuery } from "../../common/hooks/useMobileMediaQuery";
 import { useForm, Controller } from "react-hook-form";
-import { usePositions, useTeamsOptions } from "../../modules/content/players/components/exports";
+import { usePositions, useTeamOptions } from "../../modules/content/players/components/exports";
 import { addPlayerRequest } from "../../api/players/players-api";
 import { TAddNewPlayerForm } from "../../modules/content/players/types";
 import classNames from "classnames";
@@ -28,7 +28,7 @@ export const AddNewPlayer:FC = () => {
 
   const { positions, error, errorMessage, isLoading } = usePositions();
 
-  const teamsOptions = useTeamsOptions();
+  const teamsOptions = useTeamOptions();
   const navigate = useNavigate()
 
   const { reset, control, handleSubmit, formState, setValue } =

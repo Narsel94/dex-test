@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { useAppDispatch } from "../../common/hooks/useAppDispatch";
 import { useAppSelector } from "../../common/hooks/useAppSelector";
-import { useNavigate, useLocation } from "react-router";
+import { useNavigate } from "react-router";
 import {
   Button,
   StyledReactPaginate,

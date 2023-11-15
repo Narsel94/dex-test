@@ -12,8 +12,7 @@ import { AddFormContainer } from "../../components/exports";
 import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
 import { useForm, Controller } from "react-hook-form";
 import { TPlayerData } from "../../../../api/players/types";
-import { usePositions } from "../components/exports";
-import { useTeamOptions1 } from "../hooks/use-teams-options/use-teams-options";
+import { usePositions, useTeamOptions } from "../components/exports";
 import { TUpdatePlayerForm } from "../types";
 import { updatePlayerRequest } from "../../../../api/players/players-api";
 import classNames from "classnames";
@@ -50,7 +49,7 @@ export const PlayerForm: FC<TPlayerForm> = ({ data }) => {
     updatePlayerRequest(preparedData)?.then(() => navigate("/players"));
   };
 
-  const teamsOpt = useTeamOptions1();
+  const teamsOpt = useTeamOptions();
 
   let formattedDate;
   if (data) {

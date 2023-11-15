@@ -39,12 +39,10 @@ export const usePlayersOfTeam = (teamId: number) => {
           if (res.ok) {
             return res.json()
           }
-        }).then(({data}) => setPlayers(data)).catch((error) => {
+        }).then((data:TGetPlayersResponse) => setPlayers(data.data)).catch((error) => {
           console.log(`Sorry! Can't fetch players. Error: ${error}`)
         }) 
         }
-      
-    
       };
 
     fetchData();
