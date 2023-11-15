@@ -14,7 +14,7 @@ import { TPlayerData } from "../../../../api/players/types";
 import classNames from "classnames";
 import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
 import { removePlayerRequest } from "../../../../api/players/players-api";
-import { useTeamName } from "../hooks/use-teams-options/use-teams-options";
+import { useTeamName } from "../hooks/use-team-name";
 
 export const PlayerInfo: FC = () => {
   const playerData = useLoaderData() as TPlayerData;

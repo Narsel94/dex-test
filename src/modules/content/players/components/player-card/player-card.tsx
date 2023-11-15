@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { TPlayerData } from "../../../../../api/players/types";
 import classNames from "classnames";
 import styles from "./player-card.module.css";
-import { useTeamName } from "../../hooks/use-teams-options/use-teams-options";
+import { useTeamName } from "../../hooks/use-team-name";
 
 type TPlayerCard = {
   data: TPlayerData;

@@ -1,5 +1,5 @@
-import { usePositions } from "../hooks/usePositions/usePositions";
-import { useTeamOptions } from "../hooks/use-teams-options/use-teams-options";
+import { usePositions } from "../hooks/usePositions";
+import { useTeamOptions } from "../hooks/use-team-options";
 import { StyledMultiselect } from "./styled-multiselect/styled-multiselect";
 import { PlayerCard } from "./player-card/player-card";
 

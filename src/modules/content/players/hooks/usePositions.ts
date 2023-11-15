@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { getCookie } from "../../../../../common/helpers/cookies";
-import { get } from "../../../../../api/base-request";
+import { getCookie } from "../../../../common/helpers/cookies";
+import { get } from "../../../../api/base-request";
 
 type TPosititon = {
   label: string;
