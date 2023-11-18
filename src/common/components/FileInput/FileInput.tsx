@@ -6,7 +6,6 @@ import {
   useRef,
   DragEvent,
 } from "react";
-import { useMobileMediaQuery } from "../../hooks/useMobileMediaQuery";
 import styles from "./FileInput.module.css";
 import classNames from "classnames";
 
@@ -15,7 +14,6 @@ type TFileInput = {
   error?: string;
   onBlurProp?:  (e?: React.FocusEvent<HTMLInputElement>) => void,
   defaultImageUrl?: string;
-  [x: string]: any;
 };
 
 export const FileInput: FC<TFileInput> = ({
@@ -30,11 +28,7 @@ export const FileInput: FC<TFileInput> = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [focus, setFocus] = useState<boolean>(false);
 
-  const isMobile = useMobileMediaQuery();
-
   const inputClasses = classNames(styles.label, {
-    [styles.labelMobile]: isMobile,
-    [styles.labelDesctop]: !isMobile,
     [styles.focus]: focus,
     [styles.error]: Boolean(error),
     [styles.dragged]: isDrag,

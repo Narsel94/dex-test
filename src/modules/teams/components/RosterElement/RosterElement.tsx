@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { TPlayerData } from "../../../../api/players/types";
+import { TPlayerData } from "../../../../api/players/TPlayers";
 import { getAge } from "../../../players/helpers/getAge";
 import styles from "./RosterElement.module.css";
 

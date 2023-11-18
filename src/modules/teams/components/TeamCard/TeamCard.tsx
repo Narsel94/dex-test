@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
-import { TTeamData } from '../../../../api/teams/types'
+import { TTeamData } from '../../../../api/teams/TTeams'
 import styles from './TeamCard.module.css'
 
 

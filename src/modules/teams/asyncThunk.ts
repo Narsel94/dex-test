@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { postTeamRequest, getTeamsRequest } from "../../api/teams/teams-api";
+import { postTeamRequest, getTeamsRequest } from "../../api/teams/teamsRequests";
 import { getQueries } from "../../common/helpers/getQueries";
 import {
   TAddTeamResponse,
   TAddTeamRequest,
   TGetTeamsResponse,
   TGetTeamsRequest,
-} from "../../api/teams/types";
+} from "../../api/teams/TTeams";
 
 export const addTeamThunk = createAsyncThunk<TAddTeamResponse, TAddTeamRequest>(
   "teams/addTeam",

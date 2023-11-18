@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllTeamsRequest, getTeamLoader } from "../../../api/teams/teams-api";
+import { getAllTeamsRequest } from "../../../api/teams/teamsRequests";
 
 type TTeamOption = {
   value: number;

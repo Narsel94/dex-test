@@ -8,9 +8,8 @@ import {
   PrivateRoutes,
 } from "./ProtectedRouter/ProtectedRouter";
 import { Preloader } from "./Preloader/Preloader";
-import { StyledReactPaginate } from "./styled-react-paginate/styled-react-paginate";
-import { StyledSelect } from "./styled-select/styled-select";
-import { CountSelect, MemoCountSelect } from "./styled-count-select/styled-count-select";
+import { StyledReactPaginate } from "./StyledReactPaginate/StyledReactPaginate";
+import { StyledSelect } from "./StyledSelect/StyledSelect";
 import { CardContainer } from "./CardContainer/CardContainer";
 import { BurgerButton } from "./BurgerButton/BurgerButton";
 import { GridContainer } from "./GridContainer/GridContainer";
@@ -41,7 +40,6 @@ export {
   AppLogo,
   AppLayout,
   ContentLayout,
-  MemoCountSelect,
   ButtonWithIcon,
   FileInput,
   BurgerButton,
@@ -55,7 +53,6 @@ export {
   Preloader,
   StyledReactPaginate,
   StyledSelect,
-  CountSelect,
   CardContainer,
   GridContainer,
   ContentForm

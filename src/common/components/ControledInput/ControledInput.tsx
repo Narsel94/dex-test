@@ -1,7 +1,7 @@
 import React, { forwardRef, useCallback, useRef, useState } from "react";
 import styles from "./ControledInput.module.css";
 import classNames from "classnames";
-import { useCombinedRefs } from "../../helpers/useCombineRefs";
+import { useCombinedRefs } from "../../hooks/useCombineRefs";
 
 type TControledInput = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -11,7 +11,7 @@ type TControledInput = React.DetailedHTMLProps<
   placeholder?: string;
   error?: string;
   search?: true;
-  type?: "text" | "number" | "date" | "date";
+  type?: "text" | "number" | "date";
   propValue?: string | number | readonly string[] | undefined;
   onChange: (...event: any[]) => void;
   onBlur?(e?: React.FocusEvent<HTMLInputElement>): void;

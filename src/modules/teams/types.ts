@@ -1,5 +1,5 @@
 import { SerializedError } from "@reduxjs/toolkit";
-import { TTeamData } from "../../api/teams/types";
+import { TTeamData } from "../../api/teams/TTeams";
 
 export type TInitialState = {
   teams: TTeamData[];

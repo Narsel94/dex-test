@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
-import { TPlayerData } from "../../../../api/players/types";
+import { TPlayerData } from "../../../../api/players/TPlayers";
 import styles from "./PlayerCard.module.css";
 import { useTeamName } from "../../hooks/useTeamName";
 

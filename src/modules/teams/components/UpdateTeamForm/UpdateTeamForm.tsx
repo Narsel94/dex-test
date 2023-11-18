@@ -8,10 +8,10 @@ import {
   GridContainer,
   ContentForm
 } from "../../../../common/components";
-import { updateTeamRequest } from "../../../../api/teams/teams-api";
-import { TTeamData } from "../../../../api/teams/types";
+import { updateTeamRequest } from "../../../../api/teams/teamsRequests";
+import { TTeamData } from "../../../../api/teams/TTeams";
 import styles from "./UpdateTeamForm.module.css";
-import { saveImageRequest } from "../../../../api/auth/save-image";
+import { saveImageRequest } from "../../../../api/auth/saveImage";
 
 const base = process.env.REACT_APP_IMAGES;
 

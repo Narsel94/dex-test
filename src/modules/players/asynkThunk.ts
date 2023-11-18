@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getAllPlayersRequest, getCurrentPlayersRequest } from "../../api/players/players-api";
+import { getAllPlayersRequest, getCurrentPlayersRequest } from "../../api/players/playersRequests";
 import { getQueries } from "../../common/helpers/getQueries";
 import {
   TGetPlayersRequest,
   TGetPlayersResponse,
-} from "../../api/players/types";
+} from "../../api/players/TPlayers";
 
 export const getAllPlayersThunk = createAsyncThunk<
   TGetPlayersResponse,

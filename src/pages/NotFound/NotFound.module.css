@@ -10,62 +10,43 @@
   font-family: "Avenir-Black", Arial, Helvetica, sans-serif;
   color: var(--lightest-red);
   font-weight: 800;
-}
-
-.titleDescto {
   font-size: 36px;
   margin-top: 30px;
 }
 
-.titleMobile {
-  font-size: 17px;
-  margin-top: 16px;
-}
 
 .subtitle {
   font-family: "Avenir-Book", Arial, Helvetica, sans-serif;
   font-weight: 400;
   color: var(--grey);
-}
-
-.subtitleMobile {
-  font-size: 15px;
-  margin-top: 10px;
-}
-
-.subtitleDesctop {
   font-size: 24px;
   margin-top: 20px;
 }
 
-.imageDesctop {
+
+.image {
   width: 380px;
   height: 212px;
 }
 
-.imageMobile {
+
+@media screen and (max-width: 860px){
+
+  .title {
+    font-size: 17px;
+    margin-top: 16px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    margin-top: 10px;
+  }
+
+  
+.image {
   width: 275px;
   height: 153px;
 }
-
-/* .desctop > h1 {
-  margin-top: 30px;
-  font-family: "Avenir-Black", Arial, Helvetica, sans-serif;
-  color: var(--lightest-red);
-  font-weight: 800;
-  font-size: 36px;
-} */
-
-/* .desctop > h3 {
-  font-family: "Avenir-Book", Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  font-size: 24px;
-  color: var(--grey);
   
-} */
-
-.desctop > img {
-  width: 380px;
-  height: 212px;
 }
 

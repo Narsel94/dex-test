@@ -1,20 +1,21 @@
-import React, { FC, useState } from "react";
+import React, { FC, forwardRef, useRef, useState } from "react";
 import styles from "./PasswordInput.module.css";
 import { IconCloseEye, IconEye } from "../../../assests/icons/exports";
 import classNames from "classnames";
+import { useCombinedRefs } from "../../hooks/useCombineRefs";
 
-type TControledInput = {
+type TPasswordInput = {
   title: string;
   error?: string;
-  value: string;
+  propValue: string;
   onChange: (e?: any) => void;
   onBlur?(e?: React.FocusEvent<HTMLInputElement>): void;
   onFocus?(e?: React.FocusEvent<HTMLInputElement>): void;
 };
 
-export const PasswordInputLabel: FC<TControledInput> = ({
+export const PasswordInputLabel: FC<TPasswordInput> = ({
   error,
-  value,
+  propValue,
   onChange,
   onBlur,
   title,
@@ -28,7 +29,6 @@ export const PasswordInputLabel: FC<TControledInput> = ({
 
   const onIconClick = () => {
     setShowPass(!showPass);
-    console.log(props);
   };
 
   return (
@@ -37,7 +37,7 @@ export const PasswordInputLabel: FC<TControledInput> = ({
       <input
         className={inputClassess}
         onChange={onChange}
-        value={value}
+        value={propValue || ""}
         onBlur={onBlur}
         type={showPass ? "text" : "password"}
         {...props}

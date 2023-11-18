@@ -1,4 +1,4 @@
-export interface IRequestBaseBody<RequestGenericType = string>  {
+export interface IRequestBaseBody<RequestGenericType>  {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE',
   body?: RequestGenericType 
 }

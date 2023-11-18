@@ -1,4 +1,4 @@
-export type RequestGenericType = string;
+export type RequestGenericType = string | FormData;
 
 export type TSignInRequest = {
   login: string;

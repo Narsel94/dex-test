@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTeamLoader } from "../../../api/teams/teams-api";
+import { getTeamLoader } from "../../../api/teams/teamsRequests";
 
 export const useTeamName =  (id:number) => {
   const [teamOptions, setTeamsOptions] = useState<string>();

@@ -8,11 +8,11 @@ import {
 } from "../../../../common/components";
 import { useNavigate, useParams } from "react-router";
 import { useForm, Controller } from "react-hook-form";
-import { TPlayerData } from "../../../../api/players/types";
+import { TPlayerData } from "../../../../api/players/TPlayers";
 import { usePositions, useTeamOptions } from "..";
 import { TUpdatePlayerForm } from "../../types";
-import { updatePlayerRequest } from "../../../../api/players/players-api";
-import { saveImageRequest } from "../../../../api/auth/save-image";
+import { updatePlayerRequest } from "../../../../api/players/playersRequests";
+import { saveImageRequest } from "../../../../api/auth/saveImage";
 import styles from "./UpdatePlayerForm.module.css";
 
 const base = process.env.REACT_APP_IMAGES;
@@ -61,7 +61,7 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
         weight: form.weight,
         avatarUrl: `${base}${res}`,
       };
-      updatePlayerRequest(preparedData)?.then(() => navigate("/players"));
+      updatePlayerRequest(preparedData)?.then(() => console.log("/players"));
     });
   };
   const teamsOpt = useTeamOptions();

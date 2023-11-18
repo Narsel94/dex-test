@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {
   TGetPlayersResponse,
   TPlayerData,
-} from "../../../api/players/types";
+} from "../../../api/players/TPlayers";
 import { getCookie } from "../../../common/helpers/cookies";
 
 const base = process.env.REACT_APP_API;

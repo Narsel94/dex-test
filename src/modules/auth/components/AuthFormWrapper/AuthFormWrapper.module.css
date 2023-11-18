@@ -1,0 +1,24 @@
+.title {
+  font-family: "Avenir-Book", Arial, Helvetica, sans-serif;
+  font-size: 36px;
+  color: var(--blue);
+  align-self: flex-start;
+  padding: 0;
+  margin-bottom: 22px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 360px;
+  min-width: 327px;
+}
+
+@media screen and (max-width: 840px) {
+  .title {
+
+    align-self: center;
+  }
+}

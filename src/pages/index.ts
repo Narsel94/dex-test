@@ -1,16 +1,16 @@
 import { NotFound } from "./NotFound/NotFound";
-import { SignIn } from "./SignIn/SignIn";
-import { SignUp } from "./SignUp/SignUp";
+import { SignIn } from "./authorization/SignIn/SignIn";
+import { SignUp } from "./authorization/SignUp/SignUp";
 import { TeamsLayout } from "../modules/teams/components/TeamsLayout/TeamsLayout";
-import { TeamsList } from "./TeamsList/TeamsList";
-import { PlayersList } from "./PlayersList/PlayersList";
-import { UpdatePlayer } from "./UpdatePlayer/UpdatePlayer";
-import { AddNewTeam } from "./AddTeam/AddTeam";
-import { AddNewPlayer } from "./AddPlayer/AddPlayer";
-import { UpdateTeam } from "./UpdateTeam/UpdateTeam";
-import { ProfilePage } from "./ProfilePage/ProfilePage";
-import { TeamInfo } from "./TeamInfo/TeamInfo";
-import { PlayerInfo } from "./PlayerInfo/PlayerInfo";
+import { TeamsList } from "./teams/TeamsList/TeamsList";
+import { PlayersList } from "./players/PlayersList/PlayersList";
+import { UpdatePlayer } from "./players/UpdatePlayer/UpdatePlayer";
+import { AddNewTeam } from "./teams/AddTeam/AddTeam";
+import { AddNewPlayer } from "./players/AddPlayer/AddPlayer";
+import { UpdateTeam } from "./teams/UpdateTeam/UpdateTeam";
+import { ProfilePage } from "./authorization/ProfilePage/ProfilePage";
+import { TeamInfo } from "./teams/TeamInfo/TeamInfo";
+import { PlayerInfo } from "./players/PlayerInfo/PlayerInfo";
 
 
 export {
