@@ -1,0 +1,43 @@
+.wrapper {
+  background-color: white;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 32px 48px;
+  gap: 72px;
+}
+
+.fieldsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 370px;
+}
+
+.gridContainer {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: repeat(2);
+  gap: 0 12px;
+}
+
+@media screen and (max-width: 1179px) {
+  .wrapper {
+    gap: 32px;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .wrapper {
+    padding: 16px 16px 48px;
+    gap: 64px;
+    border-radius: 0;
+  }
+}

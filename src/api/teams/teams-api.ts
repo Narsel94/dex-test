@@ -21,8 +21,10 @@ export const getTeamLoader = (id?: string) => {
   }
 };
 
-export const postTeamRequest = (data: TAddTeamRequest) =>
-  post("/Team/Add", JSON.stringify(data), getCookie("token"));
+export const postTeamRequest = (data: TAddTeamRequest) => {
+  return post("/Team/Add", JSON.stringify(data), getCookie("token"));
+}
+  
 
 export const getTeamsRequest = (search?: string) =>
   get(`/Team/GetTeams${search}`, getCookie("token"));

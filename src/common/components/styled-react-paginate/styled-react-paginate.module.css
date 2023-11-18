@@ -12,7 +12,6 @@
   color: var(--grey);
   margin: 0;
   padding: 0;
-
 }
 
 .container > * {
@@ -23,24 +22,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.desctop {
   width: 40px;
   height: 40px;
   border-radius: 6px;
-}
-
-.mobile {
-  width: 28px;
-  height: 28px;
-  border-radius: 4px;
-}
-
-.pageClassName {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .activePage {
@@ -48,3 +32,10 @@
   background-color: var(--red);
 }
 
+@media screen and (max-width: 800px) {
+  .pageClassName {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+  }
+}

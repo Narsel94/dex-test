@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { postTeamRequest, getTeamsRequest } from "../../../api/teams/teams-api";
-import { getQueries } from "../../../common/helpers/get-queries";
+import { getQueries } from "../../../common/helpers/getQueries";
 import {
   TAddTeamResponse,
   TAddTeamRequest,

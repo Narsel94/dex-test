@@ -3,7 +3,7 @@ import {
   Button,
   FileInput,
   GridContainer,
-} from "../../../common/components/exports";
+} from "../../../common/components";
 import { saveImageRequest } from "../../../api/auth/save-image";
 import styles from "./image-form.module.css";
 
@@ -22,7 +22,7 @@ export const SaveImageForm = () => {
     }
     const formData = new FormData();
     formData.append("file", file);
-    saveImageRequest(formData);
+    saveImageRequest(formData)?.then((res)=> console.log(res));
   };
   return (
     <div>

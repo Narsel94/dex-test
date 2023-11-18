@@ -1,6 +1,6 @@
-import { AddNewPlayer } from "../../../pages/add-new-player/add-new-player";
-import { PlayersList } from "../../../pages/players-list/players-list";
-import { PlayerInfo } from "./player-info/player-info";
+import { AddNewPlayer } from "../../../pages/AddPlayer/AddPlayer";
+import { PlayersList } from "../../../pages/PlayersList/PlayersList";
+import { PlayerInfo } from "../../../pages/PlayerInfo/PlayerInfo";
 import { PlayerForm } from "./update-player-form/update-player-form";
 
 export {AddNewPlayer, PlayersList, PlayerInfo,  PlayerForm}

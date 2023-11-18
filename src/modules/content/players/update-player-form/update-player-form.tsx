@@ -3,12 +3,11 @@ import {
   ControledInput,
   Button,
   StyledSelect,
-  UrlInput,
-  InvalidMessage,
-} from "../../../../common/components/exports";
+  FileInput,
+} from "../../../../common/components";
 import { useNavigate, useParams } from "react-router";
 
-import { AddFormContainer } from "../../components/exports";
+import { AddFormContainer } from "../../components";
 import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
 import { useForm, Controller } from "react-hook-form";
 import { TPlayerData } from "../../../../api/players/types";
@@ -17,6 +16,9 @@ import { TUpdatePlayerForm } from "../types";
 import { updatePlayerRequest } from "../../../../api/players/players-api";
 import classNames from "classnames";
 import styles from "./update-player-form.module.css";
+import { saveImageRequest } from "../../../../api/auth/save-image";
+
+const base = process.env.REACT_APP_IMAGES;
 
 type TPlayerForm = {
   data?: TPlayerData;
@@ -32,23 +34,40 @@ export const PlayerForm: FC<TPlayerForm> = ({ data }) => {
       mode: "onBlur",
     });
   const { errors, isValid } = formState;
-  const onSubmit = (FormData: TUpdatePlayerForm) => {
-    const preparedData = {
-      id: Number(playerId),
-      name: FormData.name,
-      number: FormData.number,
-      position: FormData.position?.value,
-      team: FormData.team?.value,
-      birthday: FormData.birthday
-        ? new Date(FormData?.birthday).toISOString()
-        : "",
-      height: FormData.height,
-      weight: FormData.weight,
-      avatarUrl: FormData.avatarUrl,
-    };
-    updatePlayerRequest(preparedData)?.then(() => navigate("/players"));
+  const onSubmit = (form: TUpdatePlayerForm) => {
+    if (!form.avatarUrl) {
+      const preparedData = {
+        id: Number(playerId),
+        name: form.name,
+        number: form.number,
+        position: form.position?.value,
+        team: form.team?.value,
+        birthday: form.birthday ? new Date(form?.birthday).toISOString() : "",
+        height: form.height,
+        weight: form.weight,
+        avatarUrl: data?.avatarUrl,
+      };
+      return updatePlayerRequest(preparedData)?.then(() =>
+        navigate("/players")
+      );
+    }
+    const formData = new FormData();
+    formData.append(`file`, form.avatarUrl);
+    saveImageRequest(formData)?.then((res) => {
+      const preparedData = {
+        id: Number(playerId),
+        name: form.name,
+        number: form.number,
+        position: form.position?.value,
+        team: form.team?.value,
+        birthday: form.birthday ? new Date(form?.birthday).toISOString() : "",
+        height: form.height,
+        weight: form.weight,
+        avatarUrl: `${base}${res}`,
+      };
+      updatePlayerRequest(preparedData)?.then(() => navigate("/players"));
+    });
   };
-
   const teamsOpt = useTeamOptions();
 
   let formattedDate;
@@ -64,22 +83,17 @@ export const PlayerForm: FC<TPlayerForm> = ({ data }) => {
 
   return (
     <AddFormContainer
-      className={formClasses}
       encType="multipart/form-data"
       onSubmit={handleSubmit(onSubmit)}
     >
       <Controller
         control={control}
-        defaultValue={data?.avatarUrl}
         name="avatarUrl"
-        render={({ field: { onBlur, value, onChange, ref } }) => (
-          <UrlInput
-            setValue={setValue}
-            onDrop={onChange}
-            onChange={onChange}
-            onBlur={onBlur}
-            name="avatarUrl"
-            value={value}
+        render={({ field: { onBlur, onChange } }) => (
+          <FileInput
+            onBlurProp={onBlur}
+            onFileSelect={onChange}
+            defaultImageUrl={data?.avatarUrl}
           />
         )}
       />
@@ -113,12 +127,13 @@ export const PlayerForm: FC<TPlayerForm> = ({ data }) => {
             required: "Required",
           }}
           render={({ field }) => (
-            <StyledSelect {...field} options={positions} />
+            <StyledSelect
+              {...field}
+              options={positions}
+              error={errors.position?.message}
+            />
           )}
         />
-        {errors.position?.message && (
-          <InvalidMessage message={errors.position?.message} />
-        )}
         <div className={styles.gridContainer}>
           <Controller
             control={control}

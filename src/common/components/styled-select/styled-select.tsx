@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import Select, { Props } from "react-select";
-import { InvalidMessage } from "../exports";
 import classNames from "classnames";
 import styles from "./styled-select.module.css";
 
@@ -43,7 +42,7 @@ export const StyledSelect: FC<StyledSelect> = React.forwardRef<
         }}
         {...props}
       />
-      <InvalidMessage message={error} />
+      <p className={styles.errorMessage}>{error || ""}</p>
     </div>
   );
 });

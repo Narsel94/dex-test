@@ -9,19 +9,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: white;
-}
-
-
-
-.containerDesctop {
-  width: 88px;
+  background-color: white; 
+   width: 88px;
   height: 40px;
-}
-
-.containerMobile {
-  width: 60px;
-  height: 28px;
 }
 
 .menuList {
@@ -38,10 +28,10 @@
   border-bottom: 0.5px solid var(--lightest-grey);
   font-family: var(--AvenirM), Arial, Helvetica, sans-serif;
   font-size: 15px;
-  color: var(--dark-grey); 
+  color: var(--dark-grey);
   text-align: left;
   padding: 12px;
-  font-weight:500;
+  font-weight: 500;
 }
 
 .optionActive {
@@ -49,11 +39,11 @@
   border-bottom: 0.5px solid var(--lightest-grey);
   font-family: var(--AvenirM), Arial, Helvetica, sans-serif;
   font-size: 15px;
-  color: white; 
+  color: white;
   background-color: var(--red);
   text-align: left;
   padding: 12px;
-  font-weight:500;
+  font-weight: 500;
 }
 
 .option:hover {
@@ -67,7 +57,6 @@
   border-radius: 4px;
   height: inherit;
   background-color: transparent;
-
 }
 
 .indicator {
@@ -81,4 +70,12 @@
 
 .dropdownIndicator {
   color: var(--lightest-grey);
+}
+
+
+@media screen and (max-width: 800px){
+  .container {
+    width: 60px;
+    height: 28px;
+  }
 }

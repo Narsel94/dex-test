@@ -1,0 +1,32 @@
+.header {
+  position: relative;
+}
+
+.twoCols {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) 2fr;
+  gap: 36px;
+  justify-items: flex-end;
+}
+
+.threeCols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
+  justify-content: space-between;
+  gap: 24px;
+  justify-items: flex-end;
+}
+
+.headerMobile {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 800px) {
+  .header {
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+  }
+}

@@ -7,7 +7,7 @@ import {
   Checkbox,
   Button,
   PasswordInputLabel,
-} from "../../../../common/components/exports";
+} from "../../../../common/components";
 
 type TSignUpData = {
   check: boolean;
@@ -75,7 +75,7 @@ export const SignUpForm = () => {
             onChange={onChange}
             title="Password"
             onBlur={onBlur}
-            selected={value}
+            value={value}
             error={errors?.password?.message}
           />
         )}
@@ -93,7 +93,7 @@ export const SignUpForm = () => {
             onChange={onChange}
             title="Enter your password again"
             onBlur={onBlur}
-            selected={value}
+            value={value}
             error={formState.errors?.confirmPassword?.message}
           />
         )}
@@ -104,7 +104,7 @@ export const SignUpForm = () => {
         name="check"
         render={({ field: { onChange, onBlur, value, ref } }) => (
           <Checkbox
-            selected={value}
+            checked={value}
             onChange={onChange}
             onBlur={onBlur}
             error={errors.check?.message}

@@ -1,9 +1,0 @@
-.error {
-  margin: 0;
-  height: 13px;
-  font-family: var(--AvenirM), Arial, Helvetica, sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--lightest-red);
-  text-align: left;
-}

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getAllPlayersRequest, getCurrentPlayersRequest } from "../../../api/players/players-api";
-import { getQueries } from "../../../common/helpers/get-queries";
+import { getQueries } from "../../../common/helpers/getQueries";
 import {
   TGetPlayersRequest,
   TGetPlayersResponse,

@@ -53,3 +53,26 @@
 .secondary:disabled {
   background-color: var(--lightest-grey1);
 }
+
+
+.altButton {
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.altButton:hover {
+  box-shadow: 0 0 3px 0 var(--lightest-grey);
+
+}
+
+.altButton:focus {
+  outline: none;
+  box-shadow: 0 0 3px 0 var(--lightest-grey);
+}
+
+.altButton:disabled {
+  background-color: var(--light-grey);
+
+}

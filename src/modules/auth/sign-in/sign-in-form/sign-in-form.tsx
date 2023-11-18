@@ -8,7 +8,7 @@ import {
   ControledInput,
   Button,
   PasswordInputLabel,
-} from "../../../../common/components/exports";
+} from "../../../../common/components";
 import styles from './sign-in-form.module.css'
 import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
 
@@ -72,7 +72,7 @@ export const SignInForm = () => {
             onChange={onChange}
             title="Password"
             onBlur={onBlur}
-            selected={value}
+            value={value}
             error={errors?.password?.message}
           />
         )}

@@ -1,9 +1,0 @@
-.wrapper {
-  position: relative;
-  display: flex;
-  width: 100%;
-  box-sizing: border-box;
-  flex-direction: column;
-  min-height: 453px;
-  height:50%;
-}

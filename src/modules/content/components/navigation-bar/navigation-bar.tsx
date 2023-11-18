@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { IconPerson, IconGroup } from "../../../../assests/icons/exports";
 import { IconInput } from "../../../../assests/icons/icon-input";
-import { ButtonWithIcon, UserInfo } from "../exports";
+import { ButtonWithIcon, UserInfo } from "..";
 import { useMobileMediaQuery } from "../../../../common/hooks/useMobileMediaQuery";
 import { useLocation, useNavigate } from "react-router";
 import { removeCookie } from "../../../../common/helpers/cookies";
@@ -14,10 +14,6 @@ export const NavigationBar = () => {
   const isMobile = useMobileMediaQuery();
   const navigate = useNavigate();
   const location = useLocation();
-  const conrainerClasses = classNames(styles.container, {
-    [styles.desc]: !isMobile,
-    [styles.mob]: isMobile,
-  });
 
   const onLogoutClick = () => {
     removeCookie("token");
@@ -27,7 +23,7 @@ export const NavigationBar = () => {
   };
 
   return (
-    <div className={conrainerClasses}>
+    <div className={styles.container}>
       {isMobile && <UserInfo isMobile={isMobile} />}
       <div className={styles.block}>
         <div className={styles.links}>

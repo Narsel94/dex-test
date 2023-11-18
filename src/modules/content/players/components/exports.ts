@@ -1,7 +1,7 @@
 import { usePositions } from "../hooks/usePositions";
-import { useTeamOptions } from "../hooks/use-team-options";
+import { useTeamOptions } from "../hooks/useTeamOptions";
 import { StyledMultiselect } from "./styled-multiselect/styled-multiselect";
-import { PlayerCard } from "./player-card/player-card";
+import { PlayerCard } from "./PlayerCard/PlayerCard";
+import { PlayersLayout } from "./PlayersLayout/PlayersLayout";
 
-
-export {usePositions, useTeamOptions, StyledMultiselect, PlayerCard}
+export { usePositions, useTeamOptions, StyledMultiselect, PlayerCard, PlayersLayout };

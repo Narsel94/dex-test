@@ -1,0 +1,167 @@
+.wrapper {
+  width: 100%;
+  min-height: 404px;
+}
+
+.notFoundTitle {
+  font-family: var(--AvBlack);
+  color: var(--red);
+  padding: 0;
+  margin: 0;
+  font-size: 1.7em;
+  letter-spacing: 0.2em;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 1px 1px 2px var(--lightest-red);
+}
+
+.notFounSection {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(276.45deg, #707070 0%, #393939 100.28%);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 45%;
+  max-height: 440px;
+  margin-left: 3%;
+  align-self: flex-end;
+  object-fit: contain;
+  box-sizing: border-box;
+}
+
+.flex {
+  box-sizing: border-box;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 1em 3em;
+  margin-bottom: 4%;
+  align-items: flex-start;
+}
+
+.name {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--AvBlack);
+  color: white;
+  font-size: 36px;
+}
+
+.number {
+  color: var(--lightest-red);
+}
+
+.section {
+  display: flex;
+  box-sizing: border-box;
+  gap: 5%;
+  padding-top: 65px;
+  background: linear-gradient(276.45deg, #707070 0%, #393939 100.28%);
+  border-bottom-left-radius:10px ;
+  border-bottom-right-radius: 10px;
+}
+
+.notFoundSection {
+  padding: 3%;
+}
+
+.dataBlock {
+  display: grid;
+  gap: 54px;
+  width: 100%;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.infoBlock {
+  text-align: left;
+  width: fit-content;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  gap: 8px;
+}
+
+.infoTitle {
+  margin: 0;
+  font-family: var(--AvBlack);
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.infoSubTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  font-family: var(--AvenirM);
+  font-size: 18px;
+}
+
+@media screen and (max-width: 940px) {
+  .section {
+    padding-top: 48px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .name {
+    font-size: 24px;
+    align-self: center;
+  }
+
+  .image {
+    margin: 0 auto;
+  }
+
+  .infoBlock {
+    text-align: center;
+    width: 100%;
+  }
+  .infoTitle {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .image {
+    max-height: 112px;
+  }
+
+  .notFounSection {
+    border-radius: 0;
+  }
+
+  .dataBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    justify-content: center;
+  }
+
+  .infoTitle {
+    font-size: 17px;
+  }
+
+  .infoSubTitle {
+    font-size: 15px;
+  }
+
+  .name {
+    font-size: 17px;
+    align-self: center;
+  }
+
+  .section {
+    border-radius: 0;
+  }
+}

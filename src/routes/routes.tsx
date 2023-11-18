@@ -1,11 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
+import { AppLayout } from "../pages/app-layout/app-layout";
+
 import { AuthLayout } from "../modules/auth/components/exports";
+import { PlayersLayout } from "../modules/content/players/components/exports";
+import {TeamsLayout, ErrroElement} from '../modules/content/teams/components/index'
+import { ContentLayout } from "../modules/content/components";
+
 import {
   NotFound,
   SignInPage,
   SignUpPage,
-  TeamsPage,
-  PlayersPage,
   AddNewTeam,
   UpdatePlayer,
   PlayersList,
@@ -13,14 +17,12 @@ import {
   AddNewPlayer,
   UpdateTeam,
   ProfilePage,
-} from "../pages/exports";
-import { ContentLayout } from "../modules/content/components/exports";
-import { PrivateRoutes, PublicRoutes } from "../common/components/exports";
-import { PlayerInfo } from "../modules/content/players/exports";
-import { TeamInfo, ErrroElement } from "../modules/content/teams/exports";
+  TeamInfo,
+  PlayerInfo
+} from "../pages";
+import { PrivateRoutes, PublicRoutes } from "../common/components";
 import { getTeamLoader } from "../api/teams/teams-api";
 import { getPlayerLoader } from "../api/players/players-api";
-import { AppLayout } from "../pages/app-layout/app-layout";
 
 export const router = createBrowserRouter([
   {
@@ -51,7 +53,7 @@ export const router = createBrowserRouter([
           },
           {
             path: "/teams",
-            element: <TeamsPage />,
+            element: <TeamsLayout />,
             handle: { title: "Teams", url: "/teams" },
             children: [
               {
@@ -93,7 +95,7 @@ export const router = createBrowserRouter([
           },
           {
             path: "/players",
-            element: <PlayersPage />,
+            element: <PlayersLayout />,
             handle: { title: "Players", url: "/players" },
             children: [
               {

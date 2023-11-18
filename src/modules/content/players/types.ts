@@ -28,7 +28,7 @@ export type TAddNewPlayerForm = {
   birthday: string;
   height: number;
   weight: number;
-  avatarUrl: string;
+  avatarUrl: File;
 };
 
 export type TUpdatePlayerForm = Omit<Partial<TAddNewPlayerForm>, 'name' | 'position'> & {

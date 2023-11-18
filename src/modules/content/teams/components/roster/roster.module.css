@@ -77,3 +77,11 @@
   width: 100%;
   align-items: flex-start;
 }
+
+
+@media screen and (max-width: 580px) {
+  .info {
+    display: none;
+  }
+}
+

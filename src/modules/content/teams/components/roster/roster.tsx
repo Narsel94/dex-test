@@ -1,8 +1,7 @@
 import { FC } from "react";
-import { RosterElement } from "../roster-element/roster-element";
+import { RosterElement } from "../RosterElement/RosterElement";
 import { usePlayersOfTeam } from "../../hooks/usePlayersOfTeam";
-import { useMobileMediaQuery } from "../../../../../common/hooks/useMobileMediaQuery";
-import styles from "./roster.module.css";
+import styles from "./Roster.module.css";
 
 type TRoster = {
   id: number;
@@ -10,7 +9,6 @@ type TRoster = {
 
 export const Roster: FC<TRoster> = ({ id }) => {
   const players = usePlayersOfTeam(id);
-  const isMobile = useMobileMediaQuery();
 
   if (players.length > 0) {
     return (
@@ -19,13 +17,11 @@ export const Roster: FC<TRoster> = ({ id }) => {
         <div className={styles.header}>
           <span className={styles.number}>#</span>
           <span className={styles.player}>Player</span>
-          {!isMobile && (
             <div className={styles.info}>
               <span className={styles.span}>Height</span>
               <span className={styles.span}>Weight</span>
               <span className={styles.span}>Age</span>
             </div>
-           )} 
         </div>
         {players.length > 0 &&
           players.map((player) => (

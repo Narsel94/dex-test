@@ -5,7 +5,7 @@ import { post } from "../base-request";
 export const saveImageRequest = (data:any)=> {
   const token = getCookie('token')
   try {
-  post('/Image/SaveImage', data, token)
+  return post('/Image/SaveImage', data, token)
   }
   catch (error) {
     console.log(error)

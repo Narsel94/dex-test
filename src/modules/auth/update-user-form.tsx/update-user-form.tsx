@@ -3,8 +3,8 @@ import {
   Button,
   ControledInput,
   GridContainer,
-  UrlInput,
-} from "../../../common/components/exports";
+  FileInput
+} from "../../../common/components";
 import { useForm, Controller } from "react-hook-form";
 import { updateUserRequest } from "../../../api/auth/update-user";
 import { getCookie, setCookie } from "../../../common/helpers/cookies";
@@ -46,15 +46,10 @@ export const UpdateUserForm = () => {
             required: 'Required'
           }}
           render={({ field: { onChange, onBlur, value } }) => (
-            <UrlInput
-            extraClass={styles.photo}
-              setValue={setValue}
-              onDrop={onChange}
-              onChange={onChange}
-              onBlur={onBlur}
-              name="avatarUrl"
-              value={value}
-              error={errors.avatarUrl?.message}
+            <FileInput
+            onBlurProp={onBlur}
+            onFileSelect={onChange}
+            defaultImageUrl={avatarUrl}
             />
           )}
         />
