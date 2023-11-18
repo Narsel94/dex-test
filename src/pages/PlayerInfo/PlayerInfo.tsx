@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import { useLoaderData } from "react-router";
 import { useNavigate } from "react-router";
-import {  InfoHeader } from "../../modules/content/components";
-import { getAge } from "../../modules/content/players/helpers/getAge";
+import { InfoHeader } from "../../common/components";
+import { getAge } from "../../modules/players/helpers/getAge";
 import styles from "./PlayerInfo.module.css";
 import { TPlayerData } from "../../api/players/types";
 import { removePlayerRequest } from "../../api/players/players-api";
-import { useTeamName } from "../../modules/content/players/hooks/useTeamName";
+import { useTeamName } from "../../modules/players/hooks/useTeamName";
 
 export const PlayerInfo: FC = () => {
   const playerData = useLoaderData() as TPlayerData;

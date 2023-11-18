@@ -9,23 +9,21 @@ import {
   MemoCountSelect,
   CardContainer,
   ControledInput,
-} from "../../common/components";
-import {
-  ErrorBlock,
   EmptyList,
-  ListFooter,
-  ListHeader,
-} from "../../modules/content/components";
-import { TeamCard } from "../../modules/content/teams/components";
+  ErrorBlock,
+  ListHeader
+} from "../../common/components";
+import { TeamCard } from "../../modules/teams/components";
 import {
   teamsPageDataSelector,
   teamsSelector,
   teamsErrorSelector,
   teamsErrorDataSelector,
   teamsLoadingSelector,
-} from "../../modules/content/teams/selectors";
-import { setSize, setPage } from "../../modules/content/teams/teams-slice";
-import { getTeamsThunk } from "../../modules/content/teams/async-thunk";
+} from "../../modules/teams/selectors";
+import { setSize, setPage } from "../../modules/teams/teamsSlice";
+import { getTeamsThunk } from "../../modules/teams/asyncThunk";
+import { debounce } from "../../common/helpers/debounce";
 import { useMobileMediaQuery } from "../../common/hooks/useMobileMediaQuery";
 import image from "../../assests/images/empty-teams.svg";
 import styles from "./TeamsList.module.css";
@@ -123,7 +121,7 @@ export const TeamsList = () => {
         </CardContainer>
       )}
 
-      <ListFooter>
+      <footer className={styles.footer}>
         <StyledReactPaginate
           pageCount={Math.ceil(inputsData.count / inputsData.size) || 1}
           onPageChange={handlePageChange}
@@ -133,7 +131,7 @@ export const TeamsList = () => {
           value={{ label: inputsData.size, value: inputsData.size }}
           onChange={handleSizeChage}
         />
-      </ListFooter>
+      </footer>
     </section>
   );
 };

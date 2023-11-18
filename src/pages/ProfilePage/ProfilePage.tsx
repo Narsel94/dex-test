@@ -1,5 +1,5 @@
 import React from "react";
-import { UpdateUserForm } from "../../modules/auth/update-user-form.tsx/update-user-form";
+import { UpdateUserForm } from "../../modules/auth/UpdateUserForm/UpdateUserForm";
 import styles from './ProfilePage.module.css'
 
 export const ProfilePage = () => {

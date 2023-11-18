@@ -1,7 +1,7 @@
 import { NotFound } from "./NotFound/NotFound";
-import { SignInPage } from "./sign-in-page/sign-in-page";
-import { SignUpPage } from "./sign-up-page/sign-up-page";
-import { TeamsLayout } from "../modules/content/teams/components/TeamsLayout/TeamsLayout";
+import { SignIn } from "./SignIn/SignIn";
+import { SignUp } from "./SignUp/SignUp";
+import { TeamsLayout } from "../modules/teams/components/TeamsLayout/TeamsLayout";
 import { TeamsList } from "./TeamsList/TeamsList";
 import { PlayersList } from "./PlayersList/PlayersList";
 import { UpdatePlayer } from "./UpdatePlayer/UpdatePlayer";
@@ -15,8 +15,8 @@ import { PlayerInfo } from "./PlayerInfo/PlayerInfo";
 
 export {
   NotFound,
-  SignInPage,
-  SignUpPage,
+  SignIn ,
+  SignUp,
   TeamsLayout,
   AddNewTeam,
   UpdatePlayer,

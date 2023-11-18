@@ -5,12 +5,12 @@ import {
   Button,
   GridContainer,
   FileInput,
+  ContentForm
 } from "../../common/components";
 import { useNavigate } from "react-router";
-import { AddFormContainer } from "../../modules/content/components";
 import { Controller, useForm } from "react-hook-form";
 import { useAppDispatch } from "../../common/hooks/useAppDispatch";
-import { addTeamThunk } from "../../modules/content/teams/async-thunk";
+import { addTeamThunk } from "../../modules/teams/asyncThunk";
 import { saveImageRequest } from "../../api/auth/save-image";
 import styles from "./AddTeam.module.css";
 
@@ -56,7 +56,7 @@ export const AddNewTeam = () => {
   return (
     <section className={styles.wrapper}>
       <BreadCrumbs />
-      <AddFormContainer
+      <ContentForm
         onSubmit={handleSubmit(onSubmit)}
         encType="multipart/form-data"
       >
@@ -146,7 +146,7 @@ export const AddNewTeam = () => {
             </Button>
           </GridContainer>
         </div>
-      </AddFormContainer>
+      </ContentForm>
     </section>
   );
 };

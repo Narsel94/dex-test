@@ -1,34 +1,31 @@
 import React, { ChangeEvent, FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import {
-  ListFooter,
   ListHeader,
-  EmptyList,
-  ErrorBlock,
-} from "../../modules/content/components";
-import {
   Button,
   StyledReactPaginate,
+  EmptyList,
   MemoCountSelect,
   CardContainer,
+  ErrorBlock,
   Preloader,
   ControledInput
 } from "../../common/components";
 import image from "../../assests/images/empty-players.svg";
-import { StyledMultiselect, PlayerCard } from "../../modules/content/players/components/exports";
-import { useTeamOptions } from "../../modules/content/players/hooks/useTeamOptions";
-import { setSize, setPage } from "../../modules/content/players/players-slice";
+import { StyledMultiselect, PlayerCard } from "../../modules/players/components";
+import { useTeamOptions } from "../../modules/players/hooks/useTeamOptions";
+import { setSize, setPage } from "../../modules/players/playersSlice";
 import { useMobileMediaQuery } from "../../common/hooks/useMobileMediaQuery";
 import { useAppDispatch } from "../../common/hooks/useAppDispatch";
 import { useAppSelector } from "../../common/hooks/useAppSelector";
-import { getCurrentPlayersThunk } from "../../modules/content/players/asynk-thunk";
+import { getCurrentPlayersThunk } from "../../modules/players/asynkThunk";
 import {
   playersSelector,
   playersLoadingSelector,
   playersPageDataSelector,
   playersErrorSelector,
   playersErrorDataSelector,
-} from "../../modules/content/players/selectors";
+} from "../../modules/players/selectors";
 import { ActionMeta } from "react-select";
 import { TGetParams } from "../../common/helpers/getQueries";
 import styles from './PlayersList.module.css'
@@ -148,13 +145,13 @@ export const PlayersList: FC = () => {
         </CardContainer>
       )}
 
-      <ListFooter>
+      <footer className={styles.footer}>
         <StyledReactPaginate
           pageCount={Math.ceil(inputsData.count / inputsData.size) || 1}
           onPageChange={handlePageChange}
         />
         <MemoCountSelect options={options} onChange={handleSizeChage} />
-      </ListFooter>
+      </footer>
     </section>
   );
 };

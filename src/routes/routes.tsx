@@ -1,15 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
-import { AppLayout } from "../pages/app-layout/app-layout";
-
 import { AuthLayout } from "../modules/auth/components/exports";
-import { PlayersLayout } from "../modules/content/players/components/exports";
-import {TeamsLayout, ErrroElement} from '../modules/content/teams/components/index'
-import { ContentLayout } from "../modules/content/components";
-
+import { ContentLayout, AppLayout, PrivateRoutes, PublicRoutes, RouteErrorBoundary} from "../common/components";
+import { PlayersLayout } from "../modules/players/components";
+import {
+  TeamsLayout,
+} from "../modules/teams/components/index";
 import {
   NotFound,
-  SignInPage,
-  SignUpPage,
+  SignIn,
+  SignUp,
   AddNewTeam,
   UpdatePlayer,
   PlayersList,
@@ -18,9 +17,8 @@ import {
   UpdateTeam,
   ProfilePage,
   TeamInfo,
-  PlayerInfo
+  PlayerInfo,
 } from "../pages";
-import { PrivateRoutes, PublicRoutes } from "../common/components";
 import { getTeamLoader } from "../api/teams/teams-api";
 import { getPlayerLoader } from "../api/players/players-api";
 
@@ -35,11 +33,11 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "/sign-in",
-            element: <SignInPage />,
+            element: <SignIn />,
           },
           {
             path: "/sign-up",
-            element: <SignUpPage />,
+            element: <SignUp />,
           },
         ],
       },
@@ -69,7 +67,7 @@ export const router = createBrowserRouter([
                     return getTeamLoader(params.teamId);
                   }
                 },
-                errorElement: <ErrroElement />,
+                errorElement: <RouteErrorBoundary />,
               },
               {
                 path: "/teams/update-team/:teamId",
@@ -84,7 +82,7 @@ export const router = createBrowserRouter([
                   }
                 },
 
-                errorElement: <ErrroElement />,
+                errorElement: <RouteErrorBoundary />,
               },
               {
                 path: "/teams/add-team",
@@ -111,7 +109,7 @@ export const router = createBrowserRouter([
                     return getPlayerLoader(params);
                   }
                 },
-                errorElement: <ErrroElement />,
+                errorElement: <RouteErrorBoundary />,
               },
               {
                 path: "/players/add-player",
@@ -130,7 +128,7 @@ export const router = createBrowserRouter([
                     return getPlayerLoader(params);
                   }
                 },
-                errorElement: <ErrroElement />,
+                errorElement: <RouteErrorBoundary />,
               },
             ],
           },

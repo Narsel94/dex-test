@@ -5,20 +5,20 @@ import {
   ControledInput,
   Button,
   StyledSelect,
-  FormWrapper,
+  ContentForm,
+  ErrorBlock,
   GridContainer,
   FileInput,
 } from "../../common/components";
 import { useNavigate } from "react-router";
-import { AddFormContainer, ErrorBlock } from "../../modules/content/components";
 import { useMobileMediaQuery } from "../../common/hooks/useMobileMediaQuery";
 import { useForm, Controller } from "react-hook-form";
 import {
   usePositions,
   useTeamOptions,
-} from "../../modules/content/players/components/exports";
+} from "../../modules/players/components";
 import { addPlayerRequest } from "../../api/players/players-api";
-import { TAddNewPlayerForm } from "../../modules/content/players/types";
+import { TAddNewPlayerForm } from "../../modules/players/types";
 import classNames from "classnames";
 import { saveImageRequest } from "../../api/auth/save-image";
 import styles from "./AddPlayer.module.css";
@@ -76,7 +76,7 @@ export const AddNewPlayer: FC = () => {
   return (
     <section className={styles.wrapper}>
       <BreadCrumbs />
-      <AddFormContainer
+      <ContentForm
         className={formClasses}
         encType="multipart/form-data"
         onSubmit={handleSubmit(onSub)}
@@ -217,7 +217,7 @@ export const AddNewPlayer: FC = () => {
             </Button>
           </GridContainer>
         </div>
-      </AddFormContainer>
+      </ContentForm>
     </section>
   );
 };

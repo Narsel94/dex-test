@@ -1,8 +1,8 @@
 import { useLoaderData, useNavigate } from "react-router";
 import { TTeamData } from "../../api/teams/types";
 import { removeTeam } from "../../api/teams/teams-api";
-import { InfoHeader } from "../../modules/content/components";
-import { Roster } from "../../modules/content/teams/components";
+import { InfoHeader } from "../../common/components";
+import { Roster } from "../../modules/teams/components";
 import styles from "./TeamInfo.module.css";
 
 export const TeamInfo = () => {

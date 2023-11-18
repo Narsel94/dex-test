@@ -8,6 +8,13 @@
   height: 100%;
 }
 
+.footer {
+  width: 100%;
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+}
+
 @media screen and (max-width: 840px) {
   .wrapper {
     gap: 16px;
