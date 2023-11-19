@@ -4,16 +4,33 @@ import { removeTeam } from "../../../api/teams/teamsRequests";
 import { InfoHeader } from "../../../common/components";
 import { Roster } from "../../../modules/teams/components";
 import styles from "./TeamInfo.module.css";
+import { removeImageRequest } from "../../../api/auth/deleteImage";
+import { usePlayersOfTeam } from "../../../modules/teams/hooks/usePlayersOfTeam";
 
 export const TeamInfo = () => {
   const navigate = useNavigate();
   const data = useLoaderData() as TTeamData;
+  const players = usePlayersOfTeam(data.id);
 
   const onDelete = () => {
+    if (players && players.length > 0) {
+      throw new Error('Нельзя удалить пока в команде есть игроки')
+    }
     if (data) {
-      removeTeam(data.id)?.then(() => navigate("/teams", { replace: true }));
+      const fileName = data.imageUrl?.split("/").pop();
+      if (fileName) {
+        return removeImageRequest(fileName)
+          .catch((error) => {
+            console.log(error);
+          })
+          .finally(() => removeTeam(data.id)?.then(() => navigate("/teams")));
+      }
+      return removeTeam(data.id)?.then(() =>
+        navigate("/teams", { replace: true })
+      );
     }
   };
+
   const onChangeClick = () => {
     navigate(`/teams/update-team/${data.id}`);
   };
@@ -63,7 +80,7 @@ export const TeamInfo = () => {
           </div>
         </section>
       </div>
-      <Roster id={data.id} />
+      {players.length > 0 && <Roster players={players} />}
     </div>
   );
 };

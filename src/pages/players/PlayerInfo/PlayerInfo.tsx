@@ -5,6 +5,7 @@ import { InfoHeader } from "../../../common/components";
 import { getAge } from "../../../modules/players/helpers/getAge";
 import styles from "./PlayerInfo.module.css";
 import { TPlayerData } from "../../../api/players/TPlayers";
+import { removeImageRequest } from "../../../api/auth/deleteImage";
 import { removePlayerRequest } from "../../../api/players/playersRequests";
 import { useTeamName } from "../../../modules/players/hooks/useTeamName";
 
@@ -16,10 +17,21 @@ export const PlayerInfo: FC = () => {
 
   const removePlayer = () => {
     if (playerData) {
-      removePlayerRequest(playerData.id)?.then(() => navigate("/players"));
+      const fileName = playerData.avatarUrl?.split("/").pop();
+      if (fileName) {
+        return removeImageRequest(fileName)
+          .catch((error) => {
+            console.log(error);
+          })
+          .finally(() =>
+            removePlayerRequest(playerData.id)?.then(() => navigate("/players"))
+          );
+      }
+      return removePlayerRequest(playerData.id)?.then(() =>
+        navigate("/players")
+      );
     }
   };
-
   const onUpdateClick = () => {
     navigate(`/players/update-player/${playerData.id}`);
   };
@@ -34,6 +46,8 @@ export const PlayerInfo: FC = () => {
       </div>
     );
   }
+
+  console.log(playerData.avatarUrl?.split("/").pop());
 
   return (
     <div className={styles.wrapper}>

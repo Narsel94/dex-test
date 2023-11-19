@@ -1,14 +1,16 @@
 import { FC } from "react";
 import { RosterElement } from "../RosterElement/RosterElement";
 import { usePlayersOfTeam } from "../../hooks/usePlayersOfTeam";
+import { TPlayerData } from "../../../../api/players/TPlayers";
 import styles from "./Roster.module.css";
 
 type TRoster = {
-  id: number;
+  // id: number;
+  players: TPlayerData[]
 };
 
-export const Roster: FC<TRoster> = ({ id }) => {
-  const players = usePlayersOfTeam(id);
+export const Roster: FC<TRoster> = ({ players }) => {
+  // const players = usePlayersOfTeam(id);
 
   if (players.length > 0) {
     return (

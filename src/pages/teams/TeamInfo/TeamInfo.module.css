@@ -131,11 +131,12 @@
   }
 
   .imageUrl {
-    max-height: 160px;
-    max-width: 160px;
+    height: 160px;
+    width: 160px;
   }
 
   .section {
+    gap: 30px;
     flex-direction: column;
     box-sizing: border-box;
     padding-top: 48px;

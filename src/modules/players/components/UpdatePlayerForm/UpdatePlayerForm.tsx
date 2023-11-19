@@ -61,7 +61,7 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
         weight: form.weight,
         avatarUrl: `${base}${res}`,
       };
-      updatePlayerRequest(preparedData)?.then(() => console.log("/players"));
+      updatePlayerRequest(preparedData)?.then(() => navigate("/players"));
     });
   };
   const teamsOpt = useTeamOptions();
