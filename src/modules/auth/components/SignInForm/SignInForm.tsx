@@ -7,7 +7,6 @@ import { useNavigate } from "react-router";
 import {
   ControledInput,
   Button,
-  PasswordInputLabel,
 } from "../../../../common/components";
 import styles from './SignInForm.module.css'
 
@@ -66,7 +65,8 @@ export const SignInForm = () => {
         name="password"
         rules={{ required: "Введите пароль" }}
         render={({ field: { onChange, onBlur, value, ref } }) => (
-          <PasswordInputLabel
+          <ControledInput
+            type="password"
             onChange={onChange}
             title="Password"
             onBlur={onBlur}

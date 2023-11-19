@@ -1,5 +1,4 @@
 import React from "react";
-import classNames from "classnames";
 import { IconPerson, IconGroup } from "../../../assests/icons/exports";
 import { IconInput } from "../../../assests/icons/icon-input";
 import { ButtonWithIcon, UserInfo } from "..";
@@ -7,7 +6,6 @@ import { useMobileMediaQuery } from "../../hooks/useMobileMediaQuery";
 import { useLocation, useNavigate } from "react-router";
 import { removeCookie } from "../../helpers/cookies";
 import { Link } from "react-router-dom";
-
 import styles from "./NavigationBar.module.css";
 
 export const NavigationBar = () => {
@@ -61,7 +59,7 @@ export const NavigationBar = () => {
         <ButtonWithIcon
           onClick={onLogoutClick}
           colored
-          text="Sign Out"
+          text="Sign out"
           type={isMobile ? "row" : "column"}
         >
           <IconInput type="close" />

@@ -2,7 +2,6 @@ import { BreadCrumbs } from "./BreadCrumbs/BreadCrumbs";
 import { Button } from "./Button/Button";
 import { Checkbox } from "./Checkbox/Checkbox";
 import { ControledInput } from "./ControledInput/ControledInput";
-import { PasswordInputLabel } from "./PasswordInput/PasswordInput";
 import {
   PublicRoutes,
   PrivateRoutes,
@@ -47,7 +46,6 @@ export {
   Button,
   Checkbox,
   ControledInput,
-  PasswordInputLabel,
   PublicRoutes,
   PrivateRoutes,
   Preloader,

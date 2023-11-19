@@ -47,8 +47,6 @@ export const PlayerInfo: FC = () => {
     );
   }
 
-  console.log(playerData.avatarUrl?.split("/").pop());
-
   return (
     <div className={styles.wrapper}>
       <InfoHeader

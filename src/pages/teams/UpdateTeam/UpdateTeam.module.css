@@ -12,9 +12,9 @@
   gap: 72px;
 }
 
-@media screen and (max-width: 1179px) {
+@media screen and (max-width: 1185px) {
   .wrapper {
-    gap: 32px;
+    gap: 40px;
   }
 }
 

@@ -6,7 +6,6 @@ import {
   ControledInput,
   Checkbox,
   Button,
-  PasswordInputLabel,
 } from "../../../../common/components";
 
 type TSignUpData = {
@@ -29,7 +28,7 @@ export const SignUpForm = () => {
   }, [isSubmitSuccessful]);
 
   const onSubmit = (data: TSignUpData) => {
-    const {check, confirmPassword, ...rest} = data;
+    const { check, confirmPassword, ...rest } = data;
     signUpRequest(rest);
     reset();
   };
@@ -71,7 +70,8 @@ export const SignUpForm = () => {
         }}
         name="password"
         render={({ field: { onChange, onBlur, value, ref } }) => (
-          <PasswordInputLabel
+          <ControledInput
+            type="password"
             onChange={onChange}
             title="Password"
             onBlur={onBlur}
@@ -89,7 +89,8 @@ export const SignUpForm = () => {
             value === password ? true : "Пароли должны совпадать",
         }}
         render={({ field: { onChange, onBlur, value, ref } }) => (
-          <PasswordInputLabel
+          <ControledInput
+            type="password"
             onChange={onChange}
             title="Enter your password again"
             onBlur={onBlur}

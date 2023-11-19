@@ -14,7 +14,8 @@ export const TeamInfo = () => {
 
   const onDelete = () => {
     if (players && players.length > 0) {
-      throw new Error('Нельзя удалить пока в команде есть игроки')
+     console.error('Нельзя удалить пока в команде есть игроки')
+     return
     }
     if (data) {
       const fileName = data.imageUrl?.split("/").pop();

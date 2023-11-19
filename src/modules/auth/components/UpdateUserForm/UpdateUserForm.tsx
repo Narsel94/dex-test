@@ -71,9 +71,6 @@ export const UpdateUserForm = () => {
       <Controller
         control={control}
         name="avatarUrl"
-        rules={{
-          required: "Required",
-        }}
         render={({ field: { onChange, onBlur, value } }) => (
           <FileInput
             onBlurProp={onBlur}
@@ -85,9 +82,6 @@ export const UpdateUserForm = () => {
       <Controller
         control={control}
         defaultValue={userName}
-        rules={{
-          required: "Required",
-        }}
         name="userName"
         render={({ field: { onChange, onBlur, value } }) => (
           <ControledInput

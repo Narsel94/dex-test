@@ -123,16 +123,11 @@ export const PlayersList: FC = () => {
           search
         ></ControledInput>
         <StyledSelect isMulti options={teamsOpt} onChange={handleChange} />
-        <div className={styles.buttonWrapper}> 
-        <Button
-          htmlType="button"
-          onClick={onButtonClick}
-          isPrime
-        >
-          Add +
-        </Button>
+        <div className={styles.buttonWrapper}>
+          <Button htmlType="button" onClick={onButtonClick} isPrime>
+            {`Add\u00A0\u00A0\u00A0+`}
+          </Button>
         </div>
-
       </ListHeader>
       {isLoading && <Preloader />}
       {!isLoading && !isError && playersData?.length === 0 && (

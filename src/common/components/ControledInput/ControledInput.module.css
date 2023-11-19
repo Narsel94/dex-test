@@ -11,6 +11,24 @@
   position: relative;
 }
 
+
+
+.groupWrapper {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
 .base {
   position: relative;
   height: 40px;

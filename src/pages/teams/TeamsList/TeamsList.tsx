@@ -37,7 +37,6 @@ export const TeamsList = () => {
   const inputsData = useAppSelector(teamsPageDataSelector);
   const teamsData = useAppSelector(teamsSelector);
 
-
   const navigate = useNavigate();
 
   const onButtonClick = () => {
@@ -101,13 +100,9 @@ export const TeamsList = () => {
           search
         />
         <div className={styles.buttonWraper}>
-           <Button
-          htmlType="button"
-          isPrime
-          onClick={onButtonClick}
-        >
-          Add +
-        </Button> 
+          <Button htmlType="button" isPrime onClick={onButtonClick}>
+            {`Add\u00A0\u00A0\u00A0+`}
+          </Button>
         </div>
       </ListHeader>
 

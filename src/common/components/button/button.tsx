@@ -11,8 +11,6 @@ isPrime?: boolean;
 htmlType: "button" | "submit" | "reset";
 }
 
-
-
 export const Button: FC<IButton> = ({ children, onClick, htmlType, isPrime, mode, ...rest }) => {
   
   const buttonClasses = classNames(styles.button, {

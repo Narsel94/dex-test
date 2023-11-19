@@ -31,7 +31,6 @@
 .primary:disabled {
   background-color: var(--lightest-grey1);
   color: var(--lightest-grey);
-
 }
 
 .secondary {
@@ -41,7 +40,7 @@
 }
 
 .secondary:hover {
-  background-color:var(--lightest-grey);
+  background-color: var(--lightest-grey);
 }
 
 .secondary:active {
@@ -54,7 +53,6 @@
   background-color: var(--lightest-grey1);
 }
 
-
 .altButton {
   border: none;
   border-radius: 3px;
@@ -64,7 +62,6 @@
 
 .altButton:hover {
   box-shadow: 0 0 3px 0 var(--lightest-grey);
-
 }
 
 .altButton:focus {
@@ -74,5 +71,4 @@
 
 .altButton:disabled {
   background-color: var(--light-grey);
-
 }
