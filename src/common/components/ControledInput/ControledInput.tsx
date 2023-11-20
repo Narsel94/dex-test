@@ -76,7 +76,7 @@ export const ControledInput = forwardRef<HTMLInputElement, TControledInput>(
 
     if (type === "password") {
       return (
-        <label className={labelStyles}>
+        <label className={styles.label}>
           {title}
           <div className={styles.groupWrapper}>
             <input

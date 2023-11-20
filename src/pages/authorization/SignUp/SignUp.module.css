@@ -1,24 +1,22 @@
 .container {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  /* height: 100vh; */
   width: 100%;
   align-items: center;
 }
 
 .wrapper {
   width: 42%;
-  padding:  0 1%;
+  padding: 0 1%;
   display: flex;
   flex-direction: column;
   gap: 18px;
   align-items: center;
-
 }
 
 .asside {
   flex-grow: 2;
- 
 }
 
 .linkWrapper {
@@ -35,7 +33,6 @@
   color: var(--red);
 }
 
-
 @media screen and (max-width: 880px) {
   .asside {
     display: none;
@@ -47,7 +44,16 @@
     flex-direction: column;
     gap: 14px;
     align-items: center;
-    padding:  0 ;
-  
+    padding: 0;
+  }
+}
+
+@media screen and (max-height: 430px) {
+  .container {
+    padding-top: 10dvh;
+  }
+
+  .wrapper {
+    gap: 2px;
   }
 }

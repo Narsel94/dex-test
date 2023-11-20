@@ -2,14 +2,12 @@ import React from "react";
 import { IconPerson, IconGroup } from "../../../assests/icons/exports";
 import { IconInput } from "../../../assests/icons/icon-input";
 import { ButtonWithIcon, UserInfo } from "..";
-import { useMobileMediaQuery } from "../../hooks/useMobileMediaQuery";
 import { useLocation, useNavigate } from "react-router";
 import { removeCookie } from "../../helpers/cookies";
 import { Link } from "react-router-dom";
 import styles from "./NavigationBar.module.css";
 
 export const NavigationBar = () => {
-  const isMobile = useMobileMediaQuery();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -22,13 +20,12 @@ export const NavigationBar = () => {
 
   return (
     <div className={styles.container}>
-      {isMobile && <UserInfo  />}
+      <div className={styles.infoWrapper}><UserInfo/></div>
       <div className={styles.block}>
         <div className={styles.links}>
           <Link className={styles.link} to="/teams">
             <ButtonWithIcon
               text="Teams"
-              type={isMobile ? "row" : "column"}
               isActive={Boolean(location.pathname.includes("/teams"))}
             >
               <IconGroup
@@ -43,7 +40,6 @@ export const NavigationBar = () => {
           <Link className={styles.link} to="/players">
             <ButtonWithIcon
               text="Players"
-              type={isMobile ? "row" : "column"}
               isActive={Boolean(location.pathname.includes("/players"))}
             >
               <IconPerson
@@ -60,7 +56,6 @@ export const NavigationBar = () => {
           onClick={onLogoutClick}
           colored
           text="Sign out"
-          type={isMobile ? "row" : "column"}
         >
           <IconInput type="close" />
         </ButtonWithIcon>

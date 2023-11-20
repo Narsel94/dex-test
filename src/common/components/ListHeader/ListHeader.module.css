@@ -5,7 +5,7 @@
 .twoCols {
   display: grid;
   grid-template-columns: minmax(200px, 1fr) 2fr;
-  gap: 36px;
+  gap: 48px;
   justify-items: flex-end;
 }
 

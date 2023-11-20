@@ -32,6 +32,17 @@
   padding: 0;
 }
 
+.infoWrapper {
+  display: none;
+  width: 100%;
+}
+
+@media screen and (max-width: 840px) {
+  .infoWrapper {
+    display: flex;
+  }
+}
+
 @media screen and (max-width: 800px) {
   .container {
     align-items: flex-start;

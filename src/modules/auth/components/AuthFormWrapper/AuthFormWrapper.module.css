@@ -13,12 +13,40 @@
   gap: 10px;
   width: 100%;
   max-width: 360px;
-  min-width: 327px;
+}
+
+
+.form::-webkit-scrollbar {
+  width: 8px;
+}
+
+.form::-webkit-scrollbar-thumb {
+  width: 8px;
+  border-radius: 3px;
+  background-color: var(--grey);
+}
+
+.form::-webkit-scrollbar-track {
+  background-color: var(--lightest-grey);
 }
 
 @media screen and (max-width: 840px) {
   .title {
-
     align-self: center;
   }
+}
+
+
+@media screen and (max-height: 400px) {
+  .form {
+    gap: 2px;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .title {
+    margin: 0;
+    padding: 0;
+    font-size: 7svh;
+  }
+  
 }

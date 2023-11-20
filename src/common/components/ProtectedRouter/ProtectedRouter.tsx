@@ -1,5 +1,5 @@
-import { FC, useEffect, useState, useLayoutEffect } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { FC, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { getCookie } from "../../helpers/cookies";
 
 type TProtectedRoute = {
