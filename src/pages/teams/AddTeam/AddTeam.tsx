@@ -4,7 +4,7 @@ import {
   Button,
   GridContainer,
   FileInput,
-  ContentForm,
+  StyledContentForm,
 } from "../../../common/components";
 import { useNavigate } from "react-router";
 import { Controller, useForm } from "react-hook-form";
@@ -42,7 +42,7 @@ export const AddNewTeam = () => {
   return (
     <section className={styles.wrapper}>
       <BreadCrumbs />
-      <ContentForm
+      <StyledContentForm
         onSubmit={handleSubmit(onSubmit)}
         encType="multipart/form-data"
       >
@@ -135,7 +135,7 @@ export const AddNewTeam = () => {
             </Button>
           </GridContainer>
         </div>
-      </ContentForm>
+      </StyledContentForm>
     </section>
   );
 };

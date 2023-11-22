@@ -6,7 +6,7 @@ import {
   ControledInput,
   FileInput,
   GridContainer,
-  ContentForm,
+  StyledContentForm,
 } from "../../../../common/components";
 import { updateTeamRequest } from "../../../../api/teams/teamsRequests";
 import { TTeamData } from "../../../../api/teams/TTeams";
@@ -59,7 +59,7 @@ export const UpdateTeamForm: FC<TFormProp> = ({ data }) => {
   };
 
   return (
-    <ContentForm
+    <StyledContentForm
       onSubmit={handleSubmit(onSubmit)}
       encType="multipart/form-data"
     >
@@ -142,6 +142,6 @@ export const UpdateTeamForm: FC<TFormProp> = ({ data }) => {
           </Button>
         </GridContainer>
       </div>
-    </ContentForm>
+    </StyledContentForm>
   );
 };

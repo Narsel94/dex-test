@@ -5,7 +5,7 @@ import {
   ControledInput,
   Button,
   StyledSelect,
-  ContentForm,
+  StyledContentForm,
   ErrorBlock,
   GridContainer,
   FileInput,
@@ -60,7 +60,7 @@ export const AddNewPlayer: FC = () => {
   return (
     <section className={styles.wrapper}>
       <BreadCrumbs />
-      <ContentForm encType="multipart/form-data" onSubmit={handleSubmit(onSub)}>
+      <StyledContentForm encType="multipart/form-data" onSubmit={handleSubmit(onSub)}>
         <Controller
           control={control}
           name="avatarUrl"
@@ -197,7 +197,7 @@ export const AddNewPlayer: FC = () => {
             </Button>
           </GridContainer>
         </div>
-      </ContentForm>
+      </StyledContentForm>
     </section>
   );
 };

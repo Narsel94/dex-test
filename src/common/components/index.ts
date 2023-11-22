@@ -13,7 +13,6 @@ import { CardContainer } from "./CardContainer/CardContainer";
 import { BurgerButton } from "./BurgerButton/BurgerButton";
 import { GridContainer } from "./GridContainer/GridContainer";
 import { FileInput } from "./FileInput/FileInput";
-import { ContentForm } from "./ContentForm/ContentForm";
 import { ButtonWithIcon } from "./ButtonWithIcon/ButtonWithIcon";
 import { ContentLayout } from "./ContentLayout/ContentLayout";
 import { AppLayout } from "./AppLayout/AppLayout";
@@ -25,6 +24,7 @@ import { EmptyList } from "./EmptyList/EmptyList";
 import { ErrorBlock } from "./ErrorBlock/ErrorBlock";
 import { NavigationBar } from "./NavigationBar/NavigationBar";
 import { RouteErrorBoundary } from "./RouteErrorBoundary/RouteErrorBoundary";
+import { StyledContentForm } from "./StyledContentForm/StyledContentForm";
 
 
 
@@ -53,5 +53,5 @@ export {
   StyledSelect,
   CardContainer,
   GridContainer,
-  ContentForm
+  StyledContentForm
 };

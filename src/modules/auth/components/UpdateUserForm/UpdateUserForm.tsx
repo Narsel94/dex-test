@@ -20,7 +20,7 @@ type TUserForm = {
 };
 
 export const UpdateUserForm = () => {
-  const { control, handleSubmit, formState,  reset } =
+  const { control, handleSubmit, formState, setError, reset } =
     useForm<TUserForm>({
       mode: "onBlur",
     });
@@ -46,21 +46,33 @@ export const UpdateUserForm = () => {
         .then(() => navigate("/teams"));
     }
 
-    saveImageRequest(data.avatarUrl)?.then((res) => {
-      const preparedData = {
-        userName: data.userName || userName,
-        avatarUrl: `${base}${res}`,
-      };
-      return updateUserRequest(preparedData)
-        ?.then((res) => {
-          if (res) {
-            if (preparedData.avatarUrl)
-              setCookie("avatarUrl", preparedData.avatarUrl);
-            if (preparedData.userName) setCookie("name", preparedData.userName);
-          }
-        })
-        .then(() => navigate("/teams"));
-    });
+    saveImageRequest(data.avatarUrl)
+      ?.then((res) => {
+        const preparedData = {
+          userName: data.userName || userName,
+          avatarUrl: `${base}${res}`,
+        };
+        return updateUserRequest(preparedData)
+          ?.then((res) => {
+            if (res) {
+              if (preparedData.avatarUrl)
+                setCookie("avatarUrl", preparedData.avatarUrl);
+              if (preparedData.userName)
+                setCookie("name", preparedData.userName);
+            }
+          })
+          .then(() => navigate("/teams"));
+      })
+      .catch((error) => {
+        if (error instanceof TypeError) {
+          console.log(error.stack);
+
+          setError("avatarUrl", {
+            type: "Custom",
+            message: `Слишком большой файл`,
+          });
+        }
+      });
   };
 
   return (
@@ -73,6 +85,7 @@ export const UpdateUserForm = () => {
             onBlurProp={onBlur}
             onFileSelect={onChange}
             defaultImageUrl={avatarUrl}
+            error={errors.avatarUrl?.message}
           />
         )}
       />
@@ -86,7 +99,7 @@ export const UpdateUserForm = () => {
             onChange={onChange}
             onBlur={onBlur}
             propValue={value}
-            error={errors.avatarUrl?.message}
+            error={errors.userName?.message}
           />
         )}
       />

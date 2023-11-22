@@ -4,7 +4,7 @@ import {
   Button,
   StyledSelect,
   FileInput,
-  ContentForm,
+  StyledContentForm,
 } from "../../../../common/components";
 import { useNavigate, useParams } from "react-router";
 import { useForm, Controller } from "react-hook-form";
@@ -69,7 +69,7 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
   const { positions } = usePositions();
 
   return (
-    <ContentForm
+    <StyledContentForm
       encType="multipart/form-data"
       onSubmit={handleSubmit(onSubmit)}
     >
@@ -190,6 +190,6 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
           </Button>
         </div>
       </div>
-    </ContentForm>
+    </StyledContentForm>
   );
 };
