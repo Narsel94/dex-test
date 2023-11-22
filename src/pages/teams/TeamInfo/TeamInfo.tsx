@@ -6,20 +6,25 @@ import { Roster } from "../../../modules/teams/components";
 import styles from "./TeamInfo.module.css";
 import { removeImageRequest } from "../../../api/auth/deleteImage";
 import { usePlayersOfTeam } from "../../../modules/teams/hooks/usePlayersOfTeam";
+import { useState } from "react";
+const base = process.env.REACT_APP_IMAGES;
 
 export const TeamInfo = () => {
   const navigate = useNavigate();
   const data = useLoaderData() as TTeamData;
   const players = usePlayersOfTeam(data.id);
+  const [isError, setIsError] = useState<boolean>(false);
 
   const onDelete = () => {
     if (players && players.length > 0) {
-     console.error('Нельзя удалить пока в команде есть игроки')
-     return
+      console.error("Нельзя удалить пока в команде есть игроки");
+      setIsError(true);
+
+      return;
     }
     if (data) {
       const fileName = data.imageUrl?.split("/").pop();
-      if (fileName) {
+      if (fileName && base && data.imageUrl?.includes(base)) {
         return removeImageRequest(fileName)
           .catch((error) => {
             console.log(error);
@@ -56,6 +61,16 @@ export const TeamInfo = () => {
           onTrashClick={onDelete}
           onUpdateClick={onChangeClick}
         />
+        {isError && (
+          <div
+            onClick={() => setIsError(false)}
+            className={styles.errorMessage}
+          >
+            <p>Нельзя удалить пока в команде есть игроки</p>
+            <p>Нажмите на окно, чтобы закрыть...</p>
+          </div>
+        )}
+
         <section className={styles.section}>
           <img
             src={data.imageUrl}

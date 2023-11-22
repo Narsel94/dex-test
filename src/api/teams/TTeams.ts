@@ -1,12 +1,3 @@
-export type TUpdateTeamRequest = {
-  id: number;
-  name: string;
-  foundationYear?: number;
-  division?: string;
-  conference?: string;
-  imageUrl?: string;
-};
-
 export type TAddTeamRequest = {
   name: string;
   foundationYear: number;
@@ -14,6 +5,20 @@ export type TAddTeamRequest = {
   conference: string;
   imageUrl?: string;
 };
+
+export type TAddTeamForm = {
+  name: string;
+  foundationYear?: number;
+  division: string;
+  conference: string;
+  imageUrl: File;
+};
+
+export type TUpdateTeamRequest = Omit<TAddTeamForm, 'imageUrl'> & {
+  imageUrl: File | string, 
+  id: number;
+};
+
 
 export type TAddTeamResponse = TAddTeamRequest & { id: number };
 

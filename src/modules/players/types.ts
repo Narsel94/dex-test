@@ -31,11 +31,6 @@ export type TAddNewPlayerForm = {
   avatarUrl: File;
 };
 
-export type TUpdatePlayerForm = Omit<Partial<TAddNewPlayerForm>, 'name' | 'position'> & {
-  name: string,
-  position: {
-    label: string;
-    value: string;
-  },
+export type TUpdatePlayerForm = TAddNewPlayerForm & {
   id: number
 } 

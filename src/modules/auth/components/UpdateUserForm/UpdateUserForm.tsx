@@ -12,7 +12,6 @@ import { getCookie, setCookie } from "../../../../common/helpers/cookies";
 import { useNavigate } from "react-router";
 import styles from "./UpdateUserForm.module.css";
 
-
 const base = process.env.REACT_APP_IMAGES;
 
 type TUserForm = {
@@ -21,7 +20,7 @@ type TUserForm = {
 };
 
 export const UpdateUserForm = () => {
-  const { control, handleSubmit, formState, setValue, reset } =
+  const { control, handleSubmit, formState,  reset } =
     useForm<TUserForm>({
       mode: "onBlur",
     });
@@ -47,9 +46,7 @@ export const UpdateUserForm = () => {
         .then(() => navigate("/teams"));
     }
 
-    const formData = new FormData();
-    formData.append(`file`, data.avatarUrl);
-    saveImageRequest(formData)?.then((res) => {
+    saveImageRequest(data.avatarUrl)?.then((res) => {
       const preparedData = {
         userName: data.userName || userName,
         avatarUrl: `${base}${res}`,

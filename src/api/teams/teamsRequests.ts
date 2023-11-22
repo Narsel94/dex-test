@@ -1,11 +1,9 @@
 import { remove, get, post, put } from "../baseRequest";
 
 import { getCookie } from "../../common/helpers/cookies";
-import {
-  TAddTeamRequest,
-  TGetTeamsResponse,
-  TUpdateTeamRequest,
-} from "./TTeams";
+import { TGetTeamsResponse, TUpdateTeamRequest, TAddTeamForm } from "./TTeams";
+import { saveImageRequest } from "../auth/saveImage";
+const imagesUrl = process.env.REACT_APP_IMAGES;
 
 export const removeTeam = (id: number) => {
   const token = getCookie("token");
@@ -21,20 +19,47 @@ export const getTeamLoader = (id?: string) => {
   }
 };
 
-export const postTeamRequest = (data: TAddTeamRequest) => {
-  return post("/Team/Add", JSON.stringify(data), getCookie("token"));
-}
-  
-
 export const getTeamsRequest = (search?: string) =>
   get(`/Team/GetTeams${search}`, getCookie("token"));
 
 export const getAllTeamsRequest = (): Promise<TGetTeamsResponse> =>
   get(`/Team/GetTeams`, getCookie("token"));
 
+export const postTeamRequest = (data: TAddTeamForm) => {
+  const token = getCookie("token");
+
+  return saveImageRequest(data.imageUrl)
+    .then((res) => {
+      const newData = {
+        ...data,
+        imageUrl: `${imagesUrl}${res}`,
+      };
+      return post("/Team/Add", JSON.stringify(newData), token);
+    })
+    .catch((error) => {
+      return Promise.reject(error);
+    });
+};
+
 export const updateTeamRequest = (data: TUpdateTeamRequest) => {
   const token = getCookie("token");
   if (token) {
-    return put("/Team/Update", JSON.stringify(data), token);
+    if (data.imageUrl instanceof File) {
+      return saveImageRequest(data.imageUrl)
+        .then((res) => {
+          const newData = {
+            ...data,
+            imageUrl: `${imagesUrl}${res}`,
+          };
+          return put("/Team/Update", JSON.stringify(newData), token);
+        })
+        .catch((error) => {
+          return Promise.reject(error);
+        });
+    } else {
+      return put("/Team/Update", JSON.stringify(data), token);
+    }
+  } else {
+    return Promise.reject("No authorization");
   }
 };

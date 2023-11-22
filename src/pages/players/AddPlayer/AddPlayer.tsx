@@ -18,10 +18,8 @@ import {
 } from "../../../modules/players/components";
 import { addPlayerRequest } from "../../../api/players/playersRequests";
 import { TAddNewPlayerForm } from "../../../modules/players/types";
-import { saveImageRequest } from "../../../api/auth/saveImage";
 import styles from "./AddPlayer.module.css";
 
-const imagesUrl = process.env.REACT_APP_IMAGES;
 
 export const AddNewPlayer: FC = () => {
   const { positions, error, errorMessage, isLoading } = usePositions();
@@ -29,32 +27,26 @@ export const AddNewPlayer: FC = () => {
   const teamsOptions = useTeamOptions();
   const navigate = useNavigate();
 
-  const { reset, control, handleSubmit, formState, setValue, setError } =
+  const { reset, control, handleSubmit, formState, setError } =
     useForm<TAddNewPlayerForm>({ mode: "onBlur" });
   const { isValid, errors } = formState;
 
   const onSub = (data: TAddNewPlayerForm) => {
-    const formData = new FormData();
-    formData.append(`file`, data.avatarUrl);
-    saveImageRequest(formData)
-      ?.then((res) => {
-        const preparedData = {
-          name: data.name,
-          number: data.number,
-          position: data.position.value,
-          team: data.team?.value,
-          birthday: new Date(data.birthday).toISOString(),
-          height: data.height,
-          weight: data.weight,
-          avatarUrl: `${imagesUrl}${res}`,
-        };
-
-        return preparedData;
-      })
-      .then((newData) => addPlayerRequest(newData))
-      ?.then(() => {
-        reset();
-        navigate("/players");
+    addPlayerRequest(data)
+      .then(() => navigate("/players"))
+      .catch((error) => {
+        if (error instanceof TypeError) {
+          setError("avatarUrl", {
+            type: "Custom",
+            message: `Слишком большой файл`,
+          });
+        }
+        if (error.status === 409) {
+          setError("name", {
+            type: error.status.toString(),
+            message: `Поле имя должно быть уникальным`,
+          });
+        }
       });
   };
 

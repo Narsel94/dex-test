@@ -1,11 +1,14 @@
 import { getCookie } from "../../common/helpers/cookies";
 import { post } from "../baseRequest";
 
-export const saveImageRequest = (data: FormData) => {
+export const saveImageRequest = (data?: File) => {
   const token = getCookie("token");
-  try {
-    return post("/Image/SaveImage", data, token);
-  } catch (error) {
-    console.log(error);
+  if (data) {
+    const formData = new FormData();
+    formData.append("file", data);
+
+    return post("/Image/SaveImage", formData, token);
+  } else {
+    throw new Error("Файл не выбран");
   }
 };

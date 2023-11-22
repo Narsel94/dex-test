@@ -6,20 +6,17 @@ import {
   ControledInput,
   FileInput,
   GridContainer,
-  ContentForm
+  ContentForm,
 } from "../../../../common/components";
 import { updateTeamRequest } from "../../../../api/teams/teamsRequests";
 import { TTeamData } from "../../../../api/teams/TTeams";
 import styles from "./UpdateTeamForm.module.css";
-import { saveImageRequest } from "../../../../api/auth/saveImage";
-
-const base = process.env.REACT_APP_IMAGES;
 
 type TUpdateForm = {
   name: string;
-  foundationYear?: number;
-  division?: string;
-  conference?: string;
+  foundationYear: number;
+  division: string;
+  conference: string;
   imageUrl: File;
 };
 
@@ -28,43 +25,39 @@ type TFormProp = {
 };
 
 export const UpdateTeamForm: FC<TFormProp> = ({ data }) => {
-  const { control, handleSubmit, formState, reset } = useForm<TUpdateForm>({
-    mode: "onBlur",
-  });
+  const { control, handleSubmit, formState, reset, setError } =
+    useForm<TUpdateForm>({
+      mode: "onBlur",
+    });
   const { isValid, errors } = formState;
   const navigate = useNavigate();
   const onSubmit = (form: TUpdateForm) => {
-    if (!form.imageUrl) {
-      const { id, imageUrl } = data;
-      const preparedData = {
-        name: form.name || data.name,
-        foundationYear: form.foundationYear || data.foundationYear,
-        division: form.division || data.division,
-        conference: form.conference || data.conference,
-        imageUrl: imageUrl,
-        id: id,
-      };
-      return updateTeamRequest(preparedData)?.then(() => navigate("/teams"));
-    }
-    const formData = new FormData();
-    formData.append(`file`, form.imageUrl);
-    saveImageRequest(formData)?.then((res) => {
-      const { id } = data;
-      const preparedData = {
-        name: form.name || data.name,
-        foundationYear: form.foundationYear || data.foundationYear,
-        division: form.division || data.division,
-        conference: form.conference || data.conference,
-        id: id,
-        imageUrl: `${base}${res}`,
-      };
-      updateTeamRequest(preparedData)
-        ?.then(() => navigate("/teams"))
-        .finally(() => {
-          reset();
-        });
-    });
+    const preparedData = {
+      name: form.name || data.name,
+      foundationYear: form.foundationYear || data.foundationYear,
+      id: data.id,
+      division: form.division || data.division,
+      conference: form.conference || data.conference,
+      imageUrl: form.imageUrl || data.imageUrl,
+    };
+    return updateTeamRequest(preparedData)
+      ?.then(() => navigate("/teams"))
+      .catch((error) => {
+        if (error instanceof TypeError) {
+          setError("imageUrl", {
+            type: "Custom",
+            message: `Слишком большой файл`,
+          });
+        }
+        if (error.status === 409) {
+          setError("name", {
+            type: error.status.toString(),
+            message: `Поле имя должно быть уникальным`,
+          });
+        }
+      });
   };
+
   return (
     <ContentForm
       onSubmit={handleSubmit(onSubmit)}
@@ -78,6 +71,7 @@ export const UpdateTeamForm: FC<TFormProp> = ({ data }) => {
             onBlurProp={onBlur}
             onFileSelect={onChange}
             defaultImageUrl={data?.imageUrl}
+            error={errors.imageUrl?.message}
           />
         )}
       />

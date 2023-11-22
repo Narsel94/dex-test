@@ -4,51 +4,38 @@ import {
   Button,
   GridContainer,
   FileInput,
-  ContentForm
+  ContentForm,
 } from "../../../common/components";
 import { useNavigate } from "react-router";
 import { Controller, useForm } from "react-hook-form";
-import { useAppDispatch } from "../../../common/hooks/useAppDispatch";
-import { addTeamThunk } from "../../../modules/teams/asyncThunk";
-import { saveImageRequest } from "../../../api/auth/saveImage";
+import { TAddTeamForm } from "../../../api/teams/TTeams";
+import { postTeamRequest } from "../../../api/teams/teamsRequests";
 import styles from "./AddTeam.module.css";
 
-const imagesUrl = process.env.REACT_APP_IMAGES;
-
-type TAddForm = {
-  name: string;
-  foundationYear: number;
-  division: string;
-  conference: string;
-  imageUrl: string;
-};
-
 export const AddNewTeam = () => {
-  const { control, handleSubmit, formState, reset, setValue } =
-    useForm<TAddForm>({
+  const { control, handleSubmit, formState, reset, setError } =
+    useForm<TAddTeamForm>({
       mode: "onBlur",
     });
   const { isValid, errors } = formState;
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const onSubmit = (data: TAddForm) => {
-    const formData = new FormData();
-    formData.append("file", data.imageUrl);
-    saveImageRequest(formData)
-      ?.then((res) => {
-        const preparedData = {
-          name: data.name,
-          foundationYear: data.foundationYear,
-          division: data.division,
-          conference: data.conference,
-          imageUrl: `${imagesUrl}${res}`,
-        };
-        dispatch(addTeamThunk(preparedData));
-      })
+  const onSubmit = (data: TAddTeamForm) => {
+    postTeamRequest(data)
       .then(() => navigate("/teams"))
-      .finally(() => {
-        reset();
+      .catch((error) => {
+        if (error instanceof TypeError) {
+          setError("imageUrl", {
+            type: "Custom",
+            message: `Слишком большой файл`,
+          });
+        }
+        if (error.status === 409) {
+          setError("name", {
+            type: error.status.toString(),
+            message: `Поле имя должно быть уникальным`,
+          });
+        }
       });
   };
 
@@ -61,6 +48,9 @@ export const AddNewTeam = () => {
       >
         <Controller
           control={control}
+          rules={{
+            required: "Required",
+          }}
           name="imageUrl"
           render={({ field: { onChange, onBlur } }) => (
             <FileInput

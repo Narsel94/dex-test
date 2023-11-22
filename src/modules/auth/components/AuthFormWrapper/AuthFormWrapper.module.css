@@ -40,7 +40,6 @@
 @media screen and (max-height: 400px) {
   .form {
     gap: 2px;
-    height: 100vh;
     overflow-y: auto;
   }
   .title {

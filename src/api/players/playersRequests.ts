@@ -1,11 +1,31 @@
 import { get, post, remove, put } from "../baseRequest";
 import { getCookie } from "../../common/helpers/cookies";
-import { TAddPlayerRequest, TPlayerData, TUpdatePlayerRequest } from "./TPlayers";
+import {
+  TPlayerData,
+  TUpdatePlayerRequest,
+  TAddNewPlayerForm,
+} from "./TPlayers";
 import { TGetPlayersResponse } from "./TPlayers";
 import { Params, json } from "react-router-dom";
+import { saveImageRequest } from "../auth/saveImage";
+const imagesUrl = process.env.REACT_APP_IMAGES;
 
-export const addPlayerRequest = (data: TAddPlayerRequest) => {
-  return post("/Player/Add", JSON.stringify(data), getCookie("token"));
+export const addPlayerRequest = (data: TAddNewPlayerForm) => {
+  const token = getCookie("token");
+
+  return saveImageRequest(data.avatarUrl)
+    .then((res) => {
+      const newData = {
+        ...data,
+        team: data.team.value,
+        position: data.position.value,
+        imageUrl: `${imagesUrl}${res}`,
+      };
+      return post("/Team/Add", JSON.stringify(newData), token);
+    })
+    .catch((error) => {
+      return Promise.reject(error);
+    });
 };
 
 export const getPlayerLoader = async (
@@ -40,6 +60,30 @@ export const removePlayerRequest = (id: number) => {
 export const updatePlayerRequest = (data: TUpdatePlayerRequest) => {
   const token = getCookie("token");
   if (token) {
-    return put("/Player/Update", JSON.stringify(data), token);
+    if (data.avatarUrl instanceof File) {
+      return saveImageRequest(data.avatarUrl)
+        .then((res) => {
+          const newData = {
+            ...data,
+            avatarUrl: `${imagesUrl}${res}`,
+          };
+          return put("/Player/Update", JSON.stringify(newData), token);
+        })
+        .catch((error) => {
+          return Promise.reject(error);
+        });
+    }
+    if (typeof data.avatarUrl === "string") {
+      const newData = {
+        ...data,
+      };
+      return put("/Player/Update", JSON.stringify(newData), token).catch(
+        (error) => {
+          return Promise.reject(error);
+        }
+      );
+    }
+  } else {
+    return Promise.reject("No authorization");
   }
 };

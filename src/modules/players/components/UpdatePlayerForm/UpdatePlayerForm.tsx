@@ -4,7 +4,7 @@ import {
   Button,
   StyledSelect,
   FileInput,
-  ContentForm
+  ContentForm,
 } from "../../../../common/components";
 import { useNavigate, useParams } from "react-router";
 import { useForm, Controller } from "react-hook-form";
@@ -12,10 +12,7 @@ import { TPlayerData } from "../../../../api/players/TPlayers";
 import { usePositions, useTeamOptions } from "..";
 import { TUpdatePlayerForm } from "../../types";
 import { updatePlayerRequest } from "../../../../api/players/playersRequests";
-import { saveImageRequest } from "../../../../api/auth/saveImage";
 import styles from "./UpdatePlayerForm.module.css";
-
-const base = process.env.REACT_APP_IMAGES;
 
 type TPlayerForm = {
   data?: TPlayerData;
@@ -25,45 +22,42 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
   const { playerId } = useParams();
   const navigate = useNavigate();
 
-  const { reset, control, handleSubmit, setValue, formState } =
+  const { reset, control, handleSubmit, setError, formState } =
     useForm<TUpdatePlayerForm>({
       mode: "onBlur",
     });
   const { errors, isValid } = formState;
+
   const onSubmit = (form: TUpdatePlayerForm) => {
-    if (!form.avatarUrl) {
-      const preparedData = {
-        id: Number(playerId),
-        name: form.name,
-        number: form.number,
-        position: form.position?.value,
-        team: form.team?.value,
-        birthday: form.birthday ? new Date(form?.birthday).toISOString() : "",
-        height: form.height,
-        weight: form.weight,
-        avatarUrl: data?.avatarUrl,
-      };
-      return updatePlayerRequest(preparedData)?.then(() =>
-        navigate("/players")
-      );
-    }
-    const formData = new FormData();
-    formData.append(`file`, form.avatarUrl);
-    saveImageRequest(formData)?.then((res) => {
-      const preparedData = {
-        id: Number(playerId),
-        name: form.name,
-        number: form.number,
-        position: form.position?.value,
-        team: form.team?.value,
-        birthday: form.birthday ? new Date(form?.birthday).toISOString() : "",
-        height: form.height,
-        weight: form.weight,
-        avatarUrl: `${base}${res}`,
-      };
-      updatePlayerRequest(preparedData)?.then(() => navigate("/players"));
-    });
+    const requestData = {
+      ...form,
+      name: form?.name || data?.name || "",
+      id: Number(playerId),
+      birthday: form.birthday ? new Date(form?.birthday).toISOString() : "",
+      position: form.position?.value || data?.position,
+      team: form.team?.value || data?.team,
+      avatarUrl: form.avatarUrl || data?.avatarUrl,
+    };
+    return updatePlayerRequest(requestData)
+      ?.then(() => navigate("/players"))
+      .catch((error) => {
+        if (error instanceof TypeError) {
+          console.log(error.stack);
+
+          setError("avatarUrl", {
+            type: "Custom",
+            message: `Слишком большой файл`,
+          });
+        }
+        if (error.status === 409) {
+          setError("name", {
+            type: error.status.toString(),
+            message: `Поле имя должно быть уникальным`,
+          });
+        }
+      });
   };
+
   const teamsOpt = useTeamOptions();
 
   let formattedDate;
@@ -73,7 +67,6 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
   }
 
   const { positions } = usePositions();
-
 
   return (
     <ContentForm
@@ -88,6 +81,7 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
             onBlurProp={onBlur}
             onFileSelect={onChange}
             defaultImageUrl={data?.avatarUrl}
+            error={errors?.avatarUrl?.message}
           />
         )}
       />
@@ -117,9 +111,6 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
         <Controller
           control={control}
           name="position"
-          rules={{
-            required: "Required",
-          }}
           render={({ field }) => (
             <StyledSelect
               {...field}
