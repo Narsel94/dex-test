@@ -23,8 +23,7 @@
 .gridContainer {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(2, 50%);
-  grid-template-rows: repeat(2);
+  grid-template-columns: repeat(2, 1fr);
   gap: 0 12px;
 }
 

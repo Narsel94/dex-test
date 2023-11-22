@@ -40,9 +40,13 @@
     gap: 64px;
     border-radius: 0;
   }
+
+  .fieldsContainer {
+    padding: 0 8px ;
+  }
 }
 
-@media screen and (max-height: 915px) {
+@media screen and (max-height:790px) {
   .wrapper {
     gap: 32px;
   }

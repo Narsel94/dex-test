@@ -1,8 +1,7 @@
 .gridContainer {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(2, 50%);
-  grid-template-rows: repeat(2);
+  grid-template-columns: repeat(2, 1fr);
   gap: 0 12px;
 }
 
@@ -15,7 +14,7 @@
 
 @media screen and (max-height: 915px) {
   .fieldsContainer {
-    gap: 2px;
+    gap: 10px;
   }
 }
 
