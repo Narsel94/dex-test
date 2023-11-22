@@ -57,3 +57,12 @@
     align-items: center;
   }
 }
+
+@media screen and (max-height: 915px) {
+  .wrapper {
+    gap: 32px;
+  }
+  .fieldsContainer {
+    gap: 2px;
+  }
+}

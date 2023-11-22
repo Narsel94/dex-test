@@ -28,3 +28,9 @@
     padding: 0 8px;
   }
 }
+
+@media screen and (max-height: 915px) {
+  .form {
+    gap: 3%;
+  }
+}

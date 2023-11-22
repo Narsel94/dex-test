@@ -27,3 +27,11 @@
   grid-template-rows: repeat(2);
   gap: 0 12px;
 }
+
+@media screen and (max-height: 915px) {
+  .fieldsContainer {
+    gap: 2px;
+  }
+}
+
+
