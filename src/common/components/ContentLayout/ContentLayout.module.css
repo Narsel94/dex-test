@@ -59,7 +59,7 @@
 
 @media screen and (max-width: 840px) {
   .main {
-    padding: 10px 0;
+    padding: 16px  12px;
   }
 
   .header {
@@ -106,11 +106,5 @@
 
   .infoWrapper {
     display: none;
-  }
-}
-
-@media screen and (max-width: 374px) {
-  .header {
-    margin-top: 20px;
   }
 }

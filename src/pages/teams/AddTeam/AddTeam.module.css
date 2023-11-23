@@ -12,22 +12,6 @@
   gap: 72px;
 }
 
-.fieldsContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
-  max-width: 370px;
-}
-
-.gridContainer {
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(2, 50%);
-  grid-template-rows: repeat(2);
-  gap: 0 12px;
-}
-
 @media screen and (max-width: 1185px) {
   .wrapper {
     gap: 40px;
@@ -40,18 +24,10 @@
     gap: 64px;
     border-radius: 0;
   }
-
-  .fieldsContainer {
-    padding: 0 8px ;
-  }
 }
 
-@media screen and (max-height:790px) {
+@media screen and (max-height: 790px) {
   .wrapper {
     gap: 32px;
   }
-  .fieldsContainer {
-    gap: 2px;
-  }
 }
-

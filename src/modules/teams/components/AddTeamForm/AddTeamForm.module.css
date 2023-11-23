@@ -1,0 +1,27 @@
+.fieldsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 370px;
+}
+
+.gridContainer {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: repeat(2);
+  gap: 0 12px;
+}
+
+@media screen and (max-width: 880px) {
+  .fieldsContainer {
+    padding: 0 8px;
+  }
+}
+
+@media screen and (max-height: 790px) {
+  .fieldsContainer {
+    gap: 2px;
+  }
+}

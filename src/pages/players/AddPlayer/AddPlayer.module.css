@@ -12,31 +12,6 @@
   gap: 72px;
 }
 
-.fileInput {
-  display: flex;
-  flex-direction: column;
-}
-
-.form {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  justify-content: space-around;
-}
-
-.formMobile {
-  margin-top: 0;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.fieldsContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
 @media screen and (max-width: 1185px) {
   .wrapper {
     gap: 32px;
@@ -48,17 +23,6 @@
     padding: 16px 16px 48px;
     gap: 64px;
     border-radius: 0;
-  }
-
-  .form {
-    margin-top: 0;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .fieldsContainer {
-    padding:0;
   }
 }
 
