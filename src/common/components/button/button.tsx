@@ -1,5 +1,5 @@
 import React, { FC, SyntheticEvent } from "react";
-import styles from "./Button.module.css";
+import styles from "./button.module.css";
 import classNames from "classnames";
 
 

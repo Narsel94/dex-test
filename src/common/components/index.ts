@@ -1,12 +1,12 @@
 import { BreadCrumbs } from "./BreadCrumbs/BreadCrumbs";
-import { Button } from "./Button/Button";
-import { Checkbox } from "./Checkbox/Checkbox";
+import { Button } from "./button/button";
+import { Checkbox } from "./checkbox/checkbox";
 import { ControledInput } from "./ControledInput/ControledInput";
 import {
   PublicRoutes,
   PrivateRoutes,
 } from "./ProtectedRouter/ProtectedRouter";
-import { Preloader } from "./Preloader/Preloader";
+import { Preloader } from "./preloader/preloader";
 import { StyledReactPaginate } from "./StyledReactPaginate/StyledReactPaginate";
 import { StyledSelect } from "./StyledSelect/StyledSelect";
 import { CardContainer } from "./CardContainer/CardContainer";

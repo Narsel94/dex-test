@@ -25,6 +25,7 @@ export const AddPlayerForm: FC = () => {
 
   const { reset, control, handleSubmit, formState, setError } =
     useForm<TAddNewPlayerForm>({ mode: "onBlur" });
+    
   const { isValid, errors } = formState;
 
   const onSub = (data: TAddNewPlayerForm) => {
