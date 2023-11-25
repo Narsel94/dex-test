@@ -91,7 +91,7 @@
 .multiValue {
   box-sizing: border-box;
   background-color: var(--red);
-  font-family: "Avenir-Book";
+  font-family: var(--AvBook);
   color: white;
   display: flex;
   align-items: center;

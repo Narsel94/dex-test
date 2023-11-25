@@ -45,7 +45,7 @@ export const SignInForm = () => {
 
   return (
     <>
-    <AuthFormWrapper title="Sign In" onSubmit={handleSubmit(onSubmit)}>
+    <AuthFormWrapper title="Sign In Привет" onSubmit={handleSubmit(onSubmit)}>
       <Controller
         control={control}
         rules={{ required: "Введите логин" }}

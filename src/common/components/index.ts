@@ -25,10 +25,12 @@ import { ErrorBlock } from "./ErrorBlock/ErrorBlock";
 import { NavigationBar } from "./NavigationBar/NavigationBar";
 import { RouteErrorBoundary } from "./RouteErrorBoundary/RouteErrorBoundary";
 import { StyledContentForm } from "./StyledContentForm/StyledContentForm";
+import { Notification } from "./notification/notification";
 
 
 
 export {
+  Notification,
   RouteErrorBoundary,
   NavigationBar,
   ErrorBlock,

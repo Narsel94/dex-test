@@ -19,9 +19,9 @@ export const addPlayerRequest = (data: TAddNewPlayerForm) => {
         ...data,
         team: data.team.value,
         position: data.position.value,
-        imageUrl: `${imagesUrl}${res}`,
+        avatarUrl: `${imagesUrl}${res}`,
       };
-      return post("/Team/Add", JSON.stringify(newData), token);
+      return post("/Player/Add", JSON.stringify(newData), token);
     })
     .catch((error) => {
       return Promise.reject(error);

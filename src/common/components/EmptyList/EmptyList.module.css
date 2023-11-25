@@ -1,5 +1,4 @@
 .wrapper {
-  min-width: 375px;
   min-height: 434px;
   max-width: 556px;
   width: 100%;
@@ -8,12 +7,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 1em;
 }
 
 .title {
-  font-family: "Avenir-Black", Arial, Helvetica, sans-serif;
+  font-family: var(--AvBlack), Arial, Helvetica, sans-serif;
   color: var(--lightest-red);
   font-weight: 800;
   font-size: 36px;
@@ -21,7 +23,7 @@
 }
 
 .subtitle {
-  font-family: "Avenir-Book", Arial, Helvetica, sans-serif;
+  font-family: var(--AvBook), Arial, Helvetica, sans-serif;
   font-weight: 400;
   color: var(--grey);
   font-size: 24px;
@@ -34,6 +36,17 @@
 }
 
 @media screen and (max-width: 840px) {
+
+  .wrapper {
+    box-sizing: border-box;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    align-self: flex-start;
+    border-radius: 0;
+  }
+
   .title {
     font-size: 17px;
     margin-top: 16px;

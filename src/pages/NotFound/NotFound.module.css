@@ -1,52 +1,58 @@
 .page {
   display: flex;
+  height: 100vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  gap: 48px;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
 }
 
 .title {
-  font-family: "Avenir-Black", Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: var(--AvBlack), Arial, Helvetica, sans-serif;
   color: var(--lightest-red);
   font-weight: 800;
   font-size: 36px;
-  margin-top: 30px;
 }
 
-
 .subtitle {
-  font-family: "Avenir-Book", Arial, Helvetica, sans-serif;
+  font-family: var(--AvBook), Arial, Helvetica, sans-serif;
   font-weight: 400;
   color: var(--grey);
   font-size: 24px;
-  margin-top: 20px;
+  margin: 0;
+  padding: 0;
 }
-
 
 .image {
   width: 380px;
   height: 212px;
 }
 
-
-@media screen and (max-width: 860px){
-
+@media screen and (max-width: 860px) {
   .title {
     font-size: 17px;
-    margin-top: 16px;
+  }
+
+  .message {
+    gap: 16px;
   }
 
   .subtitle {
     font-size: 15px;
-    margin-top: 10px;
   }
 
-  
-.image {
-  width: 275px;
-  height: 153px;
+  .image {
+    width: 275px;
+    height: 153px;
+  }
 }
-  
-}
-

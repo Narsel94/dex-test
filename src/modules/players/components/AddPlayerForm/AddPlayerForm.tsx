@@ -25,7 +25,7 @@ export const AddPlayerForm: FC = () => {
 
   const { reset, control, handleSubmit, formState, setError } =
     useForm<TAddNewPlayerForm>({ mode: "onBlur" });
-    
+
   const { isValid, errors } = formState;
 
   const onSub = (data: TAddNewPlayerForm) => {
@@ -64,6 +64,12 @@ export const AddPlayerForm: FC = () => {
         name="avatarUrl"
         rules={{
           required: "Required",
+          validate: (file) => {
+            const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+            return allowedTypes.includes(file.type)
+              ? true
+              : "Invalid file type";
+          },
         }}
         render={({ field: { onChange, onBlur } }) => (
           <FileInput
@@ -158,6 +164,16 @@ export const AddPlayerForm: FC = () => {
             name="birthday"
             rules={{
               required: "Required",
+              validate: (value) => {
+                const currentDate = new Date().toISOString().split("T")[0];
+                if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+                  return "Wrong date format";
+                } else if (value > currentDate) {
+                  return "The date can't be in the future.";
+                } else {
+                  return true;
+                }
+              },
             }}
             render={({ field: { onChange, onBlur, value, ref } }) => (
               <ControledInput
@@ -187,7 +203,7 @@ export const AddPlayerForm: FC = () => {
               />
             )}
           />
-          <Button htmlType="reset" onClick={() => reset()}>
+          <Button htmlType="reset" onClick={reset}>
             Cancel
           </Button>
           <Button htmlType="submit" disabled={!isValid} isPrime>

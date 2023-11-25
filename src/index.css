@@ -21,8 +21,9 @@ code {
 
 :root {
   --mobile: 880px;
-  --AvenirM: "Avenir-Medium";
-  --AvBlack: "Avenir-Black";
+  --AvenirM: "Avenir-Medium", "Avenir Next Medium";
+  --AvBlack: "Avenir-Black", "Avenir Next Bold";
+  --AvBook: "Avenir-Book", "Avenir Next Regular";
   --dark-grey: #303030;
   --grey: #707070;
   --light-grey: #9c9c9c;

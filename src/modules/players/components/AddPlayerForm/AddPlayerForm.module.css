@@ -8,7 +8,7 @@
 .fieldsContainer {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 16px ;
 }
 
 @media screen and (max-width: 800px) {

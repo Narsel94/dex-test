@@ -1,10 +1,11 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import {
   ControledInput,
   Button,
   GridContainer,
   FileInput,
   StyledContentForm,
+  Notification,
 } from "../../../../common/components";
 import { useNavigate } from "react-router";
 import { Controller, useForm } from "react-hook-form";
@@ -12,8 +13,12 @@ import { TAddTeamForm } from "../../../../api/teams/TTeams";
 import { postTeamRequest } from "../../../../api/teams/teamsRequests";
 import styles from "./AddTeamForm.module.css";
 
-export const AddTeamForm:FC = () => {
-  const { control, handleSubmit, formState, reset, setError } =
+export const AddTeamForm: FC = () => {
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(
+    undefined
+  );
+
+  const { control, handleSubmit, formState, reset } =
     useForm<TAddTeamForm>({
       mode: "onBlur",
     });
@@ -24,17 +29,10 @@ export const AddTeamForm:FC = () => {
     postTeamRequest(data)
       .then(() => navigate("/teams"))
       .catch((error) => {
-        if (error instanceof TypeError) {
-          setError("imageUrl", {
-            type: "Custom",
-            message: `Слишком большой файл`,
-          });
-        }
-        if (error.status === 409) {
-          setError("name", {
-            type: error.status.toString(),
-            message: `Поле имя должно быть уникальным`,
-          });
+        if (error instanceof Error) {
+          setErrorMessage(`${error.name}: ${error.message}`);
+        } else {
+          setErrorMessage(`Error: ${error.status}`);
         }
       });
   };
@@ -48,6 +46,12 @@ export const AddTeamForm:FC = () => {
         control={control}
         rules={{
           required: "Required",
+          validate: (file) => {
+            const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+            return allowedTypes.includes(file.type)
+              ? true
+              : "Invalid file type";
+          },
         }}
         name="imageUrl"
         render={({ field: { onChange, onBlur } }) => (
@@ -112,6 +116,7 @@ export const AddTeamForm:FC = () => {
           name="foundationYear"
           rules={{
             required: "Required",
+
           }}
           render={({ field: { onChange, onBlur, ref, value } }) => (
             <ControledInput
@@ -133,6 +138,7 @@ export const AddTeamForm:FC = () => {
           </Button>
         </GridContainer>
       </div>
+      <Notification message={errorMessage} />
     </StyledContentForm>
   );
 };

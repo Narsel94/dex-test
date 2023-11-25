@@ -40,7 +40,6 @@ const request = async (
     result = await response.json();
     return result;
   }
-
   throw { isCustomError: true, status: response.status };
 };
 

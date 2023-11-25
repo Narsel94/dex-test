@@ -1,5 +1,5 @@
 .title {
-  font-family: "Avenir-Book", Arial, Helvetica, sans-serif;
+  font-family: var(--AvBook), Arial, Helvetica, sans-serif;
   font-size: 36px;
   color: var(--blue);
   align-self: flex-start;

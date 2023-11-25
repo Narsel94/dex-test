@@ -76,6 +76,17 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
       <Controller
         control={control}
         name="avatarUrl"
+        rules={{
+          validate: (file) => {
+            const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+            if (file) {
+              return allowedTypes.includes(file.type)
+              ? true
+              : "Invalid file type";
+            }
+         
+          },
+        }}
         render={({ field: { onBlur, onChange } }) => (
           <FileInput
             onBlurProp={onBlur}
@@ -154,6 +165,16 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
             name="birthday"
             rules={{
               required: "Required",
+              validate: (value) => {
+                const currentDate = new Date().toISOString().split("T")[0];
+                if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+                  return "Wrong date format";
+                } else if (value > currentDate) {
+                  return "The date can't be in the future.";
+                } else {
+                  return true;
+                }
+              },
             }}
             render={({ field: { onChange, onBlur, value, ref } }) => (
               <ControledInput
