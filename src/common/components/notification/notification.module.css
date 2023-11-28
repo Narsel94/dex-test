@@ -4,11 +4,22 @@
   align-items: center;
   border-radius: 4px;
   background-color: var(--light-red);
-  right: 5%; 
+  right: 5%;
   top: 5%;
   height: 40px;
   color: white;
   font-family: var(--AvenirM);
   font-size: 16px;
   padding: 0 8px;
+}
+
+@media screen and (max-width: 840px) {
+  .error {
+    height: 28px;
+    font-size: 13px;
+  }
+}
+
+.hide {
+  display: none;
 }

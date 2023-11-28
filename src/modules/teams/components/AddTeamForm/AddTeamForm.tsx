@@ -14,14 +14,11 @@ import { postTeamRequest } from "../../../../api/teams/teamsRequests";
 import styles from "./AddTeamForm.module.css";
 
 export const AddTeamForm: FC = () => {
-  const [errorMessage, setErrorMessage] = useState<string | undefined>(
-    undefined
-  );
+  const [isError, setisError] = useState<unknown | undefined>(undefined);
 
-  const { control, handleSubmit, formState, reset } =
-    useForm<TAddTeamForm>({
-      mode: "onBlur",
-    });
+  const { control, handleSubmit, formState, reset } = useForm<TAddTeamForm>({
+    mode: "onChange",
+  });
   const { isValid, errors } = formState;
   const navigate = useNavigate();
 
@@ -29,11 +26,7 @@ export const AddTeamForm: FC = () => {
     postTeamRequest(data)
       .then(() => navigate("/teams"))
       .catch((error) => {
-        if (error instanceof Error) {
-          setErrorMessage(`${error.name}: ${error.message}`);
-        } else {
-          setErrorMessage(`Error: ${error.status}`);
-        }
+        setisError(error);
       });
   };
 
@@ -116,7 +109,10 @@ export const AddTeamForm: FC = () => {
           name="foundationYear"
           rules={{
             required: "Required",
-
+            validate: (value) =>
+              value && value > new Date().getFullYear()
+                ? "The date can't be in the future."
+                : true,
           }}
           render={({ field: { onChange, onBlur, ref, value } }) => (
             <ControledInput
@@ -138,7 +134,7 @@ export const AddTeamForm: FC = () => {
           </Button>
         </GridContainer>
       </div>
-      <Notification message={errorMessage} />
+      <Notification error={isError} />
     </StyledContentForm>
   );
 };

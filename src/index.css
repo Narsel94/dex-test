@@ -9,6 +9,23 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body::-webkit-scrollbar-corner {
+  background-color: #344472;
+color: #c60e2e;
+
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #344472;
+  color: #c60e2e;
+
+}
+
+body::-webkit-scrollbar-button {
+  background-color: #344472;
+color: #c60e2e;
+}
+
 * {
   /* outline: 1px solid yellowgreen; */
   /* box-sizing: border-box; */

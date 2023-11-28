@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useLoaderData, useNavigate } from "react-router";
 import { TTeamData } from "../../../api/teams/TTeams";
 import { removeTeam } from "../../../api/teams/teamsRequests";
@@ -6,36 +7,33 @@ import { Roster } from "../../../modules/teams/components";
 import styles from "./TeamInfo.module.css";
 import { removeImageRequest } from "../../../api/auth/deleteImage";
 import { usePlayersOfTeam } from "../../../modules/teams/hooks/usePlayersOfTeam";
-import { useState } from "react";
+import { Notification } from "../../../common/components";
+
 const base = process.env.REACT_APP_IMAGES;
 
 export const TeamInfo = () => {
   const navigate = useNavigate();
   const data = useLoaderData() as TTeamData;
   const players = usePlayersOfTeam(data.id);
-  const [isError, setIsError] = useState<boolean>(false);
+  const [isError, setIsError] = useState<unknown | undefined>(undefined);
 
   const onDelete = () => {
     if (players && players.length > 0) {
-      console.error("Нельзя удалить пока в команде есть игроки");
-      setIsError(true);
+      setIsError("Нельзя удалить пока в команде есть игроки");
 
       return;
     }
-    if (data) {
-      const fileName = data.imageUrl?.split("/").pop();
-      if (fileName && base && data.imageUrl?.includes(base)) {
-        return removeImageRequest(fileName)
-          .catch((error) => {
-            console.log(error);
-          })
-          .finally(() => removeTeam(data.id)?.then(() => navigate("/teams")));
-      }
-      return removeTeam(data.id)?.then(() =>
-        navigate("/teams", { replace: true })
-      );
-    }
+    return removeTeam(data.id)
+      ?.then(() => {
+        const fileName = data.imageUrl?.split("/").pop();
+        if (fileName && base && data.imageUrl?.includes(base)) {
+          return removeImageRequest(fileName);
+        }
+      })
+      .then(() => navigate("/teams", { replace: true }))
+      .catch((error) => setIsError(error));
   };
+
 
   const onChangeClick = () => {
     navigate(`/teams/update-team/${data.id}`);
@@ -61,7 +59,7 @@ export const TeamInfo = () => {
           onTrashClick={onDelete}
           onUpdateClick={onChangeClick}
         />
-        {isError && (
+        {/* {isError && (
           <div
             onClick={() => setIsError(false)}
             className={styles.errorMessage}
@@ -69,7 +67,7 @@ export const TeamInfo = () => {
             <p>Нельзя удалить пока в команде есть игроки</p>
             <p>Нажмите на окно, чтобы закрыть...</p>
           </div>
-        )}
+        )} */}
 
         <section className={styles.section}>
           <img
@@ -95,6 +93,7 @@ export const TeamInfo = () => {
             </div>
           </div>
         </section>
+        <Notification error={isError} />
       </div>
       {players.length > 0 && <Roster players={players} />}
     </div>

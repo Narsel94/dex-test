@@ -4,6 +4,8 @@
   border-radius: 4px;
   gap: 3px;
   cursor: pointer;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .control {
@@ -35,7 +37,6 @@
 }
 
 .default {
-  width: 100%;
   background-color: var(--lightest-grey1);
   height: 40px;
 }

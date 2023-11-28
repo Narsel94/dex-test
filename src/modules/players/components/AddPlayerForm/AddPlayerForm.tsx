@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { usePositions } from "../../hooks/usePositions";
 import { useTeamOptions } from "../../hooks/useTeamOptions";
 import { useNavigate } from "react-router";
@@ -14,16 +14,18 @@ import {
   Preloader,
   StyledContentForm,
   StyledSelect,
+  Notification,
 } from "../../../../common/components";
 import styles from "./AddPlayerForm.module.css";
 
 export const AddPlayerForm: FC = () => {
+  const [isError, setisError] = useState<unknown | undefined>(undefined);
   const { positions, error, errorMessage, isLoading } = usePositions();
 
   const teamsOptions = useTeamOptions();
   const navigate = useNavigate();
 
-  const { reset, control, handleSubmit, formState, setError } =
+  const { reset, control, handleSubmit, formState } =
     useForm<TAddNewPlayerForm>({ mode: "onBlur" });
 
   const { isValid, errors } = formState;
@@ -32,18 +34,7 @@ export const AddPlayerForm: FC = () => {
     addPlayerRequest(data)
       .then(() => navigate("/players"))
       .catch((error) => {
-        if (error instanceof TypeError) {
-          setError("avatarUrl", {
-            type: "Custom",
-            message: `Слишком большой файл`,
-          });
-        }
-        if (error.status === 409) {
-          setError("name", {
-            type: error.status.toString(),
-            message: `Поле имя должно быть уникальным`,
-          });
-        }
+        setisError(error);
       });
   };
 
@@ -86,7 +77,7 @@ export const AddPlayerForm: FC = () => {
           rules={{
             required: "Required",
           }}
-          render={({ field: { onChange, onBlur, value, ref } }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <ControledInput
               title="Name"
               propValue={value}
@@ -131,7 +122,7 @@ export const AddPlayerForm: FC = () => {
             rules={{
               required: "Required",
             }}
-            render={({ field: { onChange, onBlur, value, ref } }) => (
+            render={({ field: { onChange, onBlur, value } }) => (
               <ControledInput
                 title="Height (cm)"
                 type="number"
@@ -211,6 +202,7 @@ export const AddPlayerForm: FC = () => {
           </Button>
         </GridContainer>
       </div>
+      <Notification error={isError} />
     </StyledContentForm>
   );
 };

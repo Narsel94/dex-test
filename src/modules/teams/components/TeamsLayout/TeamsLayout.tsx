@@ -1,15 +1,12 @@
-import React, {FC} from 'react';
+import React, { FC } from "react";
 import { Outlet } from "react-router-dom";
 
+import styles from "./TeamsLayout.module.css";
 
-import styles from './TeamsLayout.module.css'
-
-
-export const TeamsLayout:FC = () => {
-
+export const TeamsLayout: FC = () => {
   return (
     <section className={styles.page}>
-        <Outlet/>
+      <Outlet />
     </section>
-  )
-}
+  );
+};

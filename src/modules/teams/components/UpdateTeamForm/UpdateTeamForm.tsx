@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import {
@@ -7,6 +7,7 @@ import {
   FileInput,
   GridContainer,
   StyledContentForm,
+  Notification
 } from "../../../../common/components";
 import { updateTeamRequest } from "../../../../api/teams/teamsRequests";
 import { TTeamData } from "../../../../api/teams/TTeams";
@@ -25,7 +26,11 @@ type TFormProp = {
 };
 
 export const UpdateTeamForm: FC<TFormProp> = ({ data }) => {
-  const { control, handleSubmit, formState, reset, setError } =
+  const [isError, setisError] = useState<unknown | undefined>(
+    undefined
+  );
+
+  const { control, handleSubmit, formState, reset } =
     useForm<TUpdateForm>({
       mode: "onBlur",
     });
@@ -43,18 +48,7 @@ export const UpdateTeamForm: FC<TFormProp> = ({ data }) => {
     return updateTeamRequest(preparedData)
       ?.then(() => navigate("/teams"))
       .catch((error) => {
-        if (error instanceof TypeError) {
-          setError("imageUrl", {
-            type: "Custom",
-            message: `Слишком большой файл`,
-          });
-        }
-        if (error.status === 409) {
-          setError("name", {
-            type: error.status.toString(),
-            message: `Поле имя должно быть уникальным`,
-          });
-        }
+       setisError(error)
       });
   };
 
@@ -133,6 +127,9 @@ export const UpdateTeamForm: FC<TFormProp> = ({ data }) => {
           control={control}
           name="foundationYear"
           defaultValue={data.foundationYear}
+          rules={{
+            validate: (value) => (value && value > new Date().getFullYear())? "The date can't be in the future." : true
+          }}
           render={({ field: { onChange, onBlur, value } }) => (
             <ControledInput
               title="Year of foundation"
@@ -152,6 +149,7 @@ export const UpdateTeamForm: FC<TFormProp> = ({ data }) => {
           </Button>
         </GridContainer>
       </div>
+      <Notification error={isError}/>
     </StyledContentForm>
   );
 };

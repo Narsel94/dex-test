@@ -15,7 +15,7 @@
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  padding: 30px 10px;
+  padding: 3.3649vh 10px;
 }
 
 .links {
@@ -41,9 +41,7 @@
   .infoWrapper {
     display: flex;
   }
-}
 
-@media screen and (max-width: 800px) {
   .container {
     align-items: flex-start;
   }

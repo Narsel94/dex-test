@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   ControledInput,
   GridContainer,
   FileInput,
+  Notification
 } from "../../../../common/components";
 import { useForm, Controller } from "react-hook-form";
 import { updateUserRequest } from "../../../../api/auth/updateUser";
@@ -20,6 +21,9 @@ type TUserForm = {
 };
 
 export const UpdateUserForm = () => {
+  const [isError, setisError] = useState<unknown | undefined>(
+    undefined
+  );
   const { control, handleSubmit, formState, setError, reset } =
     useForm<TUserForm>({
       mode: "onBlur",
@@ -43,7 +47,9 @@ export const UpdateUserForm = () => {
             if (preparedData.userName) setCookie("name", preparedData.userName);
           }
         })
-        .then(() => navigate("/teams"));
+        .then(() => navigate("/teams")).catch(error => {
+          setisError(error)
+        });
     }
 
     saveImageRequest(data.avatarUrl)
@@ -111,6 +117,7 @@ export const UpdateUserForm = () => {
           Save
         </Button>
       </GridContainer>
+      <Notification error={isError}/>
     </form>
   );
 };

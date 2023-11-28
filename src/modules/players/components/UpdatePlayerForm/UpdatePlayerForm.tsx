@@ -1,10 +1,11 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import {
   ControledInput,
   Button,
   StyledSelect,
   FileInput,
   StyledContentForm,
+  Notification,
 } from "../../../../common/components";
 import { useNavigate, useParams } from "react-router";
 import { useForm, Controller } from "react-hook-form";
@@ -19,10 +20,11 @@ type TPlayerForm = {
 };
 
 export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
+  const [isError, setisError] = useState<unknown | undefined>(undefined);
   const { playerId } = useParams();
   const navigate = useNavigate();
 
-  const { reset, control, handleSubmit, setError, formState } =
+  const { reset, control, handleSubmit,  formState } =
     useForm<TUpdatePlayerForm>({
       mode: "onBlur",
     });
@@ -41,20 +43,7 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
     return updatePlayerRequest(requestData)
       ?.then(() => navigate("/players"))
       .catch((error) => {
-        if (error instanceof TypeError) {
-          console.log(error.stack);
-
-          setError("avatarUrl", {
-            type: "Custom",
-            message: `Слишком большой файл`,
-          });
-        }
-        if (error.status === 409) {
-          setError("name", {
-            type: error.status.toString(),
-            message: `Поле имя должно быть уникальным`,
-          });
-        }
+        setisError(error);
       });
   };
 
@@ -81,10 +70,9 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
             const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
             if (file) {
               return allowedTypes.includes(file.type)
-              ? true
-              : "Invalid file type";
+                ? true
+                : "Invalid file type";
             }
-         
           },
         }}
         render={({ field: { onBlur, onChange } }) => (
@@ -183,6 +171,7 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
                 onChange={onChange}
                 onBlur={onBlur}
                 title="Birthday"
+                error={errors.birthday?.message}
               />
             )}
           />
@@ -211,6 +200,7 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
           </Button>
         </div>
       </div>
+      <Notification error={isError} />
     </StyledContentForm>
   );
 };

@@ -3,8 +3,7 @@
   text-decoration: none;
   display: flex;
   width: 100%;
-  height: 100%;
-
+  height: 26.39vw;
   flex-direction: column;
   align-items: center;
   text-decoration: none;
@@ -12,8 +11,8 @@
 }
 
 .imageWrapper {
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  border-top-left-radius: 0.42vh;
+  border-top-right-radius: 0.42vh;
   width: 100%;
   height: 70%;
   display: flex;
@@ -32,8 +31,8 @@
   background-color: var(--dark-grey);
   justify-content: center;
   align-items: center;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 0.42vh;
+  border-bottom-right-radius: 0.42vh;
 }
 
 .image {
@@ -47,7 +46,7 @@
   color: white;
   margin: 0;
   padding: 0;
-  font-size: 18px;
+  font-size: 1.25vw;
 }
 
 .number {
@@ -58,14 +57,27 @@
   color: var(--light-grey);
   margin: 0;
   padding: 0;
+  font-size: 1.11111vw;
 }
 
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 840px) {
+  .link {
+    height: 48vw;
+  }
+
   .name {
-    font-size: 15px;
+    font-size: 4vw;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 85%;
     text-wrap: nowrap;
+  }
+  .team {
+    font-size: 2vw;
+  }
+}
+@media screen and (max-width: 730px) {
+  .team {
+    font-size: 3.466vw;
   }
 }

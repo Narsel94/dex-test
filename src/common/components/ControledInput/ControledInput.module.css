@@ -9,6 +9,7 @@
   color: var(--grey);
   gap: 2px;
   position: relative;
+  box-sizing: border-box;
 }
 
 

@@ -4,16 +4,15 @@
   box-sizing: border-box;
   flex-direction: column;
   width: 100%;
-  height: 100%;
-  overflow-y: auto;
+  height: 100vh;
 }
 
 .contentDesctop {
-  height: 100%;
+  height: calc(100vh - 8.45vh);
+  width: 100%;
   display: flex;
   position: relative;
   background-color: var(--lightest-grey1);
-  overflow-x: hidden;
 }
 
 .header {
@@ -26,26 +25,22 @@
   box-sizing: border-box;
   padding-left: 4%;
   padding-right: 3%;
-  height: 80px;
+  height: 8.45vh;
   box-shadow: 0px 1px 10px 0 #d1d1d180;
 }
 
-.main {
-  width: 100%;
+.main { 
   position: relative;
   box-sizing: border-box;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 32px 80px;
-}
+  width: 100%;
+  padding: 3.3649vh 5.555vw;
+} 
 
 .navWrapper {
   background-color: #fff;
   box-sizing: border-box;
-  max-width: 140px;
-  min-width: 100px;
-  width: 100%;
+  width: 16.88vh;
   box-sizing: border-box;
 }
 
@@ -76,7 +71,8 @@
   .navWrapper {
     transition: 0.6s ease;
     position: absolute;
-    max-width: 200px;
+    display: flex;
+    width: 21vh;
     height: 100%;
     opacity: 1;
     z-index: 50;
@@ -86,9 +82,9 @@
   .navWrapper::before {
     content: "";
     background-color: rgba(65, 65, 65, 0.3);
-    width: 100vw;
+    width: calc(100vw - 21vh);
     height: 100%;
-    transform: translateX(100px);
+    transform: translateX(21vh);
     position: absolute;
   }
 
@@ -100,7 +96,7 @@
 
   .buttonWrapper {
     display: block;
-    position: fixed;
+    position: absolute;
     left: 10%;
   }
 

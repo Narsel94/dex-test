@@ -86,7 +86,7 @@ export const SignUpForm = () => {
         rules={{
           required: "Required",
           validate: (value) =>
-            value === password ? true : "Пароли должны совпадать",
+            value === password ? true : "Passwords must match",
         }}
         render={({ field: { onChange, onBlur, value, ref } }) => (
           <ControledInput

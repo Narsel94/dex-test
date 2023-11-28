@@ -1,17 +1,16 @@
 .link {
   position: relative;
   display: flex;
-  width: 100%;
-  height: 100%;
   flex-direction: column;
   align-items: center;
   text-decoration: none;
   box-sizing: border-box;
+  height: 26.39vw;
 }
 
 .imageWrapper {
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  border-top-left-radius: 0.42vh;
+  border-top-right-radius: 0.42vh;
   width: 100%;
   height: 65%;
   display: flex;
@@ -29,23 +28,25 @@
   background-color: var(--dark-grey);
   justify-content: center;
   align-items: center;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 0.42vh;
+  border-bottom-right-radius: 0.42vh;
 }
 
 .image {
-  width: 150px;
-  height: 150px;
+  width: 41.225%;
+  height: 10.417vw;
   object-fit: contain;
+  box-sizing: border-box;
 }
 
 .name {
-  font-family:  var(--AvenirM);
-  font-size: 18px;
+  font-family: var(--AvenirM);
+  font-size: 1.25vw;
   color: white;
-  max-width: 80%;
-  overflow: hidden;
+  max-width: 40%;
   text-overflow: ellipsis;
+  word-break: break-all;
+  overflow: hidden;
   margin: 0;
   padding: 0;
 }
@@ -54,21 +55,31 @@
   font-family: var(--AvenirM);
   font-size: 14px;
   color: var(--light-grey);
+  font-size: 1.11111vw;
   margin: 0;
   padding: 0;
 }
 
 @media screen and (max-width: 840px) {
+  .link {
+    height: 53.6vw;
+  }
   .image {
-    width: 60px;
-    height: 52px;
+    width: 35.5%;
+    height: 13.87vw;
   }
 
   .name {
-    font-size: 15px;
+    font-size: 4vw;
   }
 
   .text {
-    font-size: 13px;
+    font-size: 2vw;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .text {
+    font-size: 3.466vw;
   }
 }

@@ -1,17 +1,11 @@
 .logo {
-  width: 190px;
-  height: 48px;
+  width: 20.05vh;
+  /* aspect-ratio: 191/48; */
 }
 
-.small {
-  width: 137px;
-  height: 34px;
-}
-
-
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 840px) {
   .logo {
-    width: 137px;
-    height: 34px;
+    width: 14.406vh;
+    min-width: 0;
   }
 }
