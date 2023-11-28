@@ -21,7 +21,6 @@
 
 .infoBlock {
   color: white;
-  font-family: var(--AvenirM);
   display: flex;
   gap: 18px;
   flex-direction: column;

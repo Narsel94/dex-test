@@ -7,6 +7,17 @@
   gap: 1.3vw;
 }
 
+@media screen and (min-width: 2028px) {
+  .container {
+    grid-template-columns: repeat(auto-fit, 38.48vh);
+    gap: 1vw;
+
+    /* grid-template-rows: 380px; */
+  }
+} 
+
+
+
 .container::-webkit-scrollbar {
   width: 8px;
 }

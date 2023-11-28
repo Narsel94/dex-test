@@ -8,11 +8,13 @@
 }
 
 .contentDesctop {
-  height: calc(100vh - 8.45vh);
+  height: 100vh;
+  max-height: 100vh;
   width: 100%;
   display: flex;
   position: relative;
   background-color: var(--lightest-grey1);
+  overflow: hidden;
 }
 
 .header {
@@ -35,6 +37,8 @@
   display: flex;
   width: 100%;
   padding: 3.3649vh 5.555vw;
+  overflow: hidden;
+
 } 
 
 .navWrapper {

@@ -17,7 +17,6 @@
 .container {
   position: relative;
   box-sizing: border-box;
-  font-family: "Avenir-Medium", Arial, Helvetica, sans-serif;
   font-size: 14px;
   color: var(--dark-grey);
   font-weight: 500;
@@ -171,7 +170,6 @@
 }
 
 .inputPlaceholder {
-  font-family: "Avenir-Medium", Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-weight: 500;
 }
@@ -204,7 +202,6 @@
 .errorMessage {
   margin: 0;
   height: 13px;
-  font-family: var(--AvenirM), Arial, Helvetica, sans-serif;
   font-size: 12px;
   font-weight: 500;
   color: var(--lightest-red);
@@ -215,5 +212,9 @@
   .small {
     width: 60px;
     height: 28px;
+  }
+
+  .control {
+    min-height: min-content !important;
   }
 }

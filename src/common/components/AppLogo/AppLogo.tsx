@@ -11,7 +11,7 @@ export const AppLogo: FC<TLogo> = ({ to }) => {
   if (to) {
     return (
       <Link className={styles.logo} to={to}>
-        <img src={logo} alt="Логотип" className={styles.logo} />
+        <img src={logo} alt="Логотип" className={styles.image} />
       </Link>
     );
   }

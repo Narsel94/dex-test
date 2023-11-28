@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getCookie } from "../../../common/helpers/cookies";
 import { get } from "../../../api/baseRequest";
 

@@ -40,7 +40,6 @@
 }
 
 .name {
-  font-family: var(--AvenirM);
   font-size: 1.25vw;
   color: white;
   max-width: 40%;
@@ -52,12 +51,27 @@
 }
 
 .text {
-  font-family: var(--AvenirM);
+  
   font-size: 14px;
   color: var(--light-grey);
   font-size: 1.11111vw;
   margin: 0;
   padding: 0;
+}
+
+@media screen and (min-width: 2028px) {
+  .link {
+    height: 40.17vh;
+    width: 100%;
+  }
+
+  .name {
+    font-size: 1.72vh;
+  }
+
+  .text {
+    font-size: 1.44vh;
+  }
 }
 
 @media screen and (max-width: 840px) {
@@ -70,7 +84,7 @@
   }
 
   .name {
-    font-size: 4vw;
+    font-size: 2.5vw;
   }
 
   .text {
@@ -78,7 +92,11 @@
   }
 }
 
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 480px) {
+  .name {
+    font-size: 4vw;
+  }
+
   .text {
     font-size: 3.466vw;
   }

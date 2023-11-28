@@ -2,33 +2,31 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: var(--AvenirM), "Helvetica Neue", "Segoe UI", -apple-system,
+    BlinkMacSystemFont, "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body::-webkit-scrollbar-corner {
   background-color: #344472;
-color: #c60e2e;
-
+  color: #c60e2e;
 }
 
 body::-webkit-scrollbar-thumb {
   background-color: #344472;
   color: #c60e2e;
-
 }
 
 body::-webkit-scrollbar-button {
   background-color: #344472;
-color: #c60e2e;
+  color: #c60e2e;
 }
 
 * {
   /* outline: 1px solid yellowgreen; */
-  /* box-sizing: border-box; */
+  /* box-sizing: border-box; ,  */
 }
 
 code {
@@ -37,7 +35,6 @@ code {
 }
 
 :root {
-  --mobile: 880px;
   --AvenirM: "Avenir-Medium", "Avenir Next Medium";
   --AvBlack: "Avenir-Black", "Avenir Next Bold";
   --AvBook: "Avenir-Book", "Avenir Next Regular";

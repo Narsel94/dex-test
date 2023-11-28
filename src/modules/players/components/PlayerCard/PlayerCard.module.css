@@ -22,7 +22,6 @@
 }
 
 .infoWrapper {
-  font-family: var(--AvenirM);
   width: 100%;
   height: 30%;
   gap: 5%;
@@ -42,7 +41,6 @@
 }
 
 .name {
-  font-family: var(--AvenirM);
   color: white;
   margin: 0;
   padding: 0;
@@ -60,13 +58,28 @@
   font-size: 1.11111vw;
 }
 
+@media screen and (min-width: 2028px) {
+  .link {
+    height: 40.17vh;
+    width: 100%;
+  }
+
+  .name {
+    font-size: 1.72vh;
+  }
+
+  .team {
+    font-size: 1.44vh;
+  }
+}
+
 @media screen and (max-width: 840px) {
   .link {
     height: 48vw;
   }
 
   .name {
-    font-size: 4vw;
+    font-size: 2.5vw;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 85%;
@@ -76,7 +89,11 @@
     font-size: 2vw;
   }
 }
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 520px) {
+  .name {
+    font-size: 4vw;
+  }
+
   .team {
     font-size: 3.466vw;
   }

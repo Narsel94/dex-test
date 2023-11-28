@@ -112,7 +112,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0;
-  font-family: var(--AvenirM);
   font-size: 18px;
 }
 

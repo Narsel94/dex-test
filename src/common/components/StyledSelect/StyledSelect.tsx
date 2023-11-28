@@ -48,6 +48,10 @@ export const StyledSelect: FC<StyledSelect> = React.forwardRef<
     [styles.indicatorBig]: !small
   })
 
+  const controlClasses = classNames({
+   [styles.control]: small
+  })
+
 
   return (
     <div className={wrapperClasses}>
@@ -60,6 +64,7 @@ export const StyledSelect: FC<StyledSelect> = React.forwardRef<
         isClearable={!small}
         isSearchable={isSearchable}
         classNames={{
+          control: () => controlClasses,
           container: () => containerClasses,
           indicatorsContainer: () => indicatorsClasses,
           valueContainer: () => valueContainerClasses,

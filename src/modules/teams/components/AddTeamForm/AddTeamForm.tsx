@@ -17,7 +17,7 @@ export const AddTeamForm: FC = () => {
   const [isError, setisError] = useState<unknown | undefined>(undefined);
 
   const { control, handleSubmit, formState, reset } = useForm<TAddTeamForm>({
-    mode: "onChange",
+    mode: "onBlur",
   });
   const { isValid, errors } = formState;
   const navigate = useNavigate();
