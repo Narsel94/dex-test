@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { AuthFormWrapper } from "..";
 import { useForm, Controller } from "react-hook-form";
 import { signUpRequest } from "../../../../api/auth/signUp";
 import {
+  Notification,
   ControledInput,
   Checkbox,
   Button,
@@ -17,6 +18,8 @@ type TSignUpData = {
 };
 
 export const SignUpForm = () => {
+  const [isError, setIsError] = useState<unknown | undefined>(undefined);
+
   const { control, handleSubmit, formState, reset, watch } =
     useForm<TSignUpData>({ mode: "onBlur" });
   const { isValid, errors, isSubmitSuccessful } = formState;
@@ -29,7 +32,7 @@ export const SignUpForm = () => {
 
   const onSubmit = (data: TSignUpData) => {
     const { check, confirmPassword, ...rest } = data;
-    signUpRequest(rest);
+    signUpRequest(rest).catch((error) => setIsError(error) );
     reset();
   };
 
@@ -116,6 +119,7 @@ export const SignUpForm = () => {
       <Button htmlType="submit" isPrime disabled={!isValid}>
         Sign Up
       </Button>
+      <Notification error={isError}/>
     </AuthFormWrapper>
   );
 };
