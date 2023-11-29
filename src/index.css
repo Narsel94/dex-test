@@ -36,8 +36,8 @@ code {
 
 :root {
   --AvenirM: "Avenir-Medium", "Avenir Next Medium";
-  --AvBlack: "Avenir-Black", "Avenir Next Bold";
-  --AvBook: "Avenir-Book", "Avenir Next Regular";
+  --AvBlack: "Avenir-Black", "Avenir Next Bold",  sans-serif;
+  --AvBook: "Avenir-Book", "Avenir Next Regular",  sans-serif;
   --dark-grey: #303030;
   --grey: #707070;
   --light-grey: #9c9c9c;
