@@ -24,7 +24,7 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
   const { playerId } = useParams();
   const navigate = useNavigate();
 
-  const { reset, control, handleSubmit,  formState } =
+  const { reset, control, handleSubmit, formState } =
     useForm<TUpdatePlayerForm>({
       mode: "onBlur",
     });
@@ -33,7 +33,7 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
   const onSubmit = (form: TUpdatePlayerForm) => {
     const requestData = {
       ...form,
-      name: form?.name || data?.name || "",
+      name: form?.name,
       id: Number(playerId),
       birthday: form.birthday ? new Date(form?.birthday).toISOString() : "",
       position: form.position?.value || data?.position,
@@ -41,7 +41,9 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
       avatarUrl: form.avatarUrl || data?.avatarUrl,
     };
     return updatePlayerRequest(requestData)
-      ?.then(() => navigate("/players"))
+      ?.then(() =>
+       console.log("/players")
+      )
       .catch((error) => {
         setisError(error);
       });
@@ -105,14 +107,30 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
         <Controller
           control={control}
           name="team"
-          render={({ field }) => <StyledSelect {...field} options={teamsOpt} />}
+          defaultValue={teamsOpt.find((team) => team.value === data?.team)}
+          render={({ field: { value, onChange, onBlur } }) => (
+            <StyledSelect
+              onBlur={onBlur}
+              onChange={onChange}
+              value={
+                value || teamsOpt.find((team) => team.value === data?.team)
+              }
+              options={teamsOpt}
+            />
+          )}
         />
         <Controller
           control={control}
           name="position"
-          render={({ field }) => (
+          defaultValue={positions.find((pos) => pos.label === data?.position)}
+          // rules={{
+          //   required: "Required",
+          // }}
+          render={({ field: { value, onChange, onBlur } }) => (
             <StyledSelect
-              {...field}
+              value={value || positions.find((pos) => pos.label === data?.position)}
+              onBlur={onBlur}
+              onChange={onChange}
               options={positions}
               error={errors.position?.message}
             />
@@ -123,6 +141,10 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
             control={control}
             defaultValue={data?.height}
             name="height"
+            rules={{
+              validate: (value) =>
+                value < 140 || value > 250 ? "Imposible height!" : true,
+            }}
             render={({ field: { onChange, onBlur, value, ref } }) => (
               <ControledInput
                 title="Height (cm)"
@@ -130,12 +152,17 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
                 propValue={value}
                 onChange={onChange}
                 onBlur={onBlur}
+                error={errors.height?.message}
               />
             )}
           />
           <Controller
             control={control}
             name="weight"
+            rules={{
+              validate: (value) =>
+                value < 45 || value > 200 ? "Imposible weight!" : true,
+            }}
             defaultValue={data?.weight}
             render={({ field: { onChange, onBlur, value, ref } }) => (
               <ControledInput
@@ -144,6 +171,7 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
                 onBlur={onBlur}
                 type="number"
                 title="Weight (kg)"
+                error={errors.weight?.message}
               />
             )}
           />
@@ -154,11 +182,26 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
             rules={{
               required: "Required",
               validate: (value) => {
-                const currentDate = new Date().toISOString().split("T")[0];
+                const currentDate = new Date();
+                const selectedDateObj = new Date(value);
                 if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
                   return "Wrong date format";
-                } else if (value > currentDate) {
+                } else if (
+                  selectedDateObj.getFullYear() > currentDate.getFullYear()
+                ) {
                   return "The date can't be in the future.";
+                } else if (selectedDateObj.getFullYear() < 1900) {
+                  return "It's inposible!";
+                } else if (
+                  selectedDateObj.getFullYear() <
+                  currentDate.getFullYear() - 55
+                ) {
+                  return "Must be younger";
+                } else if (
+                  selectedDateObj.getFullYear() >
+                  currentDate.getFullYear() - 10
+                ) {
+                  return "Must be older";
                 } else {
                   return true;
                 }
@@ -181,6 +224,10 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
             name="number"
             rules={{
               required: "Required",
+              validate: (value) =>
+                value < 1 || value > 1000 || value % 1 !== 0
+                  ? "Imposible number!"
+                  : true,
             }}
             render={({ field: { onChange, onBlur, value, ref } }) => (
               <ControledInput
@@ -189,6 +236,7 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
                 onChange={onChange}
                 onBlur={onBlur}
                 title="Number"
+                error={errors.number?.message}
               />
             )}
           />

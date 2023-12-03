@@ -60,6 +60,8 @@
   font-size: 12px;
   font-weight: 500;
   color: var(--lightest-red);
+  overflow: hidden;
+  text-overflow: ellipsis;
   text-align: left;
 }
 
@@ -69,6 +71,7 @@
   outline: none;
   letter-spacing: normal;
   padding-left: 10px;
+  padding-right: min(40px, 10%);
 }
 
 .labelSearch {
@@ -79,7 +82,7 @@
   position: absolute;
   width: 16px;
   height: 16px;
-  right: 2.5%;
+  right: min(2.5%, 12px);
   content: "";
   top: 30%;
   background: url(../../../assests/icons/search.svg);

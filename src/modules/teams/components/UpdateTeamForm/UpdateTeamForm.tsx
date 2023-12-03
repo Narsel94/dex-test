@@ -7,7 +7,7 @@ import {
   FileInput,
   GridContainer,
   StyledContentForm,
-  Notification
+  Notification,
 } from "../../../../common/components";
 import { updateTeamRequest } from "../../../../api/teams/teamsRequests";
 import { TTeamData } from "../../../../api/teams/TTeams";
@@ -26,29 +26,26 @@ type TFormProp = {
 };
 
 export const UpdateTeamForm: FC<TFormProp> = ({ data }) => {
-  const [isError, setisError] = useState<unknown | undefined>(
-    undefined
-  );
+  const [isError, setisError] = useState<unknown | undefined>(undefined);
 
-  const { control, handleSubmit, formState, reset } =
-    useForm<TUpdateForm>({
-      mode: "onBlur",
-    });
+  const { control, handleSubmit, formState, reset } = useForm<TUpdateForm>({
+    mode: "onBlur",
+  });
   const { isValid, errors } = formState;
   const navigate = useNavigate();
   const onSubmit = (form: TUpdateForm) => {
     const preparedData = {
-      name: form.name || data.name,
-      foundationYear: form.foundationYear || data.foundationYear,
+      name: form.name,
+      foundationYear: form.foundationYear,
       id: data.id,
-      division: form.division || data.division,
-      conference: form.conference || data.conference,
+      division: form.division,
+      conference: form.conference,
       imageUrl: form.imageUrl || data.imageUrl,
     };
     return updateTeamRequest(preparedData)
       ?.then(() => navigate("/teams"))
       .catch((error) => {
-       setisError(error)
+        setisError(error);
       });
   };
 
@@ -128,7 +125,13 @@ export const UpdateTeamForm: FC<TFormProp> = ({ data }) => {
           name="foundationYear"
           defaultValue={data.foundationYear}
           rules={{
-            validate: (value) => (value && value > new Date().getFullYear())? "The date can't be in the future." : true
+            required: "Required",
+            validate: (value) =>
+              value && value > new Date().getFullYear()
+                ? "The date can't be in the future."
+                : value && value < 1891
+                ? "Imposible year"
+                : true,
           }}
           render={({ field: { onChange, onBlur, value } }) => (
             <ControledInput
@@ -137,6 +140,7 @@ export const UpdateTeamForm: FC<TFormProp> = ({ data }) => {
               propValue={value}
               onChange={onChange}
               onBlur={onBlur}
+              error={errors.foundationYear?.message}
             />
           )}
         />
@@ -149,7 +153,7 @@ export const UpdateTeamForm: FC<TFormProp> = ({ data }) => {
           </Button>
         </GridContainer>
       </div>
-      <Notification error={isError}/>
+      <Notification error={isError} />
     </StyledContentForm>
   );
 };

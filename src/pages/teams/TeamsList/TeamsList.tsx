@@ -43,24 +43,25 @@ export const TeamsList = () => {
     navigate("/teams/add-team");
   };
 
+  const handlePageChange = (e: { selected: number }) => {
+    dispatch(setPage(e.selected + 1));
+  };
+
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
 
   const debouncedSearch = debounce((e: ChangeEvent<HTMLInputElement>) => {
+    handlePageChange({ selected: 0 });
     setDebouncedName(e.target.value);
   }, 600);
 
   const handleSizeChage = (option: unknown) => {
+    handlePageChange({ selected: 0 });
     if (isSingleSelectOption(option)) {
       dispatch(setSize(option.value));
     }
   };
-
-  const handlePageChange = (e: { selected: number }) => {
-    dispatch(setPage(e.selected + 1));
-  };
-
   const params = {
     name: debouncedName,
     page: inputsData.page,
@@ -132,6 +133,7 @@ export const TeamsList = () => {
         <StyledReactPaginate
           pageCount={Math.ceil(inputsData.count / inputsData.size) || 1}
           onPageChange={handlePageChange}
+          forcePage={inputsData.page - 1}
         />
         <StyledSelect
           options={options}

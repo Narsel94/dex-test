@@ -5,13 +5,10 @@ import { TPlayerData } from "../../../../api/players/TPlayers";
 import styles from "./Roster.module.css";
 
 type TRoster = {
-  // id: number;
-  players: TPlayerData[]
+  players: TPlayerData[];
 };
 
 export const Roster: FC<TRoster> = ({ players }) => {
-  // const players = usePlayersOfTeam(id);
-
   if (players.length > 0) {
     return (
       <div className={styles.roster}>
@@ -19,11 +16,11 @@ export const Roster: FC<TRoster> = ({ players }) => {
         <div className={styles.header}>
           <span className={styles.number}>#</span>
           <span className={styles.player}>Player</span>
-            <div className={styles.info}>
-              <span className={styles.span}>Height</span>
-              <span className={styles.span}>Weight</span>
-              <span className={styles.span}>Age</span>
-            </div>
+          <div className={styles.info}>
+            <span className={styles.span}>Height</span>
+            <span className={styles.span}>Weight</span>
+            <span className={styles.span}>Age</span>
+          </div>
         </div>
         {players.length > 0 &&
           players.map((player) => (

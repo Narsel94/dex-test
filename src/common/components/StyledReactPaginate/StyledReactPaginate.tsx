@@ -8,9 +8,11 @@ export const StyledReactPaginate: FC<StyledPaginate> = ({
   pageCount,
   ...rest
 }) => {
+
   return (
     <ReactPaginate
       pageCount={pageCount}
+      pageLinkClassName={styles.link}
       containerClassName={styles.container}
       pageClassName={styles.pageClassName}
       activeClassName={styles.activePage}

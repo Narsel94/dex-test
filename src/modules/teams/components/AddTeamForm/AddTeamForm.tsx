@@ -112,6 +112,8 @@ export const AddTeamForm: FC = () => {
             validate: (value) =>
               value && value > new Date().getFullYear()
                 ? "The date can't be in the future."
+                : value && value < 1891
+                ? "Imposible year"
                 : true,
           }}
           render={({ field: { onChange, onBlur, ref, value } }) => (

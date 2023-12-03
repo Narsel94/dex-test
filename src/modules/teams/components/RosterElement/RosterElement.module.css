@@ -8,21 +8,29 @@
   font-size: 14px;
 }
 
+.dataWrapper {
+  display: flex;
+  box-sizing: border-box;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 70px - 80px);
+}
+
 .number {
   width: 70px;
 }
 
 .bio {
   display: flex;
+  width: 60%;
+  text-overflow: ellipsis;
+  overflow: hidden;
   flex-direction: column;
-  width: 100%;
   align-items: flex-start;
 }
 
 .info {
-  width: 400px;
   display: flex;
-  justify-content: space-evenly;
   gap: 25px;
 }
 
@@ -44,10 +52,20 @@
 }
 
 .name {
+  max-width: 95%;
+  text-overflow: ellipsis;
+  overflow: hidden;
   color: var(--grey);
 }
 
 @media screen and (max-width: 580px) {
+  .bio {
+    max-width: 80%;
+  }
+
+  .image {
+    margin: 0 16px;
+  }
   .info {
     display: none;
   }

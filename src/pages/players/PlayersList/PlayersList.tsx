@@ -79,29 +79,34 @@ export const PlayersList: FC = () => {
     dispatch(getCurrentPlayersThunk(params));
   }, [params.name, params.page, params.size, params.teams]);
 
+  const handlePageChange = (e: { selected: number }) => {
+    dispatch(setPage(e.selected + 1));
+  };
+
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
   const debouncedSearch = debounce((e: ChangeEvent<HTMLInputElement>) => {
+    handlePageChange({ selected: 0 });
+
     setSearchDebounced(e.target.value);
   }, 600);
-
-  const handlePageChange = (e: { selected: number }) => {
-    dispatch(setPage(e.selected + 1));
-  };
 
   const onButtonClick = () => {
     navigate("/players/add-player");
   };
 
   const handleSizeChage = (value: unknown) => {
+    handlePageChange({ selected: 0 });
+
     if (isSingleSelectOption(value)) {
       dispatch(setSize(value.value));
     }
   };
 
   const handleChange = (newValue: unknown) => {
+    handlePageChange({ selected: 0 });
     if (newValue instanceof Array) {
       const options = newValue as TeamOption[];
       setSelectedOptions(options.map((opt) => opt.value));
@@ -155,6 +160,7 @@ export const PlayersList: FC = () => {
         <StyledReactPaginate
           pageCount={Math.ceil(inputsData.count / inputsData.size) || 1}
           onPageChange={handlePageChange}
+          forcePage={inputsData.page - 1}
         />
         <StyledSelect
           options={options}

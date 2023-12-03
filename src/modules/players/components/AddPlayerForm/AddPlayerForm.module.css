@@ -8,7 +8,20 @@
 .fieldsContainer {
   display: flex;
   flex-direction: column;
-  gap: 16px ;
+  gap: 16px;
+  max-width: 38%;
+}
+
+@media screen and (max-width: 1186px) {
+  .fieldsContainer {
+    max-width: 55%;
+  }
+}
+
+@media screen and (max-width: 915px) {
+  .fieldsContainer {
+    max-width: 100%;
+  }
 }
 
 @media screen and (max-width: 800px) {

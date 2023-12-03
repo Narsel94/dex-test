@@ -1,5 +1,5 @@
 .wrapper {
-  min-height: 434px;
+  height: 434px;
   max-width: 556px;
   width: 100%;
   background-color: white;
@@ -12,6 +12,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 1em;
+  padding:48px 0;
 }
 
 .title {
@@ -40,11 +41,15 @@
   .wrapper {
     box-sizing: border-box;
     position: relative;
+    height: 434px;
+    width: 100%;
     top: auto;
     left: auto;
     transform: none;
     align-self: flex-start;
+    margin: 0 auto;
     border-radius: 0;
+    padding-bottom: 19px;
   }
 
   .title {
@@ -58,8 +63,9 @@
   }
 
   .image {
-    width: 275px;
-    height: 153px;
+    width: calc(100% - 100px);
+
+    /* height: 153px; */
   }
 
 }

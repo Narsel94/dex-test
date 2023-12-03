@@ -65,10 +65,11 @@ export const PlayerInfo: FC = () => {
         </div>
 
         <div className={styles.flex}>
-          <h1 className={styles.name}>
-            {playerData.name}{" "}
+          <div className={styles.nameBlock}>
+            <h1 className={styles.name}>{playerData.name} </h1>
             <span className={styles.number}>#{playerData.number}</span>
-          </h1>
+          </div>
+
           <div className={styles.dataBlock}>
             <div className={styles.infoBlock}>
               <h3 className={styles.infoTitle}>Position</h3>
@@ -76,7 +77,7 @@ export const PlayerInfo: FC = () => {
             </div>
             <div className={styles.infoBlock}>
               <h3 className={styles.infoTitle}>Team</h3>
-              <p className={styles.infoSubTitle}>
+              <p className={`${styles.infoSubTitle} ${styles.team}`}>
                 {teamName || playerData.team}
               </p>
             </div>

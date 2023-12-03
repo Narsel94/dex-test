@@ -20,7 +20,7 @@ import styles from "./AddPlayerForm.module.css";
 
 export const AddPlayerForm: FC = () => {
   const [isError, setisError] = useState<unknown | undefined>(undefined);
-  const { positions, error, errorMessage, isLoading } = usePositions();
+  const { positions, error, errorMessage } = usePositions();
 
   const teamsOptions = useTeamOptions();
   const navigate = useNavigate();
@@ -38,9 +38,6 @@ export const AddPlayerForm: FC = () => {
       });
   };
 
-  if (isLoading) {
-    return <Preloader />;
-  }
   if (error) {
     return <ErrorBlock errorMessage={errorMessage} />;
   }
@@ -121,6 +118,8 @@ export const AddPlayerForm: FC = () => {
             name="height"
             rules={{
               required: "Required",
+              validate: (value) =>
+                value < 140 || value > 250 ? "Imposible height!" : true,
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <ControledInput
@@ -138,6 +137,8 @@ export const AddPlayerForm: FC = () => {
             name="weight"
             rules={{
               required: "Required",
+              validate: (value) =>
+                value < 45 || value > 200 ? "Imposible weight!" : true,
             }}
             render={({ field: { onChange, onBlur, value, ref } }) => (
               <ControledInput
@@ -156,11 +157,26 @@ export const AddPlayerForm: FC = () => {
             rules={{
               required: "Required",
               validate: (value) => {
-                const currentDate = new Date().toISOString().split("T")[0];
+                const currentDate = new Date();
+                const selectedDateObj = new Date(value);
                 if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
                   return "Wrong date format";
-                } else if (value > currentDate) {
+                } else if (
+                  selectedDateObj.getFullYear() > currentDate.getFullYear()
+                ) {
                   return "The date can't be in the future.";
+                } else if (selectedDateObj.getFullYear() < 1900) {
+                  return "It's inposible!";
+                } else if (
+                  selectedDateObj.getFullYear() <
+                  currentDate.getFullYear() - 55
+                ) {
+                  return "Must be younger";
+                } else if (
+                  selectedDateObj.getFullYear() >
+                  currentDate.getFullYear() - 10
+                ) {
+                  return "Must be older";
                 } else {
                   return true;
                 }
@@ -182,6 +198,10 @@ export const AddPlayerForm: FC = () => {
             name="number"
             rules={{
               required: "Required",
+              validate: (value) =>
+                value < 1 || value > 1000 || value % 1 !== 0
+                  ? "Imposible number!"
+                  : true,
             }}
             render={({ field: { onChange, onBlur, value, ref } }) => (
               <ControledInput

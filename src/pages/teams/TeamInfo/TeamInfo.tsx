@@ -84,11 +84,11 @@ export const TeamInfo = () => {
               </div>
               <div className={styles.infoBlock}>
                 <h3 className={styles.infoTitle}>Division</h3>
-                <p className={styles.infoSubTitle}>{data.division}</p>
+                <p className={styles.infoSubTitle}>{data.division || "-"}</p>
               </div>
               <div className={styles.infoBlock}>
                 <h3 className={styles.infoTitle}>Conference</h3>
-                <p className={styles.infoSubTitle}>{data.conference}</p>
+                <p className={styles.infoSubTitle}>{data.conference || "-"}</p>
               </div>
             </div>
           </div>

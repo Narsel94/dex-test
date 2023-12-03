@@ -83,6 +83,7 @@
 .dataWrapper {
   display: flex;
   flex-direction: column;
+  max-width: 50%;
   gap: 40px;
   align-items: flex-start;
 }
@@ -91,7 +92,7 @@
   display: grid;
   gap: 54px;
   width: 100%;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: repeat(2, 50%);
 }
 
 .infoBlock {
@@ -117,6 +118,8 @@
 .infoSubTitle {
   overflow: hidden;
   text-overflow: ellipsis;
+  text-wrap: nowrap;
+  max-width: 85%;
   margin: 0;
   font-family: var(--AvenirM);
   font-size: 18px;

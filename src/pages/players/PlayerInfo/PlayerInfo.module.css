@@ -55,16 +55,34 @@
   align-items: flex-start;
 }
 
+.nameBlock {
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+  gap: 1%;
+  flex-direction: row;
+}
+
 .name {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: var(--AvBlack);
   color: white;
+  max-width: 80%;
   font-size: 36px;
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .number {
+  font-size: 36px;
+  font-family: var(--AvBlack);
+  margin: 0;
+  padding: 0;
   color: var(--lightest-red);
 }
 
@@ -85,20 +103,21 @@
 }
 
 .dataBlock {
-  display: grid;
-  gap: 54px;
   width: 100%;
-  grid-template-columns: repeat(2, 1fr);
+  display: grid;
+  grid-template-columns: 35% 35%;
+  row-gap: 54px;
+  justify-content: space-between;
 }
 
 .infoBlock {
   text-align: left;
   width: fit-content;
-  max-width: 100%;
   display: flex;
   flex-direction: column;
   color: white;
   gap: 8px;
+  width: 100%;
 }
 
 .infoTitle {
@@ -115,6 +134,12 @@
   font-size: 18px;
 }
 
+.team {
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 @media screen and (max-width: 980px) {
   .section {
     padding-top: 48px;
@@ -127,12 +152,33 @@
   }
 
   .flex {
-    width: fit-content;
+    width: 100%;
+  }
+
+  .dataBlock {
+    align-self: center;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 25% 25%;
+    row-gap: 34px;
+    column-gap: 6%;
+    justify-content: center;
+  }
+
+  .nameBlock {
+    justify-content: center;
+    align-self: center;
+    width: 64%;
+    flex-direction: row;
   }
 
   .name {
-    font-size: 24px;
     align-self: center;
+    font-size: 24px;
+  }
+
+  .number {
+    font-size: 24px;
   }
 
   .imageWrapper {
@@ -143,7 +189,6 @@
 
   .image {
     min-width: fit-content;
-
     height: 220px;
     object-fit: contain;
     margin: 0 auto;
@@ -159,6 +204,14 @@
 }
 
 @media screen and (max-width: 740px) {
+  .dataBlock {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+  }
+
   .image {
     height: 112px;
     width: 143px;
@@ -185,7 +238,13 @@
   }
 
   .name {
+    max-width: 76%;
     font-size: 17px;
+    align-self: center;
+  }
+
+  .team {
+    max-width: 60%;
     align-self: center;
   }
 
