@@ -123,9 +123,6 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
           control={control}
           name="position"
           defaultValue={positions.find((pos) => pos.label === data?.position)}
-          // rules={{
-          //   required: "Required",
-          // }}
           render={({ field: { value, onChange, onBlur } }) => (
             <StyledSelect
               value={value || positions.find((pos) => pos.label === data?.position)}

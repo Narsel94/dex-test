@@ -137,6 +137,7 @@ export const TeamsList = () => {
         />
         <StyledSelect
           options={options}
+          value={options.find(value => value.value === inputsData.size)}
           small
           menuPlacement="top"
           isSearchable={false}

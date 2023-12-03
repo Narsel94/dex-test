@@ -164,6 +164,7 @@ export const PlayersList: FC = () => {
         />
         <StyledSelect
           options={options}
+          value={options.find(value => value.value === inputsData.size)}
           small
           menuPlacement="top"
           isSearchable={false}
