@@ -46,6 +46,7 @@
   font-family: inherit;
   letter-spacing: 1.1px;
   padding-left: 12px;
+  padding-right: min(30px, 9vw);
   font-size: 14px;
   font-weight: 500;
   color: var(--dark-grey);
