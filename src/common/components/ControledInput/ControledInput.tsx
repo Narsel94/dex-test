@@ -67,6 +67,7 @@ export const ControledInput = forwardRef<HTMLInputElement, TControledInput>(
     const inpuStyles = classNames(styles.base, {
       [styles.input]: !search,
       [styles.search]: search,
+      [styles.password]: type === 'password',
       [styles.invalid]: Boolean(error),
     });
 

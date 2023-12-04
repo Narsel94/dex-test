@@ -46,13 +46,17 @@
   font-family: inherit;
   letter-spacing: 1.1px;
   padding-left: 12px;
-  padding-right: min(30px, 9vw);
+  padding-right: 12px;
   font-size: 14px;
   font-weight: 500;
   color: var(--dark-grey);
   border: 0;
   border-radius: 4px;
   background-color: var(--lightest-grey1);
+}
+
+.password {
+  padding-right: min(30px, 9vw);
 }
 
 .error {
