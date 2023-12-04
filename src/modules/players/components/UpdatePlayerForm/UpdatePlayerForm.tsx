@@ -42,7 +42,7 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
     };
     return updatePlayerRequest(requestData)
       ?.then(() =>
-       console.log("/players")
+       navigate("/players")
       )
       .catch((error) => {
         setisError(error);
