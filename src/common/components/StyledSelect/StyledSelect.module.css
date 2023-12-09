@@ -8,6 +8,18 @@
   width: 100%;
 }
 
+.label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--grey);
+  gap: 2px;
+  position: relative;
+  box-sizing: border-box;
+}
+
 .control {
   box-sizing: border-box;
   border-radius: 4px;
@@ -209,7 +221,6 @@
   color: var(--lightest-red);
   text-align: left;
 }
-
 
 @media screen and (max-width: 800px) {
   .small {

@@ -11,15 +11,15 @@ import {
   ErrorBlock,
   FileInput,
   GridContainer,
-  Preloader,
   StyledContentForm,
   StyledSelect,
   Notification,
 } from "../../../../common/components";
 import styles from "./AddPlayerForm.module.css";
+import { useError } from "../../../../common/hooks/useError";
 
 export const AddPlayerForm: FC = () => {
-  const [isError, setisError] = useState<unknown | undefined>(undefined);
+  const [isError, setisError] = useError();
   const { positions, error, errorMessage } = usePositions();
 
   const teamsOptions = useTeamOptions();
@@ -86,20 +86,6 @@ export const AddPlayerForm: FC = () => {
         />
         <Controller
           control={control}
-          name="team"
-          rules={{
-            required: "Required",
-          }}
-          render={({ field }) => (
-            <StyledSelect
-              {...field}
-              error={errors.team?.message}
-              options={teamsOptions}
-            />
-          )}
-        />
-        <Controller
-          control={control}
           name="position"
           rules={{
             required: "Required",
@@ -107,11 +93,28 @@ export const AddPlayerForm: FC = () => {
           render={({ field }) => (
             <StyledSelect
               {...field}
+              label="Position"
               options={positions}
               error={errors.position?.message}
             />
           )}
         />
+        <Controller
+          control={control}
+          name="team"
+          rules={{
+            required: "Required",
+          }}
+          render={({ field }) => (
+            <StyledSelect
+              {...field}
+              label="Team"
+              error={errors.team?.message}
+              options={teamsOptions}
+            />
+          )}
+        />
+
         <GridContainer>
           <Controller
             control={control}

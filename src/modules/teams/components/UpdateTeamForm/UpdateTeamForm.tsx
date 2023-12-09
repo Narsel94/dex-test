@@ -12,6 +12,7 @@ import {
 import { updateTeamRequest } from "../../../../api/teams/teamsRequests";
 import { TTeamData } from "../../../../api/teams/TTeams";
 import styles from "./UpdateTeamForm.module.css";
+import { useError } from "../../../../common/hooks/useError";
 
 type TUpdateForm = {
   name: string;
@@ -26,7 +27,7 @@ type TFormProp = {
 };
 
 export const UpdateTeamForm: FC<TFormProp> = ({ data }) => {
-  const [isError, setisError] = useState<unknown | undefined>(undefined);
+  const [isError, setisError] = useError();
 
   const { control, handleSubmit, formState, reset } = useForm<TUpdateForm>({
     mode: "onBlur",

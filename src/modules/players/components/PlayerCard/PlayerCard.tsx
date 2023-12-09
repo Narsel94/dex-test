@@ -16,10 +16,10 @@ export const PlayerCard: FC<TPlayerCard> = ({ data }) => {
         <img src={data.avatarUrl} className={styles.image} alt={data.name} />
       </div>
       <div className={styles.infoWrapper}>
-        <h3 className={styles.name}>
-          {data.name}{" "}
+        <div className={styles.nameWrapper}>
+          <span className={styles.name}>{data.name}</span>
           <span className={styles.number}>#{data.number || "-"}</span>
-        </h3>
+        </div>
         <p className={styles.team}>{teamName1 || data.team}</p>
       </div>
     </Link>

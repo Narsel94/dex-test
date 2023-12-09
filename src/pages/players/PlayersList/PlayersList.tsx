@@ -6,7 +6,6 @@ import {
   StyledReactPaginate,
   StyledSelect,
   EmptyList,
-  CardContainer,
   ErrorBlock,
   Preloader,
   ControledInput,
@@ -149,11 +148,11 @@ export const PlayersList: FC = () => {
       )}
 
       {!isLoading && !isError && playersData?.length > 0 && (
-        <CardContainer>
+          <div className={styles.container}>
           {playersData.map((player) => (
             <PlayerCard key={player.id} data={player} />
           ))}
-        </CardContainer>
+          </div>
       )}
 
       <footer className={styles.footer}>

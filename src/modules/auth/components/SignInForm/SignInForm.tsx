@@ -3,13 +3,12 @@ import { AuthFormWrapper } from "..";
 import { useForm, Controller } from "react-hook-form";
 import { signInRequest } from "../../../../api/auth/signIn";
 import { useNavigate } from "react-router";
-
+import { useError } from "../../../../common/hooks/useError";
 import {
   ControledInput,
   Button,
   Notification,
 } from "../../../../common/components";
-import styles from "./SignInForm.module.css";
 
 type TSignInFormValue = {
   login: string;
@@ -17,7 +16,7 @@ type TSignInFormValue = {
 };
 
 export const SignInForm = () => {
-  const [isError, setIsError] = useState<unknown | undefined>(undefined);
+  const [isError, setIsError] = useError();
 
   const { control, handleSubmit, formState, reset, setError } =
     useForm<TSignInFormValue>({ mode: "onBlur" });
@@ -45,6 +44,7 @@ export const SignInForm = () => {
             type: error.status.toString(),
             message: `Server Error. Error: ${error.status}`,
           });
+          setIsError(error)
 
         }
         setIsError(error)

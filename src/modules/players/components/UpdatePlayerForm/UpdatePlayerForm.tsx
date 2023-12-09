@@ -14,13 +14,14 @@ import { usePositions, useTeamOptions } from "..";
 import { TUpdatePlayerForm } from "../../types";
 import { updatePlayerRequest } from "../../../../api/players/playersRequests";
 import styles from "./UpdatePlayerForm.module.css";
+import { useError } from "../../../../common/hooks/useError";
 
 type TPlayerForm = {
   data?: TPlayerData;
 };
 
 export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
-  const [isError, setisError] = useState<unknown | undefined>(undefined);
+  const [isError, setisError] = useError();
   const { playerId } = useParams();
   const navigate = useNavigate();
 
@@ -41,9 +42,7 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
       avatarUrl: form.avatarUrl || data?.avatarUrl,
     };
     return updatePlayerRequest(requestData)
-      ?.then(() =>
-       navigate("/players")
-      )
+      ?.then(() => navigate("/players"))
       .catch((error) => {
         setisError(error);
       });
@@ -51,7 +50,7 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
 
   const teamsOpt = useTeamOptions();
 
-  let formattedDate;
+  let formattedDate: string | undefined;
   if (data) {
     const originalDate = new Date(data?.birthday);
     formattedDate = originalDate.toISOString().split("T")[0];
@@ -104,32 +103,37 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
             />
           )}
         />
-        <Controller
-          control={control}
-          name="team"
-          defaultValue={teamsOpt.find((team) => team.value === data?.team)}
-          render={({ field: { value, onChange, onBlur } }) => (
-            <StyledSelect
-              onBlur={onBlur}
-              onChange={onChange}
-              value={
-                value || teamsOpt.find((team) => team.value === data?.team)
-              }
-              options={teamsOpt}
-            />
-          )}
-        />
+
         <Controller
           control={control}
           name="position"
           defaultValue={positions.find((pos) => pos.label === data?.position)}
           render={({ field: { value, onChange, onBlur } }) => (
             <StyledSelect
-              value={value || positions.find((pos) => pos.label === data?.position)}
+              label="Position"
+              value={
+                value || positions.find((pos) => pos.label === data?.position)
+              }
               onBlur={onBlur}
               onChange={onChange}
               options={positions}
               error={errors.position?.message}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="team"
+          defaultValue={teamsOpt.find((team) => team.value === data?.team)}
+          render={({ field: { value, onChange, onBlur } }) => (
+            <StyledSelect
+              label="Team"
+              onBlur={onBlur}
+              onChange={onChange}
+              value={
+                value || teamsOpt.find((team) => team.value === data?.team)
+              }
+              options={teamsOpt}
             />
           )}
         />

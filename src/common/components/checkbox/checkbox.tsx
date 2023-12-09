@@ -29,7 +29,7 @@ export const Checkbox: FC<ICheckbox> = ({
           {...props}
           onChange={onChange}
           onBlur={onBlur}
-          checked={checked}
+          checked={checked || false}
           type="checkbox"
           className={styles.checkbox}
         />

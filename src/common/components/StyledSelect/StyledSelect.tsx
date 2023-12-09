@@ -10,6 +10,7 @@ type TOption = {
 
 interface StyledSelect extends Omit<Props, "options"> {
   options: TOption[];
+  label?: string;
   small?: true;
   isMulti?: boolean;
   error?: string;
@@ -22,6 +23,7 @@ export const StyledSelect: FC<StyledSelect> = React.forwardRef<
   (
     {
       error,
+      label,
       small,
       isSearchable,
       menuPlacement,
@@ -62,6 +64,42 @@ export const StyledSelect: FC<StyledSelect> = React.forwardRef<
       [styles.controlDefault]: !small,
       [styles.control]: small,
     });
+
+    if (label) {
+      return (
+        <label className={styles.label}>
+          {label}
+          <div className={wrapperClasses}>
+            <Select
+              unstyled
+              isMulti={isMulti}
+              menuPlacement={menuPlacement}
+              defaultValue={small ? options[0] : undefined}
+              options={options}
+              isClearable={!small}
+              isSearchable={isSearchable}
+              classNames={{
+                control: () => controlClasses,
+                container: () => containerClasses,
+                indicatorsContainer: () => indicatorsClasses,
+                valueContainer: () => valueContainerClasses,
+                multiValue: () => styles.multiValue,
+                menuList: () => styles.group,
+                singleValue: () => styles.singleValue,
+                option: ({ isSelected }) =>
+                  isSelected ? styles.selectedOption : styles.option,
+                indicatorSeparator: () => styles.indicator,
+                clearIndicator: () => styles.clearIndicator,
+                input: () => styles.input,
+                placeholder: () => placeholderClasses,
+              }}
+              {...props}
+            />
+            {error && <p className={styles.errorMessage}>{error || ""}</p>}
+          </div>
+        </label>
+      );
+    }
 
     return (
       <div className={wrapperClasses}>

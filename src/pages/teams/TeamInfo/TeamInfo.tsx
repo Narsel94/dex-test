@@ -8,6 +8,7 @@ import styles from "./TeamInfo.module.css";
 import { removeImageRequest } from "../../../api/auth/deleteImage";
 import { usePlayersOfTeam } from "../../../modules/teams/hooks/usePlayersOfTeam";
 import { Notification } from "../../../common/components";
+import { useError } from "../../../common/hooks/useError";
 
 const base = process.env.REACT_APP_IMAGES;
 
@@ -15,12 +16,11 @@ export const TeamInfo = () => {
   const navigate = useNavigate();
   const data = useLoaderData() as TTeamData;
   const players = usePlayersOfTeam(data.id);
-  const [isError, setIsError] = useState<unknown | undefined>(undefined);
+  const [isError, setIsError] = useError();
 
   const onDelete = () => {
     if (players && players.length > 0) {
       setIsError("Нельзя удалить пока в команде есть игроки");
-
       return;
     }
     return removeTeam(data.id)
@@ -33,7 +33,6 @@ export const TeamInfo = () => {
       .then(() => navigate("/teams", { replace: true }))
       .catch((error) => setIsError(error));
   };
-
 
   const onChangeClick = () => {
     navigate(`/teams/update-team/${data.id}`);
@@ -59,16 +58,6 @@ export const TeamInfo = () => {
           onTrashClick={onDelete}
           onUpdateClick={onChangeClick}
         />
-        {/* {isError && (
-          <div
-            onClick={() => setIsError(false)}
-            className={styles.errorMessage}
-          >
-            <p>Нельзя удалить пока в команде есть игроки</p>
-            <p>Нажмите на окно, чтобы закрыть...</p>
-          </div>
-        )} */}
-
         <section className={styles.section}>
           <img
             src={data.imageUrl}

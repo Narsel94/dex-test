@@ -6,7 +6,6 @@ import {
   Button,
   StyledReactPaginate,
   Preloader,
-  CardContainer,
   ControledInput,
   EmptyList,
   ErrorBlock,
@@ -121,12 +120,12 @@ export const TeamsList = () => {
         />
       )}
       {!isLoading && !isError && teamsData?.length > 0 && (
-        <CardContainer>
+        <div className={styles.container}>
           {!isLoading &&
             !isError &&
             teamsData?.length > 0 &&
             teamsData.map((team) => <TeamCard data={team} key={team.id} />)}
-        </CardContainer>
+        </div>
       )}
 
       <footer className={styles.footer}>
@@ -137,7 +136,7 @@ export const TeamsList = () => {
         />
         <StyledSelect
           options={options}
-          value={options.find(value => value.value === inputsData.size)}
+          value={options.find((value) => value.value === inputsData.size)}
           small
           menuPlacement="top"
           isSearchable={false}

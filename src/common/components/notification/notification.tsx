@@ -21,13 +21,14 @@ const isCustomError = (obj: unknown): obj is TIsCustomError => {
 
 export const Notification: FC<TNotification> = ({ error }) => {
   const [isHide, setIsHide] = useState<boolean>(true);
+  useEffect(() => {
+    error && setIsHide(false);
+    !error && setIsHide(true);
+  }, [error]);
+
   const errorClasses = classNames(styles.error, {
     [styles.hide]: isHide,
   });
-  useEffect(() => {
-    error && setIsHide(false);
-    setTimeout(() => setIsHide(true), 7000);
-  }, [error]);
 
   if (error) {
     if (error instanceof Error) {
@@ -43,6 +44,12 @@ export const Notification: FC<TNotification> = ({ error }) => {
   }
 
   if (isCustomError(error)) {
+    if (error.status === 400) {
+      return (
+        <div className={errorClasses}>Error: {error.status} (Bad Request)</div>
+      );
+    }
+
     if (error.status === 401) {
       return (
         <div className={errorClasses}>Error: {error.status} (Unauthorized)</div>

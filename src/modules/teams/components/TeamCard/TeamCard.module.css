@@ -5,7 +5,7 @@
   align-items: center;
   text-decoration: none;
   box-sizing: border-box;
-  height: 26.39vw;
+  height: 100%;
 }
 
 .imageWrapper {
@@ -34,7 +34,7 @@
 
 .image {
   width: 41.225%;
-  height: 10.417vw;
+  height: min(10.417vw, 80%);
   object-fit: contain;
   box-sizing: border-box;
 }
@@ -61,7 +61,7 @@
 
 @media screen and (min-width: 2028px) {
   .link {
-    height: 40.17vh;
+    /* height: 40.17vh; */
     width: 100%;
   }
 
@@ -75,9 +75,6 @@
 }
 
 @media screen and (max-width: 840px) {
-  .link {
-    height: 53.6vw;
-  }
   .image {
     width: 35.5%;
     height: 13.87vw;

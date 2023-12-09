@@ -12,9 +12,10 @@ import { Controller, useForm } from "react-hook-form";
 import { TAddTeamForm } from "../../../../api/teams/TTeams";
 import { postTeamRequest } from "../../../../api/teams/teamsRequests";
 import styles from "./AddTeamForm.module.css";
+import { useError } from "../../../../common/hooks/useError";
 
 export const AddTeamForm: FC = () => {
-  const [isError, setisError] = useState<unknown | undefined>(undefined);
+  const [isError, setisError] = useError();
 
   const { control, handleSubmit, formState, reset } = useForm<TAddTeamForm>({
     mode: "onBlur",
