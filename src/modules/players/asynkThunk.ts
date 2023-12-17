@@ -9,7 +9,7 @@ import {
 export const getAllPlayersThunk = createAsyncThunk<
   TGetPlayersResponse,
   TGetPlayersRequest
->("players/getAllPlayers", async (_, {dispatch}) => {
+>("players/getAllPlayers", async () => {
   const response = await getAllPlayersRequest();
   return response;
 });

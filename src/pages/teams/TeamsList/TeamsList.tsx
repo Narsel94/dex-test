@@ -23,6 +23,7 @@ import {
 import { setSize, setPage } from "../../../modules/teams/teamsSlice";
 import { getTeamsThunk } from "../../../modules/teams/asyncThunk";
 import { debounce } from "../../../common/helpers/debounce";
+import classNames from "classnames";
 import { isSingleSelectOption } from "../../../common/helpers/isSelectOption";
 import image from "../../../assests/images/empty-teams.svg";
 import styles from "./TeamsList.module.css";
@@ -37,6 +38,12 @@ export const TeamsList = () => {
   const teamsData = useAppSelector(teamsSelector);
 
   const navigate = useNavigate();
+
+  const containerClasses = classNames(styles.card_container, {
+    [styles.container_6]: inputsData.size === 6,
+    [styles.container_12]: inputsData.size === 12,
+    [styles.container_24]: inputsData.size === 24,
+  });
 
   const onButtonClick = () => {
     navigate("/teams/add-team");
@@ -61,6 +68,7 @@ export const TeamsList = () => {
       dispatch(setSize(option.value));
     }
   };
+  
   const params = {
     name: debouncedName,
     page: inputsData.page,
@@ -120,11 +128,13 @@ export const TeamsList = () => {
         />
       )}
       {!isLoading && !isError && teamsData?.length > 0 && (
-        <div className={styles.container}>
+        <div className={containerClasses}>
           {!isLoading &&
             !isError &&
             teamsData?.length > 0 &&
-            teamsData.map((team) => <TeamCard data={team} key={team.id} />)}
+            teamsData.map((team) => (
+              <TeamCard size={inputsData.size} data={team} key={team.id} />
+            ))}
         </div>
       )}
 

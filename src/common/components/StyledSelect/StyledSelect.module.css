@@ -1,23 +1,25 @@
-.wrapper {
+.label {
   display: flex;
   flex-direction: column;
   border-radius: 4px;
   gap: 3px;
   cursor: pointer;
   box-sizing: border-box;
-  width: 100%;
-}
-
-.label {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
   font-size: 14px;
   font-weight: 500;
   color: var(--grey);
-  gap: 2px;
   position: relative;
   box-sizing: border-box;
+}
+
+.labelDefault {
+  width: 100%;
+  text-align: left;
+}
+
+.labelSmall {
+  text-align: center;
+  width: fit-content;
 }
 
 .control {

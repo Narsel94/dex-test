@@ -45,11 +45,6 @@ export const StyledSelect: FC<StyledSelect> = React.forwardRef<
       [styles.multi]: isMulti,
     });
 
-    const wrapperClasses = classNames(styles.wrapper, {
-      [styles.default]: !small,
-      [styles.small]: small,
-    });
-
     const valueContainerClasses = classNames({
       [styles.valueContainer]: !isMulti,
       [styles.multiValueContainer]: isMulti,
@@ -65,44 +60,14 @@ export const StyledSelect: FC<StyledSelect> = React.forwardRef<
       [styles.control]: small,
     });
 
-    if (label) {
-      return (
-        <label className={styles.label}>
-          {label}
-          <div className={wrapperClasses}>
-            <Select
-              unstyled
-              isMulti={isMulti}
-              menuPlacement={menuPlacement}
-              defaultValue={small ? options[0] : undefined}
-              options={options}
-              isClearable={!small}
-              isSearchable={isSearchable}
-              classNames={{
-                control: () => controlClasses,
-                container: () => containerClasses,
-                indicatorsContainer: () => indicatorsClasses,
-                valueContainer: () => valueContainerClasses,
-                multiValue: () => styles.multiValue,
-                menuList: () => styles.group,
-                singleValue: () => styles.singleValue,
-                option: ({ isSelected }) =>
-                  isSelected ? styles.selectedOption : styles.option,
-                indicatorSeparator: () => styles.indicator,
-                clearIndicator: () => styles.clearIndicator,
-                input: () => styles.input,
-                placeholder: () => placeholderClasses,
-              }}
-              {...props}
-            />
-            {error && <p className={styles.errorMessage}>{error || ""}</p>}
-          </div>
-        </label>
-      );
-    }
+    const labelClasses = classNames(styles.label, {
+      [styles.labelSmall]: small,
+      [styles.labelDefault]: !small,
+    });
 
     return (
-      <div className={wrapperClasses}>
+      <label className={labelClasses}>
+        {label}
         <Select
           unstyled
           isMulti={isMulti}
@@ -129,7 +94,7 @@ export const StyledSelect: FC<StyledSelect> = React.forwardRef<
           {...props}
         />
         {error && <p className={styles.errorMessage}>{error || ""}</p>}
-      </div>
+      </label>
     );
   }
 );

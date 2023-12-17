@@ -1,10 +1,10 @@
-import { FC, useState } from "react";
+import { FC,  ReactNode, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { getCookie } from "../../helpers/cookies";
 
 type TProtectedRoute = {
   enabledAuth: boolean;
-  element: any;
+  element:  any;
 };
 
 const ProtectedRoute: FC<TProtectedRoute> = ({ enabledAuth, element }) => {
@@ -12,7 +12,9 @@ const ProtectedRoute: FC<TProtectedRoute> = ({ enabledAuth, element }) => {
     const token = getCookie("token");
     return !!token;
   };
-  const [auth2, setAuth2] = useState<boolean>(isAuth());
+  const [auth2] = useState<boolean>(isAuth());
+
+  
 
   if (enabledAuth) {
     if (auth2) {

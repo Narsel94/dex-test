@@ -1,10 +1,9 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import {
   ControledInput,
   Button,
   StyledSelect,
   FileInput,
-  StyledContentForm,
   Notification,
 } from "../../../../common/components";
 import { useNavigate, useParams } from "react-router";
@@ -59,7 +58,8 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
   const { positions } = usePositions();
 
   return (
-    <StyledContentForm
+    <form
+      className={styles.form}
       encType="multipart/form-data"
       onSubmit={handleSubmit(onSubmit)}
     >
@@ -250,6 +250,6 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
         </div>
       </div>
       <Notification error={isError} />
-    </StyledContentForm>
+    </form>
   );
 };

@@ -3,7 +3,6 @@ import {  getTeamsRequest, postTeamRequest } from "../../api/teams/teamsRequests
 import { getQueries } from "../../common/helpers/getQueries";
 import {
   TAddTeamResponse,
-  TAddTeamRequest,
   TGetTeamsResponse,
   TGetTeamsRequest,
 } from "../../api/teams/TTeams";

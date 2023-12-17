@@ -1,17 +1,15 @@
 import { BreadCrumbs } from "./BreadCrumbs/BreadCrumbs";
-import { Button } from "./button/button";
-import { Checkbox } from "./checkbox/checkbox";
+import { CustomButton } from "./CustomButton/CustomButton";
+import { CustomCheckbox } from "./CustomCheckbox/CustomCheckbox";
 import { ControledInput } from "./ControledInput/ControledInput";
 import {
   PublicRoutes,
   PrivateRoutes,
 } from "./ProtectedRouter/ProtectedRouter";
-import { Preloader } from "./preloader/preloader";
+import { AppPreloader } from "./AppPreloader/AppPreloader";
 import { StyledReactPaginate } from "./StyledReactPaginate/StyledReactPaginate";
 import { StyledSelect } from "./StyledSelect/StyledSelect";
-import { CardContainer } from "./CardContainer/CardContainer";
 import { BurgerButton } from "./BurgerButton/BurgerButton";
-import { GridContainer } from "./GridContainer/GridContainer";
 import { FileInput } from "./FileInput/FileInput";
 import { ButtonWithIcon } from "./ButtonWithIcon/ButtonWithIcon";
 import { ContentLayout } from "./ContentLayout/ContentLayout";
@@ -24,13 +22,12 @@ import { EmptyList } from "./EmptyList/EmptyList";
 import { ErrorBlock } from "./ErrorBlock/ErrorBlock";
 import { NavigationBar } from "./NavigationBar/NavigationBar";
 import { RouteErrorBoundary } from "./RouteErrorBoundary/RouteErrorBoundary";
-import { StyledContentForm } from "./StyledContentForm/StyledContentForm";
-import { Notification } from "./notification/notification";
+import { AppNotification } from "./AppNotification/AppNotification";
 
 
 
 export {
-  Notification,
+  AppNotification as Notification,
   RouteErrorBoundary,
   NavigationBar,
   ErrorBlock,
@@ -45,15 +42,12 @@ export {
   FileInput,
   BurgerButton,
   BreadCrumbs,
-  Button,
-  Checkbox,
+  CustomButton as Button,
+  CustomCheckbox as Checkbox,
   ControledInput,
   PublicRoutes,
   PrivateRoutes,
-  Preloader,
+  AppPreloader as Preloader,
   StyledReactPaginate,
   StyledSelect,
-  CardContainer,
-  GridContainer,
-  StyledContentForm
 };

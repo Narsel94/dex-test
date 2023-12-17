@@ -7,7 +7,8 @@ import { getCookie } from "../../../common/helpers/cookies";
 
 const base = process.env.REACT_APP_API;
 
-export const usePlayersOfTeam = (teamId: number) => {
+export const usePlayersOfTeam = (teamId: number | null) => {
+  
   const [players, setPlayers] = useState<TPlayerData[]>([]);
 
     useEffect(() => {
@@ -29,7 +30,7 @@ export const usePlayersOfTeam = (teamId: number) => {
         }
       };
 
-    fetchData();
+    teamId !== null && fetchData();
   }, []);
 
   return players;

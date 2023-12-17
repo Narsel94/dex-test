@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from './preloader.module.css'
+import styles from './AppPreloader.module.css'
 
-export const Preloader = () => {
+export const AppPreloader = () => {
   return (
     <div className={styles.loader}>loading</div>
   )

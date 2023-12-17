@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import classNames from "classnames";
 
-import styles from "./notification.module.css";
+import styles from "./AppNotification.module.css";
 
 type TIsCustomError = {
   isCustomError: boolean;
@@ -19,7 +19,7 @@ const isCustomError = (obj: unknown): obj is TIsCustomError => {
   return false;
 };
 
-export const Notification: FC<TNotification> = ({ error }) => {
+export const AppNotification: FC<TNotification> = ({ error }) => {
   const [isHide, setIsHide] = useState<boolean>(true);
   useEffect(() => {
     error && setIsHide(false);
@@ -41,42 +41,12 @@ export const Notification: FC<TNotification> = ({ error }) => {
     if (typeof error === "string") {
       return <div className={errorClasses}>{error}</div>;
     }
-  }
 
-  if (isCustomError(error)) {
-    if (error.status === 400) {
+    if (isCustomError(error)) {
       return (
-        <div className={errorClasses}>Error: {error.status} (Bad Request)</div>
+        <div className={errorClasses}>Something goes wrong: {error.status}</div>
       );
     }
-
-    if (error.status === 401) {
-      return (
-        <div className={errorClasses}>Error: {error.status} (Unauthorized)</div>
-      );
-    }
-
-    if (error.status === 404) {
-      return <div className={errorClasses}>Server Error: {error.status}</div>;
-    }
-
-    if (error.status === 409) {
-      return (
-        <div className={errorClasses}>Error: {error.status} (Conflict)</div>
-      );
-    }
-
-    if (error.status === 500) {
-      return (
-        <div className={errorClasses}>
-          Error: {error.status} (Internal Server Error)
-        </div>
-      );
-    }
-
-    return (
-      <div className={errorClasses}>Something goes wrong: {error.status}</div>
-    );
   }
 
   return null;

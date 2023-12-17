@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { usePositions } from "../../hooks/usePositions";
 import { useTeamOptions } from "../../hooks/useTeamOptions";
 import { useNavigate } from "react-router";
@@ -8,10 +8,7 @@ import { addPlayerRequest } from "../../../../api/players/playersRequests";
 import {
   Button,
   ControledInput,
-  ErrorBlock,
   FileInput,
-  GridContainer,
-  StyledContentForm,
   StyledSelect,
   Notification,
 } from "../../../../common/components";
@@ -20,7 +17,7 @@ import { useError } from "../../../../common/hooks/useError";
 
 export const AddPlayerForm: FC = () => {
   const [isError, setisError] = useError();
-  const { positions, error, errorMessage } = usePositions();
+  const { positions } = usePositions();
 
   const teamsOptions = useTeamOptions();
   const navigate = useNavigate();
@@ -38,12 +35,9 @@ export const AddPlayerForm: FC = () => {
       });
   };
 
-  if (error) {
-    return <ErrorBlock errorMessage={errorMessage} />;
-  }
-
   return (
-    <StyledContentForm
+    <form
+      className={styles.form}
       encType="multipart/form-data"
       onSubmit={handleSubmit(onSub)}
     >
@@ -115,7 +109,7 @@ export const AddPlayerForm: FC = () => {
           )}
         />
 
-        <GridContainer>
+        <div className={styles.gridContainer}>
           <Controller
             control={control}
             name="height"
@@ -223,9 +217,9 @@ export const AddPlayerForm: FC = () => {
           <Button htmlType="submit" disabled={!isValid} isPrime>
             Save
           </Button>
-        </GridContainer>
+        </div>
       </div>
       <Notification error={isError} />
-    </StyledContentForm>
+    </form>
   );
 };

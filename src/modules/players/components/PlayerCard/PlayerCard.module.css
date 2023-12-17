@@ -4,7 +4,6 @@
   display: flex;
   width: 100%;
   height: 100%;
-  /* height: 26.39vw; */
   flex-direction: column;
   align-items: center;
   text-decoration: none;
@@ -25,15 +24,28 @@
 .infoWrapper {
   width: 100%;
   height: 30%;
-  gap: 5%;
   display: flex;
   flex-direction: column;
   background-color: var(--dark-grey);
   justify-content: center;
+  gap: 5%;
   align-items: center;
   border-bottom-left-radius: 0.42vh;
   border-bottom-right-radius: 0.42vh;
 }
+
+.infoWrapper_6 {
+  gap: min(1em, 12px);
+}
+
+.infoWrapper_12 {
+  gap: min(.3em, 10px);
+}
+
+.infoWrapper_24 {
+  gap: min(.01em, 3px);
+}
+
 
 .image {
   object-fit: contain;
@@ -45,10 +57,10 @@
   display: flex;
   gap: 4px;
   width: 100%;
-  max-height: 40%;
+  max-height: 45%;
   justify-content: center;
   align-items: center;
-  font-size: 1.25vw;
+  font-size: min(1.26vw, 2.2em, 1.9vh);
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -56,30 +68,48 @@
 
 .name {
   color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
   margin: 0;
   padding: 0;
   height: 100%;
   max-width: 60%;
-  text-overflow: ellipsis;
-  word-break: break-all;
   overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.name_long {
+  word-break: break-all;
+  align-items: flex-start;
+}
+
+.name_24 {
+  font-size: min(15px, 1.3vw);
 }
 
 .number {
   color: var(--light-red);
   height: 100%;
+  display: flex;
+  align-items: center;
+
 }
 
 .team {
   color: var(--light-grey);
   margin: 0;
   padding: 0;
-  font-size: 1.11111vw;
+  font-size: min(1.11111vw, 18px);
   max-width: 40%;
   max-height: 40%;
   text-overflow: ellipsis;
   word-break: break-all;
   overflow: hidden;
+}
+
+.team_24 {
+  font-size: min(1.1111vw, 13px);
 }
 
 @media screen and (min-width: 2028px) {
@@ -95,9 +125,15 @@
     font-size: 1.44vh;
   }
 }
-
 @media screen and (max-width: 840px) {
+  .infoWrapper {
+    gap: 2%;
+  }
   .nameWrapper {
+    font-size: 2.5vw;
+  }
+
+  .name_24 {
     font-size: 2.5vw;
   }
 
@@ -112,6 +148,14 @@
 }
 
 @media screen and (max-width: 520px) {
+  .infoWrapper {
+    gap: 5%;
+  }
+
+  .name_24 {
+    font-size: 4vw;
+  }
+
   .nameWrapper {
     font-size: 4vw;
     max-width: 94%;
@@ -120,4 +164,4 @@
   .team {
     font-size: 3.466vw;
   }
-}
+} 

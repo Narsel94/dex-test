@@ -14,7 +14,7 @@ type TControledInput = React.DetailedHTMLProps<
   search?: true;
   type?: "text" | "number" | "date" | "password";
   propValue?: string | number | readonly string[] | undefined;
-  onChange?: (...event: any[]) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?(e?: React.FocusEvent<HTMLInputElement>): void;
   onFocus?(e?: React.FocusEvent<HTMLInputElement>): void;
 };

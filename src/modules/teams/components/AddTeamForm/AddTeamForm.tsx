@@ -1,10 +1,8 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import {
   ControledInput,
   Button,
-  GridContainer,
   FileInput,
-  StyledContentForm,
   Notification,
 } from "../../../../common/components";
 import { useNavigate } from "react-router";
@@ -32,7 +30,8 @@ export const AddTeamForm: FC = () => {
   };
 
   return (
-    <StyledContentForm
+    <form
+      className={styles.form}
       onSubmit={handleSubmit(onSubmit)}
       encType="multipart/form-data"
     >
@@ -128,16 +127,16 @@ export const AddTeamForm: FC = () => {
             />
           )}
         />
-        <GridContainer>
+        <div className={styles.gridContainer}>
           <Button htmlType="reset" onClick={() => reset()}>
             Cancel
           </Button>
           <Button htmlType="submit" disabled={!isValid} isPrime>
             Save
           </Button>
-        </GridContainer>
+        </div>
       </div>
       <Notification error={isError} />
-    </StyledContentForm>
+    </form>
   );
 };

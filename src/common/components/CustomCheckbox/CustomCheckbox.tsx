@@ -1,16 +1,16 @@
 import React, { FC } from "react";
 import classNames from "classnames";
-import styles from "./checkbox.module.css";
+import styles from "./CustomCheckbox.module.css";
 
 interface ICheckbox {
   text?: string;
   error?: string;
   checked: boolean;
-  onChange?: (...event: any[]) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: () => void;
 }
 
-export const Checkbox: FC<ICheckbox> = ({
+export const CustomCheckbox: FC<ICheckbox> = ({
   text,
   error,
   onChange,

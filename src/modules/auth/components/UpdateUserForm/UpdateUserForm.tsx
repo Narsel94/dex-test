@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   Button,
   ControledInput,
-  GridContainer,
   FileInput,
   Notification
 } from "../../../../common/components";
@@ -109,14 +108,14 @@ export const UpdateUserForm = () => {
           />
         )}
       />
-      <GridContainer>
+      <div className={styles.gridContainer}>
         <Button htmlType="reset" onClick={() => reset()}>
           Cancel
         </Button>
         <Button htmlType="submit" disabled={!isValid} isPrime>
           Save
         </Button>
-      </GridContainer>
+      </div>
       <Notification error={isError}/>
     </form>
   );

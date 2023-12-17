@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useEffect, useState } from "react";
+import { ChangeEvent, FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import {
   ListHeader,
@@ -10,7 +10,6 @@ import {
   Preloader,
   ControledInput,
 } from "../../../common/components";
-
 import image from "../../../assests/images/empty-players.svg";
 import { PlayerCard } from "../../../modules/players/components";
 import { useTeamOptions } from "../../../modules/players/hooks/useTeamOptions";
@@ -27,13 +26,9 @@ import {
 } from "../../../modules/players/selectors";
 import { TGetParams } from "../../../common/helpers/getQueries";
 import { debounce } from "../../../common/helpers/debounce";
-import { isSingleSelectOption } from "../../../common/helpers/isSelectOption";
+import { isSingleSelectOption, isOptionsArrayAndValueNumber } from "../../../common/helpers/isSelectOption";
+import classNames from "classnames";
 import styles from "./PlayersList.module.css";
-
-type TeamOption = {
-  label: string;
-  value: number;
-};
 
 export const PlayersList: FC = () => {
   const isLoading = useAppSelector(playersLoadingSelector);
@@ -72,8 +67,11 @@ export const PlayersList: FC = () => {
     teams: selectedOptions,
   };
 
-  useEffect(() => {}, [search]);
-
+  const cardContainerClasses = classNames(styles.card_container, {
+    [styles.container_6]: inputsData.size === 6,
+    [styles.container_12]: inputsData.size === 12,
+    [styles.container_24]: inputsData.size === 24,
+  });
   useEffect(() => {
     dispatch(getCurrentPlayersThunk(params));
   }, [params.name, params.page, params.size, params.teams]);
@@ -106,12 +104,11 @@ export const PlayersList: FC = () => {
 
   const handleChange = (newValue: unknown) => {
     handlePageChange({ selected: 0 });
-    if (newValue instanceof Array) {
-      const options = newValue as TeamOption[];
-      setSelectedOptions(options.map((opt) => opt.value));
+    const value = isOptionsArrayAndValueNumber(newValue)
+    if (value instanceof Array) {
+      setSelectedOptions(value.map((opt) => opt.value));
     } else {
-      const option = newValue as TeamOption;
-      setSelectedOptions((prev) => [...prev, option.value]);
+      value && setSelectedOptions((prev) =>[...prev, value.value]);
     }
   };
 
@@ -148,11 +145,11 @@ export const PlayersList: FC = () => {
       )}
 
       {!isLoading && !isError && playersData?.length > 0 && (
-          <div className={styles.container}>
+        <div className={cardContainerClasses}>
           {playersData.map((player) => (
-            <PlayerCard key={player.id} data={player} />
+            <PlayerCard key={player.id} data={player} size={inputsData.size} />
           ))}
-          </div>
+        </div>
       )}
 
       <footer className={styles.footer}>
@@ -163,7 +160,7 @@ export const PlayersList: FC = () => {
         />
         <StyledSelect
           options={options}
-          value={options.find(value => value.value === inputsData.size)}
+          value={options.find((value) => value.value === inputsData.size)}
           small
           menuPlacement="top"
           isSearchable={false}

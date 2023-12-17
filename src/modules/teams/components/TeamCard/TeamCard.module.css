@@ -40,9 +40,10 @@
 }
 
 .name {
-  font-size: 1.25vw;
+  font-size: min(1.25vw, 2.2em, 1.9vh);
   color: white;
-  max-width: 40%;
+  max-width: 90%;
+  max-height: 45%;
   text-overflow: ellipsis;
   word-break: break-all;
   overflow: hidden;
@@ -50,18 +51,27 @@
   padding: 0;
 }
 
+.name_24 {
+  font-size: min(15px, 1.3vw);
+}
+
 .text {
   font-size: 14px;
   color: var(--light-grey);
   font-size: 1.11111vw;
-  
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin: 0;
   padding: 0;
 }
 
+.text_24 {
+  font-size: min(13px, 1.1vw);
+}
+
 @media screen and (min-width: 2028px) {
   .link {
-    /* height: 40.17vh; */
     width: 100%;
   }
 
@@ -81,13 +91,38 @@
   }
 
   .name {
-    max-width: 85%;
-
+    max-width: 95%;
     font-size: 2.5vw;
   }
 
   .text {
     font-size: 2vw;
+  }
+
+  .name_12 {
+    font-size: min(15px, 2.2vw);
+  }
+
+  .text_12 {
+    font-size: min(13px, 1.9vw);
+  }
+
+  .name_24 {
+    font-size: min(15px, 1.7vw);
+  }
+  
+  .text_24 {
+    font-size: min(13px, 1.6vw);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .name_24 {
+    font-size: 3.7vw;
+  }
+
+  .text_24 {
+    font-size: 3.2vw;
   }
 }
 

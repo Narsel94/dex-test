@@ -1,35 +1,14 @@
-import React, { useEffect, FC } from "react";
-import { useMatches, Link } from "react-router-dom";
+import React, { FC } from "react";
+import { Link } from "react-router-dom";
+import { useBreadcrumbs } from "./useBreadcrumbs";
 import styles from "./BreadCrumbs.module.css";
 
 type TBreadCrumbs = {
   title?: string;
 };
 
-type TCrumb = {
-  url: string;
-  title: string;
-};
-
-const isCrumb = (obj: unknown): obj is TCrumb => {
-  if (typeof obj === "object" && obj !== null) {
-    return "url" in obj && "title" in obj;
-  }
-  return false;
-};
-
 export const BreadCrumbs: FC<TBreadCrumbs> = ({ title }) => {
-  const matches = useMatches();
-
-  let crumbs: TCrumb[] = [];
-
-  if (matches) {
-    matches.map((match) => {
-      if (isCrumb(match.handle)) {
-        crumbs.push(match.handle);
-      }
-    });
-  }
+  const crumbs = useBreadcrumbs();
 
   return (
     <nav className={styles.container}>

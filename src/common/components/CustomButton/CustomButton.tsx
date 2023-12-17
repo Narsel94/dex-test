@@ -1,5 +1,5 @@
 import React, { FC, SyntheticEvent } from "react";
-import styles from "./button.module.css";
+import styles from "./CustomButton.module.css";
 import classNames from "classnames";
 
 
@@ -11,7 +11,7 @@ isPrime?: boolean;
 htmlType: "button" | "submit" | "reset";
 }
 
-export const Button: FC<IButton> = ({ children, onClick, htmlType, isPrime, mode, ...rest }) => {
+export const CustomButton: FC<IButton> = ({ children, onClick, htmlType, isPrime, mode, ...rest }) => {
   
   const buttonClasses = classNames(styles.button, {
     [styles.button] : mode !== 'alt',

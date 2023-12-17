@@ -1,12 +1,10 @@
-import React, { FC, useState } from "react";
+import { FC } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import {
   Button,
   ControledInput,
   FileInput,
-  GridContainer,
-  StyledContentForm,
   Notification,
 } from "../../../../common/components";
 import { updateTeamRequest } from "../../../../api/teams/teamsRequests";
@@ -51,7 +49,8 @@ export const UpdateTeamForm: FC<TFormProp> = ({ data }) => {
   };
 
   return (
-    <StyledContentForm
+    <form
+      className={styles.form}
       onSubmit={handleSubmit(onSubmit)}
       encType="multipart/form-data"
     >
@@ -145,16 +144,16 @@ export const UpdateTeamForm: FC<TFormProp> = ({ data }) => {
             />
           )}
         />
-        <GridContainer>
+        <div className={styles.gridContainer}>
           <Button htmlType="reset" onClick={() => reset()}>
             Cancel
           </Button>
           <Button htmlType="submit" disabled={!isValid} isPrime>
             Save
           </Button>
-        </GridContainer>
+        </div>
       </div>
       <Notification error={isError} />
-    </StyledContentForm>
+    </form>
   );
 };
