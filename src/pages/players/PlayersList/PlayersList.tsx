@@ -26,7 +26,10 @@ import {
 } from "../../../modules/players/selectors";
 import { TGetParams } from "../../../common/helpers/getQueries";
 import { debounce } from "../../../common/helpers/debounce";
-import { isSingleSelectOption, isOptionsArrayAndValueNumber } from "../../../common/helpers/isSelectOption";
+import {
+  isSingleSelectOption,
+  isOptionsArrayAndValueNumber,
+} from "../../../common/helpers/isSelectOption";
 import classNames from "classnames";
 import styles from "./PlayersList.module.css";
 
@@ -104,11 +107,11 @@ export const PlayersList: FC = () => {
 
   const handleChange = (newValue: unknown) => {
     handlePageChange({ selected: 0 });
-    const value = isOptionsArrayAndValueNumber(newValue)
+    const value = isOptionsArrayAndValueNumber(newValue);
     if (value instanceof Array) {
       setSelectedOptions(value.map((opt) => opt.value));
     } else {
-      value && setSelectedOptions((prev) =>[...prev, value.value]);
+      value && setSelectedOptions((prev) => [...prev, value.value]);
     }
   };
 
@@ -134,15 +137,7 @@ export const PlayersList: FC = () => {
       {!isLoading && !isError && playersData?.length === 0 && (
         <EmptyList image={image} message={"Add new player to continue"} />
       )}
-      {isError && !isLoading && (
-        <ErrorBlock
-          errorMessage={
-            errorData?.message ||
-            errorData?.stack ||
-            "Sorry! Something goes wrong."
-          }
-        />
-      )}
+      {isError && !isLoading && <ErrorBlock error={errorData} />}
 
       {!isLoading && !isError && playersData?.length > 0 && (
         <div className={cardContainerClasses}>

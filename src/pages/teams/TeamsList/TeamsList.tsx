@@ -68,7 +68,7 @@ export const TeamsList = () => {
       dispatch(setSize(option.value));
     }
   };
-  
+
   const params = {
     name: debouncedName,
     page: inputsData.page,
@@ -118,15 +118,7 @@ export const TeamsList = () => {
       {!isLoading && !isError && teamsData?.length === 0 && (
         <EmptyList image={image} message={"Add new teams to continue"} />
       )}
-      {isError && !isLoading && (
-        <ErrorBlock
-          errorMessage={
-            errorData?.message ||
-            errorData?.stack ||
-            "Sorry! Something goes wrong."
-          }
-        />
-      )}
+      {isError && !isLoading && <ErrorBlock error={errorData} />}
       {!isLoading && !isError && teamsData?.length > 0 && (
         <div className={containerClasses}>
           {!isLoading &&

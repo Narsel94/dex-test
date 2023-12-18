@@ -5,7 +5,7 @@ import { removeImageRequest } from "../../../api/auth/deleteImage";
 import { removePlayerRequest } from "../../../api/players/playersRequests";
 import { capitalizeFirstLetter } from "../../../common/helpers/capitalizeFirstLetter";
 import { useError } from "../../../common/hooks/useError";
-import { usePlayerInfo } from "./usePlayerInfo";
+import { usePlayerInfo } from "../../../modules/players/hooks/usePlayerInfo";
 import styles from "./PlayerInfo.module.css";
 
 export const PlayerInfo: FC = () => {

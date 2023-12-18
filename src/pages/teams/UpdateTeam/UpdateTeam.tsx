@@ -1,17 +1,16 @@
-import React from "react";
-import { useLoaderData } from "react-router";
+import { Navigate } from "react-router";
 import { BreadCrumbs } from "../../../common/components";
 import { UpdateTeamForm } from "../../../modules/teams/components";
-import { TTeamData } from "../../../api/teams/TTeams";
+import { useTeamInfo } from "../../../modules/teams/hooks/useTeamInfo";
 import styles from './UpdateTeam.module.css'
 
 export const UpdateTeam = () => {
-  const teamData = useLoaderData() as TTeamData;
+  const {data} = useTeamInfo();
 
   return (
     <section className={styles.wrapper}>
       <BreadCrumbs />
-      <UpdateTeamForm data={teamData} />
+      {data? <UpdateTeamForm data={data} /> : <Navigate to='/teams' replace/>}
     </section>
   );
 };

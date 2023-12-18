@@ -21,7 +21,7 @@ export const useBreadcrumbs = () => {
   if (matches) {
     matches.map((match) => {
       if (isCrumb(match.handle)) {
-        crumbs.push(match.handle);
+        crumbs = [...crumbs, match.handle]
       }
     });
   }

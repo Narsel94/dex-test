@@ -80,7 +80,7 @@ export const UpdatePlayerForm: FC<TPlayerForm> = ({ data }) => {
           <FileInput
             onBlurProp={onBlur}
             onFileSelect={onChange}
-            defaultImageUrl={data?.avatarUrl}
+            defaultImageUrl={data?.avatarUrl || ""}
             error={errors?.avatarUrl?.message}
           />
         )}

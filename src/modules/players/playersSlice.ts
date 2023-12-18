@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { TInitialPlayersState } from "./types";
-import { getAllPlayersThunk, getCurrentPlayersThunk } from "./asynkThunk";
+import {  getCurrentPlayersThunk } from "./asynkThunk";
 
 const initialState: TInitialPlayersState = {
   allPlayers: [],
@@ -34,21 +34,6 @@ const playersSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(getAllPlayersThunk.pending, (state) => {
-        state.error = false;
-        state.errorData = undefined;
-        state.loading = true;
-      })
-      .addCase(getAllPlayersThunk.fulfilled, (state, action) => {
-        state.error = false;
-        state.loading = false;
-        state.allPlayers = action.payload.data;
-      })
-      .addCase(getAllPlayersThunk.rejected, (state, action) => {
-        state.loading = false;
-        state.error = true;
-        state.errorData = action.error;
-      })
       .addCase(getCurrentPlayersThunk.pending, (state) => {
         state.error = false;
         state.errorData = undefined;

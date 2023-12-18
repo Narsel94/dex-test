@@ -10,9 +10,7 @@ export const saveImageRequest = (data?: File) => {
       return post("/Image/SaveImage", formData, token);
 
     } catch (error) {
-      console.log(12)
       return  Promise.reject(error)
-
     }
   } else {
     throw new Error("Файл не выбран");

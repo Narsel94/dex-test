@@ -14,7 +14,7 @@ export const addPlayerRequest = (data: TAddNewPlayerForm) => {
   const token = getCookie("token");
 
   return saveImageRequest(data.avatarUrl)
-    .then((res) => {
+    .then((res:string) => {
       const newData = {
         ...data,
         team: data.team.value,
@@ -37,18 +37,17 @@ export const getPlayerLoader = async (
   }
   const playerData = await get(`/Player/Get?id=${params.playerId}`, token);
   if (!playerData) {
-    throw json({ message: "Not Found", reason: "Wrong Url" }, { status: 404 });
+    throw new Response('', {status: playerData.status}) 
   }
   return playerData;
 };
 
-export const getAllPlayersRequest = (): Promise<TGetPlayersResponse> =>
-  get(`/Player/GetPlayers`, getCookie("token"));
-
 export const getCurrentPlayersRequest = (
   search: string
 ): Promise<TGetPlayersResponse> =>
-  get(`/Player/GetPlayers${search}`, getCookie("token"));
+  get(`/Player/GetPlayers${search}`, getCookie("token")).catch((error)=> {
+    throw new Error(error.status)
+  });
 
 export const removePlayerRequest = (id: number) => {
   const token = getCookie("token");
@@ -62,7 +61,7 @@ export const updatePlayerRequest = (data: TUpdatePlayerRequest) => {
   if (token) {
     if (data.avatarUrl instanceof File) {
       return saveImageRequest(data.avatarUrl)
-        .then((res) => {
+        .then((res:string) => {
           const newData = {
             ...data,
             avatarUrl: `${imagesUrl}${res}`,

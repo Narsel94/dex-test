@@ -20,7 +20,9 @@ export const getTeamLoader = (id?: string) => {
 };
 
 export const getTeamsRequest = (search?: string) =>
-  get(`/Team/GetTeams${search}`, getCookie("token"));
+  get(`/Team/GetTeams${search}`, getCookie("token")).catch((error) => {
+    throw new Error(error.status);
+  });
 
 export const getAllTeamsRequest = (): Promise<TGetTeamsResponse> =>
   get(`/Team/GetTeams`, getCookie("token"));
@@ -29,7 +31,7 @@ export const postTeamRequest = (data: TAddTeamForm) => {
   const token = getCookie("token");
 
   return saveImageRequest(data.imageUrl)
-    .then((res) => {
+    .then((res: string) => {
       const newData = {
         ...data,
         imageUrl: `${imagesUrl}${res}`,
@@ -46,7 +48,7 @@ export const updateTeamRequest = (data: TUpdateTeamRequest) => {
   if (token) {
     if (data.imageUrl instanceof File) {
       return saveImageRequest(data.imageUrl)
-        .then((res) => {
+        .then((res: string) => {
           const newData = {
             ...data,
             imageUrl: `${imagesUrl}${res}`,

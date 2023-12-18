@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import { useBreadcrumbs } from "./useBreadcrumbs";
+import { capitalizeFirstLetter } from "../../helpers/capitalizeFirstLetter";
 import styles from "./BreadCrumbs.module.css";
 
 type TBreadCrumbs = {
@@ -22,7 +23,9 @@ export const BreadCrumbs: FC<TBreadCrumbs> = ({ title }) => {
             </li>
           ) : (
             <li key={index}>
-              <span className={styles.link}>{title ? title : crumb.title}</span>
+              <span className={styles.link}>
+                {title ? capitalizeFirstLetter(title) : crumb.title}
+              </span>
             </li>
           )
         )}

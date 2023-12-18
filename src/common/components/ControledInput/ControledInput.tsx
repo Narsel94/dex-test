@@ -35,7 +35,6 @@ export const ControledInput = forwardRef<HTMLInputElement, TControledInput>(
     },
     forwardRef
   ) => {
-    const [focus, setFocus] = useState(false);
     const [showPass, setShowPass] = useState<boolean>(false);
 
     const innerRef = useRef<HTMLInputElement>(null);
@@ -47,21 +46,19 @@ export const ControledInput = forwardRef<HTMLInputElement, TControledInput>(
 
     const handleInputBlur = useCallback(
       (e?: React.FocusEvent<HTMLInputElement>) => {
-        setFocus(false);
         if (typeof onBlur === "function") {
           onBlur(e);
         }
       },
-      [setFocus, onBlur]
+      [ onBlur]
     );
     const handleInputFocus = useCallback(
       (e?: React.FocusEvent<HTMLInputElement>) => {
-        setFocus(true);
         if (typeof onFocus === "function") {
           onFocus(e);
         }
       },
-      [setFocus, onFocus]
+      [onFocus]
     );
 
     const inpuStyles = classNames(styles.base, {

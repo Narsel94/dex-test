@@ -16,17 +16,6 @@ type TAddForm = {
   imageUrl: File;
 };
 
-
-export const addTeamThunk = createAsyncThunk<TAddTeamResponse, TAddForm>(
-  "teams/addTeam",
-  async (data) => {
-   
-    const response = await postTeamRequest(data);
-    return response;
-  }
-);
-
-
 export const getTeamsThunk = createAsyncThunk<
   TGetTeamsResponse,
   TGetTeamsRequest

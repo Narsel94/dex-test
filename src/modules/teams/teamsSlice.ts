@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { TInitialState } from "./types";
-import { addTeamThunk, getTeamsThunk } from "./asyncThunk";
+import { getTeamsThunk } from "./asyncThunk";
 
 const initialState: TInitialState = {
   teams: [],
@@ -30,20 +30,6 @@ const teamsSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(addTeamThunk.pending, (state) => {
-        state.error = false;
-        state.errorData = undefined;
-        state.loading = true;
-      })
-      .addCase(addTeamThunk.fulfilled, (state) => {
-        state.error = false;
-        state.loading = false;
-      })
-      .addCase(addTeamThunk.rejected, (state, action) => {
-        state.error = true;
-        state.errorData = action.error;
-        state.loading = false;
-      })
       .addCase(getTeamsThunk.pending, (state) => {
         state.error = false;
         state.errorData = undefined;

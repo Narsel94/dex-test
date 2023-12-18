@@ -1,5 +1,4 @@
-import React from 'react'
-import { usePlayersOfTeam } from "../../../modules/teams/hooks/usePlayersOfTeam";
+import { usePlayersOfTeam } from "./usePlayersOfTeam";
 import { useLoaderData } from 'react-router';
 import { TTeamData } from "../../../api/teams/TTeams";
 

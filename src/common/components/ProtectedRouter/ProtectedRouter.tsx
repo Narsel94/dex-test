@@ -1,10 +1,11 @@
-import { FC,  ReactNode, useState } from "react";
+import { FC,   ReactNode,   useState } from "react";
 import { Navigate } from "react-router-dom";
 import { getCookie } from "../../helpers/cookies";
 
+
 type TProtectedRoute = {
   enabledAuth: boolean;
-  element:  any;
+  element: ReactNode;
 };
 
 const ProtectedRoute: FC<TProtectedRoute> = ({ enabledAuth, element }) => {
@@ -18,7 +19,7 @@ const ProtectedRoute: FC<TProtectedRoute> = ({ enabledAuth, element }) => {
 
   if (enabledAuth) {
     if (auth2) {
-      return element;
+      return <>{element}</>;
     } else {
       return <Navigate to="/sign-in" replace={true} />;
     }
@@ -26,13 +27,13 @@ const ProtectedRoute: FC<TProtectedRoute> = ({ enabledAuth, element }) => {
 
   if (!enabledAuth) {
     if (!auth2) {
-      return element;
+      return <>{element}</>;
     } else {
       return <Navigate to="/teams" replace={true} />;
     }
   }
 
-  return element;
+  return <>{element}</>;
 };
 
 export const PublicRoutes: FC<Pick<TProtectedRoute, "element">> = ({

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { useTeamInfo } from "./useTeamInfo";
+import { useTeamInfo } from "../../../modules/teams/hooks/useTeamInfo";
 import { removeTeam } from "../../../api/teams/teamsRequests";
 import { InfoHeader } from "../../../common/components";
 import { Roster } from "../../../modules/teams/components";

@@ -19,7 +19,6 @@ export type TSignUpRequest = {
   userName: string;
 };
 
-
 export type TUpdateUser = {
   userName?: string;
   avatarUrl?: string;

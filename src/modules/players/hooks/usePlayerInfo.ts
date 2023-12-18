@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router";
-import { getAge } from "../../../modules/players/helpers/getAge";
+import { getAge } from "../helpers/getAge";
 
 type TGetPlayerData = {
   name: string;

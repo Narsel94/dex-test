@@ -1,5 +1,3 @@
-import React from "react";
-
 export const capitalizeFirstLetter = (text: string) => {
   return text
     .split(" ")

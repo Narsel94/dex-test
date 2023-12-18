@@ -6,7 +6,7 @@
   birthday: string;
   height: number;
   weight: number;
-  avatarUrl?: string;
+  avatarUrl: string | null;
 };
 
 export type TUpdatePlayerRequest = Omit<
