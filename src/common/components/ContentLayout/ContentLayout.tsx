@@ -32,7 +32,6 @@ export const ContentLayout = () => {
     [styles.navWrapperClose]: !isOpen,
   });
 
-
   return (
     <div className={styles.layout}>
       <div className={styles.header}>

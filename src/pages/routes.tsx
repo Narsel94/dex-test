@@ -25,15 +25,28 @@ import {
 } from ".";
 import { getTeamLoader } from "../api/teams/teamsRequests";
 import { getPlayerLoader } from "../api/players/playersRequests";
+import { ErrorBoundary } from "../common/components/ErrorBoundary/ErrorBoundary";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />,
+    element: (
+      <ErrorBoundary>
+        <AppLayout />
+      </ErrorBoundary>
+    ),
     children: [
       {
         path: "/",
-        element: <PublicRoutes element={<AuthLayout />} />,
+        element: (
+          <PublicRoutes
+            element={
+              <ErrorBoundary>
+                <AuthLayout />
+              </ErrorBoundary>
+            }
+          />
+        ),
         children: [
           {
             path: "/sign-in",
@@ -51,11 +64,19 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "/profile",
-            element: <ProfilePage />,
+            element: (
+              <ErrorBoundary>
+                <ProfilePage />
+              </ErrorBoundary>
+            ),
           },
           {
             path: "/teams",
-            element: <TeamsLayout />,
+            element: (
+              <ErrorBoundary>
+                <TeamsLayout />
+              </ErrorBoundary>
+            ),
             handle: { title: "Teams", url: "/teams" },
             children: [
               {
@@ -97,7 +118,11 @@ export const router = createBrowserRouter([
           },
           {
             path: "/players",
-            element: <PlayersLayout />,
+            element: (
+              <ErrorBoundary>
+                <PlayersLayout />
+              </ErrorBoundary>
+            ),
             handle: { title: "Players", url: "/players" },
             children: [
               {

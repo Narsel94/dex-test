@@ -129,7 +129,6 @@ export const TeamsList = () => {
             ))}
         </div>
       )}
-
       <footer className={styles.footer}>
         <StyledReactPaginate
           pageCount={Math.ceil(inputsData.count / inputsData.size) || 1}

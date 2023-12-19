@@ -11,7 +11,7 @@ export const ErrorBlock:FC<TErrorBlock> = ({errorMessage, error}) => {
 
   return (
     <div className={styles.errorWrapper}>
-      <h1>{error?.name}: {error?.message || 'Something goes wrong!'}</h1>
+      <h1>{error?.name || 'Error'}: {error?.message || 'Something goes wrong!'}</h1>
     </div>
     
     )
