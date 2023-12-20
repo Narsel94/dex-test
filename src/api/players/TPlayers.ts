@@ -1,4 +1,4 @@
- type TAddPlayerRequest = {
+type TAddPlayerRequest = {
   name: string;
   number: number;
   position: string;
@@ -11,10 +11,10 @@
 
 export type TUpdatePlayerRequest = Omit<
   Partial<TAddPlayerRequest>,
-  "name" | 'avatarUrl'
+  "name" | "avatarUrl"
 > & {
-  avatarUrl?: string | File,
-  id: number
+  avatarUrl?: string | File;
+  id: number;
 };
 
 export type TAddNewPlayerForm = {
@@ -40,7 +40,7 @@ export type TPlayerData = TAddPlayerRequest & {
 
 export type TGetPlayersRequest =
   | {
-      count?: number;
+      name?: string;
       page?: number;
       size?: number;
       teams?: number[];

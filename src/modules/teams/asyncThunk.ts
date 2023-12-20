@@ -1,20 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import {  getTeamsRequest, postTeamRequest } from "../../api/teams/teamsRequests";
+import {  getTeamsRequest } from "../../api/teams/teamsRequests";
 import { getQueries } from "../../common/helpers/getQueries";
 import {
-  TAddTeamResponse,
   TGetTeamsResponse,
   TGetTeamsRequest,
 } from "../../api/teams/TTeams";
-
-
-type TAddForm = {
-  name: string;
-  foundationYear: number;
-  division: string;
-  conference: string;
-  imageUrl: File;
-};
 
 export const getTeamsThunk = createAsyncThunk<
   TGetTeamsResponse,

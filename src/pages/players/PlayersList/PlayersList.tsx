@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useEffect, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import { useNavigate } from "react-router";
 import {
   ListHeader,
@@ -16,33 +16,33 @@ import { useTeamOptions } from "../../../modules/players/hooks/useTeamOptions";
 import { setSize, setPage } from "../../../modules/players/playersSlice";
 import { useAppDispatch } from "../../../common/hooks/useAppDispatch";
 import { useAppSelector } from "../../../common/hooks/useAppSelector";
-import { getCurrentPlayersThunk } from "../../../modules/players/asynkThunk";
-import {
-  playersSelector,
-  playersLoadingSelector,
-  playersPageDataSelector,
-  playersErrorSelector,
-  playersErrorDataSelector,
-} from "../../../modules/players/selectors";
-import { TGetParams } from "../../../common/helpers/getQueries";
-import { debounce } from "../../../common/helpers/debounce";
+import { playersPageDataSelector } from "../../../modules/players/selectors";
 import {
   isSingleSelectOption,
   isOptionsArrayAndValueNumber,
 } from "../../../common/helpers/isSelectOption";
 import classNames from "classnames";
 import styles from "./PlayersList.module.css";
+import { usePlayersList } from "../../../modules/players/hooks/usePlayersList";
 
 export const PlayersList: FC = () => {
-  const isLoading = useAppSelector(playersLoadingSelector);
-  const isError = useAppSelector(playersErrorSelector);
-  const errorData = useAppSelector(playersErrorDataSelector);
   const inputsData = useAppSelector(playersPageDataSelector);
-  const playersData = useAppSelector(playersSelector);
 
   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const [search, setSearch] = useState<string>("");
-  const [searchDebounced, setSearchDebounced] = useState<string>("");
+
+  const handlePageChange = (e: { selected: number }) => {
+    dispatch(setPage(e.selected + 1));
+  };
+
+  const { playersList, isLoading, error } = usePlayersList(
+    inputsData.page,
+    inputsData.size,
+    search,
+    selectedOptions,
+    handlePageChange,
+    { selected: 0 }
+  );
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -63,35 +63,16 @@ export const PlayersList: FC = () => {
     },
   ];
 
-  const params: TGetParams = {
-    name: searchDebounced,
-    page: inputsData.page,
-    size: inputsData.size,
-    teams: selectedOptions,
-  };
-
   const cardContainerClasses = classNames(styles.card_container, {
     [styles.container_6]: inputsData.size === 6,
     [styles.container_12]: inputsData.size === 12,
     [styles.container_24]: inputsData.size === 24,
   });
-  useEffect(() => {
-    dispatch(getCurrentPlayersThunk(params));
-  }, [params.name, params.page, params.size, params.teams]);
 
-  const handlePageChange = (e: { selected: number }) => {
-    dispatch(setPage(e.selected + 1));
-  };
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
-
-  const debouncedSearch = debounce((e: ChangeEvent<HTMLInputElement>) => {
-    handlePageChange({ selected: 0 });
-
-    setSearchDebounced(e.target.value);
-  }, 600);
 
   const onButtonClick = () => {
     navigate("/players/add-player");
@@ -122,7 +103,6 @@ export const PlayersList: FC = () => {
           propValue={search}
           onChange={(event) => {
             handleSearchChange(event);
-            debouncedSearch(event);
           }}
           search
         ></ControledInput>
@@ -134,19 +114,18 @@ export const PlayersList: FC = () => {
         </div>
       </ListHeader>
       {isLoading && <Preloader />}
-      {!isLoading && !isError && playersData?.length === 0 && (
+      {!isLoading && !error && playersList?.length === 0 && (
         <EmptyList image={image} message={"Add new player to continue"} />
       )}
-      {isError && !isLoading && <ErrorBlock error={errorData} />}
+      {error && !isLoading && <ErrorBlock error={error} />}
 
-      {!isLoading && !isError && playersData?.length > 0 && (
+      {!isLoading && !error && playersList?.length > 0 && (
         <div className={cardContainerClasses}>
-          {playersData.map((player) => (
+          {playersList.map((player) => (
             <PlayerCard key={player.id} data={player} size={inputsData.size} />
           ))}
         </div>
       )}
-
       <footer className={styles.footer}>
         <StyledReactPaginate
           pageCount={Math.ceil(inputsData.count / inputsData.size) || 1}
