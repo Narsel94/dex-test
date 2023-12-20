@@ -20,9 +20,11 @@ import { isSingleSelectOption } from "../../../common/helpers/isSelectOption";
 import image from "../../../assests/images/empty-teams.svg";
 import { useTeamsList } from "../../../modules/teams/hooks/useTeamsList";
 import styles from "./TeamsList.module.css";
+import { debounce } from "../../../common/helpers/debounce";
 
 export const TeamsList = () => {
   const [name, setName] = useState<string>("");
+  const [searchDebounced, setSearchDebounced] = useState<string>("");
   const inputsData = useAppSelector(teamsPageDataSelector);
   const dispatch = useAppDispatch();
 
@@ -53,6 +55,12 @@ export const TeamsList = () => {
     }
   };
 
+  const debouncedSearch = debounce((e: ChangeEvent<HTMLInputElement>) => {
+    handlePageChange({ selected: 0 });
+
+    setSearchDebounced(e.target.value);
+  }, 600);
+
   const options = [
     {
       label: 6,
@@ -71,9 +79,7 @@ export const TeamsList = () => {
   const { teamsList, isLoading, error } = useTeamsList(
     inputsData.page,
     inputsData.size,
-    name,
-    handlePageChange,
-    { selected: 0 }
+    searchDebounced,
   );
 
   return (
@@ -83,6 +89,7 @@ export const TeamsList = () => {
           propValue={name}
           onChange={(event) => {
             handleSearchChange(event);
+            debouncedSearch(event);
           }}
           search
         />

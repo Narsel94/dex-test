@@ -9,7 +9,6 @@ import {
   teamsSelector,
 } from "../selectors";
 import { TAddTeamResponse } from "../../../api/teams/TTeams";
-import { useDebounce } from "../../../common/hooks/useDebounce";
 
 type TUseTeamList = {
   teamsList: TAddTeamResponse[];
@@ -22,25 +21,21 @@ export const useTeamsList = (
   page: number,
   size: number,
   search: string,
-  func?: (e?: any) => void,
-  funcArg?: any | any[],
-  delay: number = 600
 ): TUseTeamList => {
   const isLoading = useAppSelector(teamsLoadingSelector);
   const error = useAppSelector(teamsErrorDataSelector);
   const teamsList = useAppSelector(teamsSelector);
   const dispatch = useAppDispatch();
-  const name = useDebounce(search, delay, func, funcArg)
 
   useEffect(() => {
     dispatch(
       getTeamsThunk({
         page,
         size,
-        name,
+        name: search,
       })
     );
-  }, [page, size, name]);
+  }, [page, size, search]);
 
   return { isLoading, error, teamsList };
 };

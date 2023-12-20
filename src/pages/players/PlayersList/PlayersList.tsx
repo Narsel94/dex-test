@@ -24,12 +24,14 @@ import {
 import classNames from "classnames";
 import styles from "./PlayersList.module.css";
 import { usePlayersList } from "../../../modules/players/hooks/usePlayersList";
+import { debounce } from "../../../common/helpers/debounce";
 
 export const PlayersList: FC = () => {
   const inputsData = useAppSelector(playersPageDataSelector);
 
   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const [search, setSearch] = useState<string>("");
+  const [searchDebounced, setSearchDebounced] = useState<string>("");
 
   const handlePageChange = (e: { selected: number }) => {
     dispatch(setPage(e.selected + 1));
@@ -38,10 +40,8 @@ export const PlayersList: FC = () => {
   const { playersList, isLoading, error } = usePlayersList(
     inputsData.page,
     inputsData.size,
-    search,
-    selectedOptions,
-    handlePageChange,
-    { selected: 0 }
+    searchDebounced,
+    selectedOptions
   );
 
   const navigate = useNavigate();
@@ -69,10 +69,15 @@ export const PlayersList: FC = () => {
     [styles.container_24]: inputsData.size === 24,
   });
 
-
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
+
+  const debouncedSearch = debounce((e: ChangeEvent<HTMLInputElement>) => {
+    handlePageChange({ selected: 0 });
+
+    setSearchDebounced(e.target.value);
+  }, 600);
 
   const onButtonClick = () => {
     navigate("/players/add-player");
@@ -103,6 +108,7 @@ export const PlayersList: FC = () => {
           propValue={search}
           onChange={(event) => {
             handleSearchChange(event);
+            debouncedSearch(event);
           }}
           search
         ></ControledInput>
