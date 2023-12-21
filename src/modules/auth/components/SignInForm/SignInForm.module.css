@@ -1,21 +1,55 @@
-.error {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  border-radius: 4px;
-  background-color: var(--light-red);
-  right: 5%; 
-  top: 5%;
-  height: 40px;
-  color: white;
-  font-family: var(--AvenirM);
-  font-size: 16px;
-  padding: 0 8px;
+.title {
+  font-family: var(--AvBook), Arial, Helvetica, sans-serif;
+  font-size: 36px;
+  color: var(--blue);
+  align-self: flex-start;
+  padding: 0;
+  margin-bottom: 22px;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 360px;
+}
 
-@media screen and (max-width: 880px) {
-  .error {
-    display: none;
+.form::-webkit-scrollbar {
+  width: 8px;
+}
+
+.form::-webkit-scrollbar-thumb {
+  width: 8px;
+  border-radius: 3px;
+  background-color: var(--grey);
+}
+
+.form::-webkit-scrollbar-track {
+  background-color: var(--lightest-grey);
+}
+
+@media screen and (max-width: 840px) {
+  .title {
+    align-self: center;
   }
+}
+
+@media screen and (max-height: 400px) {
+  .form {
+    gap: 2px;
+    overflow-y: auto;
+  }
+  .title {
+    margin: 0;
+    padding: 0;
+    font-size: 7svh;
+  }
+}
+
+@media screen and (max-height: 590px) {
+  .form {
+    gap: 2px;
+  }
+  
 }

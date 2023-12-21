@@ -1,10 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import {  getTeamsRequest } from "../../api/teams/teamsRequests";
-import { getQueries } from "../../common/helpers/getQueries";
-import {
-  TGetTeamsResponse,
-  TGetTeamsRequest,
-} from "../../api/teams/TTeams";
+import { getTeamsRequest } from "../../api/teams/teamsRequests";
+import { TGetTeamsResponse, TGetTeamsRequest } from "../../api/teams/TTeams";
 
 export const getTeamsThunk = createAsyncThunk<
   TGetTeamsResponse,
@@ -13,10 +9,7 @@ export const getTeamsThunk = createAsyncThunk<
   "teams/getTeam",
 
   async (params?: TGetTeamsRequest) => {
-    const queries = getQueries(params);
-    const response: TGetTeamsResponse = await getTeamsRequest(
-      queries ? queries : ""
-    );
+    const response: TGetTeamsResponse = await getTeamsRequest(params);
     return response;
   }
 );

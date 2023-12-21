@@ -1,11 +1,7 @@
-import { SerializedError } from "@reduxjs/toolkit";
 import { TTeamData } from "../../api/teams/TTeams";
 
 export type TInitialState = {
   teams: TTeamData[];
-  error: boolean;
-  errorData: SerializedError | undefined;
-  loading: boolean;
   pageData: {
     count: number;
     page: number;

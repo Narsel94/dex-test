@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import { AuthFormWrapper } from "..";
 import { useForm, Controller } from "react-hook-form";
 import { signInRequest } from "../../../../api/auth/signIn";
 import { useNavigate } from "react-router";
@@ -9,6 +7,7 @@ import {
   Button,
   Notification,
 } from "../../../../common/components";
+import styles from './SignInForm.module.css'
 
 type TSignInFormValue = {
   login: string;
@@ -54,7 +53,8 @@ export const SignInForm = () => {
 
   return (
     <>
-      <AuthFormWrapper title="Sign In" onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.form}onSubmit={handleSubmit(onSubmit)}>
+        <h1 className={styles.title}>Sign In</h1>
         <Controller
           control={control}
           rules={{ required: "Please enter your login" }}
@@ -87,7 +87,7 @@ export const SignInForm = () => {
         <Button htmlType="submit" isPrime disabled={!isValid}>
           Sign In
         </Button>
-      </AuthFormWrapper>
+      </form>
       <Notification error={isError} />
     </>
   );

@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { AuthFormWrapper } from "..";
+import React, { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { signUpRequest } from "../../../../api/auth/signUp";
 import {
@@ -9,6 +8,7 @@ import {
   Button,
 } from "../../../../common/components";
 import { useError } from "../../../../common/hooks/useError";
+import styles from './SignUpForm.module.css'
 
 type TSignUpData = {
   check: boolean;
@@ -39,7 +39,8 @@ export const SignUpForm = () => {
 
   return (
     <>
-      <AuthFormWrapper title="Sign Up" onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <h1 className={styles.title}>Sign Up</h1>
         <Controller
           control={control}
           rules={{ required: "Required" }}
@@ -121,7 +122,7 @@ export const SignUpForm = () => {
         <Button htmlType="submit" isPrime disabled={!isValid}>
           Sign Up
         </Button>
-      </AuthFormWrapper>
+      </form>
       <Notification error={isError} />
     </>
   );

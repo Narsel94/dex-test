@@ -4,17 +4,19 @@ import {
   TPlayerData,
   TUpdatePlayerRequest,
   TAddNewPlayerForm,
+  TGetPlayersRequest,
 } from "./TPlayers";
 import { TGetPlayersResponse } from "./TPlayers";
-import { Params, json } from "react-router-dom";
+import { Params } from "react-router-dom";
 import { saveImageRequest } from "../auth/saveImage";
+import { getQueries } from "../../common/helpers/getQueries";
 const imagesUrl = process.env.REACT_APP_IMAGES;
 
 export const addPlayerRequest = (data: TAddNewPlayerForm) => {
   const token = getCookie("token");
 
   return saveImageRequest(data.avatarUrl)
-    .then((res:string) => {
+    .then((res: string) => {
       const newData = {
         ...data,
         team: data.team.value,
@@ -37,17 +39,21 @@ export const getPlayerLoader = async (
   }
   const playerData = await get(`/Player/Get?id=${params.playerId}`, token);
   if (!playerData) {
-    throw new Response('', {status: playerData.status}) 
+    throw new Response("", { status: playerData.status });
   }
   return playerData;
 };
 
 export const getCurrentPlayersRequest = (
-  search: string
-): Promise<TGetPlayersResponse> =>
-  get(`/Player/GetPlayers${search}`, getCookie("token")).catch((error)=> {
-    throw new Error(error.status)
-  });
+  params?: TGetPlayersRequest
+): Promise<TGetPlayersResponse> => {
+  const queries = getQueries(params);
+  return get(`/Player/GetPlayers${queries}`, getCookie("token")).catch(
+    (error) => {
+      throw new Error(error.status);
+    }
+  );
+};
 
 export const removePlayerRequest = (id: number) => {
   const token = getCookie("token");
@@ -61,7 +67,7 @@ export const updatePlayerRequest = (data: TUpdatePlayerRequest) => {
   if (token) {
     if (data.avatarUrl instanceof File) {
       return saveImageRequest(data.avatarUrl)
-        .then((res:string) => {
+        .then((res: string) => {
           const newData = {
             ...data,
             avatarUrl: `${imagesUrl}${res}`,

@@ -13,22 +13,23 @@ import {
 import image from "../../../assests/images/empty-players.svg";
 import { PlayerCard } from "../../../modules/players/components";
 import { useTeamOptions } from "../../../modules/players/hooks/useTeamOptions";
-import { setSize, setPage } from "../../../modules/players/playersSlice";
+import { setSize, setPage, setPlayersRequest } from "../../../modules/players/playersSlice";
 import { useAppDispatch } from "../../../common/hooks/useAppDispatch";
 import { useAppSelector } from "../../../common/hooks/useAppSelector";
-import { playersPageDataSelector } from "../../../modules/players/selectors";
+import { playersPageDataSelector, playersSelector } from "../../../modules/players/selectors";
 import {
   isSingleSelectOption,
   isOptionsArrayAndValueNumber,
 } from "../../../common/helpers/isSelectOption";
 import classNames from "classnames";
 import styles from "./PlayersList.module.css";
-import { usePlayersList } from "../../../modules/players/hooks/usePlayersList";
 import { debounce } from "../../../common/helpers/debounce";
+import { getCurrentPlayersRequest } from "../../../api/players/playersRequests";
+import { useFetchRequest } from "../../../common/hooks/useFetchRequest";
 
 export const PlayersList: FC = () => {
   const inputsData = useAppSelector(playersPageDataSelector);
-
+  const players = useAppSelector(playersSelector)
   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const [search, setSearch] = useState<string>("");
   const [searchDebounced, setSearchDebounced] = useState<string>("");
@@ -36,13 +37,6 @@ export const PlayersList: FC = () => {
   const handlePageChange = (e: { selected: number }) => {
     dispatch(setPage(e.selected + 1));
   };
-
-  const { playersList, isLoading, error } = usePlayersList(
-    inputsData.page,
-    inputsData.size,
-    searchDebounced,
-    selectedOptions
-  );
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -62,6 +56,14 @@ export const PlayersList: FC = () => {
       value: 24,
     },
   ];
+
+  const {isLoading, error} = useFetchRequest({
+    request: getCurrentPlayersRequest,
+    args: {name: searchDebounced, page: inputsData.page, size: inputsData.size, teams: selectedOptions},
+    actionCreator: setPlayersRequest
+  })
+
+  console.log(error)
 
   const cardContainerClasses = classNames(styles.card_container, {
     [styles.container_6]: inputsData.size === 6,
@@ -120,14 +122,14 @@ export const PlayersList: FC = () => {
         </div>
       </ListHeader>
       {isLoading && <Preloader />}
-      {!isLoading && !error && playersList?.length === 0 && (
+      {!isLoading && !error && players.length === 0 && (
         <EmptyList image={image} message={"Add new player to continue"} />
       )}
-      {error && !isLoading && <ErrorBlock error={error} />}
+      {!!error && !isLoading && <ErrorBlock error={error} />}
 
-      {!isLoading && !error && playersList?.length > 0 && (
+      {!isLoading && !error && players.length > 0 && (
         <div className={cardContainerClasses}>
-          {playersList.map((player) => (
+          {players.map((player) => (
             <PlayerCard key={player.id} data={player} size={inputsData.size} />
           ))}
         </div>

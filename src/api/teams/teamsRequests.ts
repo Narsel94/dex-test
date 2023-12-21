@@ -1,8 +1,14 @@
 import { remove, get, post, put } from "../baseRequest";
 
 import { getCookie } from "../../common/helpers/cookies";
-import { TGetTeamsResponse, TUpdateTeamRequest, TAddTeamForm } from "./TTeams";
+import {
+  TGetTeamsResponse,
+  TUpdateTeamRequest,
+  TAddTeamForm,
+  TGetTeamsRequest,
+} from "./TTeams";
 import { saveImageRequest } from "../auth/saveImage";
+import { getQueries } from "../../common/helpers/getQueries";
 const imagesUrl = process.env.REACT_APP_IMAGES;
 
 export const removeTeam = (id: number) => {
@@ -19,10 +25,12 @@ export const getTeamLoader = (id?: string) => {
   }
 };
 
-export const getTeamsRequest = (search?: string) =>
-  get(`/Team/GetTeams${search}`, getCookie("token")).catch((error) => {
+export const getTeamsRequest = (params?: TGetTeamsRequest) => {
+  const queries = getQueries(params);
+  return get(`/Team/GetTeams${queries}`, getCookie("token")).catch((error) => {
     throw new Error(error.status);
   });
+};
 
 export const getAllTeamsRequest = (): Promise<TGetTeamsResponse> =>
   get(`/Team/GetTeams`, getCookie("token"));

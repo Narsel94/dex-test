@@ -2,11 +2,7 @@ import { SerializedError } from "@reduxjs/toolkit";
 import { TPlayerData } from "../../api/players/TPlayers";
 
 export type TInitialPlayersState = {
-  allPlayers: TPlayerData[],
   players: TPlayerData[];
-  error: boolean;
-  errorData: SerializedError | undefined;
-  loading: boolean;
   pageData: {
     count: number;
     page: number;
