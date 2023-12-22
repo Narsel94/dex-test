@@ -48,7 +48,7 @@ export const getCurrentPlayersRequest = (
   params?: TGetPlayersRequest
 ): Promise<TGetPlayersResponse> => {
   const queries = getQueries(params);
-  return get(`/Player/GetPlayers${queries}`, getCookie("token")).catch(
+  return get(`/Player/GetPlayers${queries? queries : ''}`, getCookie("token")).catch(
     (error) => {
       throw new Error(error.status);
     }

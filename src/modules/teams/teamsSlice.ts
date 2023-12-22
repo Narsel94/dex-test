@@ -21,10 +21,10 @@ const teamsSlice = createSlice({
       state.pageData.page = action.payload.page;
       state.pageData.count = action.payload.count;
     },
-    setSize: (state, action) => {
+    setSize: (state, action:PayloadAction<number>) => {
       state.pageData.size = action.payload;
     },
-    setPage: (state, action) => {
+    setPage: (state, action:PayloadAction<number>) => {
       state.pageData.page = action.payload;
     },
   },

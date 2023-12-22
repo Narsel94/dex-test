@@ -18,8 +18,8 @@ import { useAppDispatch } from "../../../common/hooks/useAppDispatch";
 import { useAppSelector } from "../../../common/hooks/useAppSelector";
 import { playersPageDataSelector, playersSelector } from "../../../modules/players/selectors";
 import {
-  isSingleSelectOption,
-  isOptionsArrayAndValueNumber,
+  isOptionAndType,
+  isOptionsArrayAndValue
 } from "../../../common/helpers/isSelectOption";
 import classNames from "classnames";
 import styles from "./PlayersList.module.css";
@@ -63,8 +63,6 @@ export const PlayersList: FC = () => {
     actionCreator: setPlayersRequest
   })
 
-  console.log(error)
-
   const cardContainerClasses = classNames(styles.card_container, {
     [styles.container_6]: inputsData.size === 6,
     [styles.container_12]: inputsData.size === 12,
@@ -88,14 +86,14 @@ export const PlayersList: FC = () => {
   const handleSizeChage = (value: unknown) => {
     handlePageChange({ selected: 0 });
 
-    if (isSingleSelectOption(value)) {
+    if (isOptionAndType(value, 'number')) {
       dispatch(setSize(value.value));
     }
   };
 
   const handleChange = (newValue: unknown) => {
     handlePageChange({ selected: 0 });
-    const value = isOptionsArrayAndValueNumber(newValue);
+    const value = isOptionsArrayAndValue(newValue, 'number');
     if (value instanceof Array) {
       setSelectedOptions(value.map((opt) => opt.value));
     } else {

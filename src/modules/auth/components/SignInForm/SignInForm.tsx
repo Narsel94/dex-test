@@ -7,7 +7,7 @@ import {
   Button,
   Notification,
 } from "../../../../common/components";
-import styles from './SignInForm.module.css'
+import styles from "./SignInForm.module.css";
 
 type TSignInFormValue = {
   login: string;
@@ -36,24 +36,22 @@ export const SignInForm = () => {
             type: error.status.toString(),
             message: "Wrong password. Please, try again.",
           });
-          return
+          return;
         }
         if (error.status === 404) {
           setError("password", {
             type: error.status.toString(),
             message: `Server Error. Error: ${error.status}`,
           });
-          setIsError(error)
-
+          setIsError(error);
         }
-        setIsError(error)
-      });
-    reset();
+        setIsError(error);
+      })
   };
 
   return (
     <>
-      <form className={styles.form}onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <h1 className={styles.title}>Sign In</h1>
         <Controller
           control={control}

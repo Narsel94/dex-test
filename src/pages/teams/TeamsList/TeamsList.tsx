@@ -17,7 +17,7 @@ import { teamsPageDataSelector, teamsSelector } from "../../../modules/teams/sel
 import { setSize, setPage } from "../../../modules/teams/teamsSlice";
 import { debounce } from "../../../common/helpers/debounce";
 import classNames from "classnames";
-import { isSingleSelectOption } from "../../../common/helpers/isSelectOption";
+import {isOptionAndType } from "../../../common/helpers/isSelectOption";
 import image from "../../../assests/images/empty-teams.svg";
 import styles from "./TeamsList.module.css";
 import { setTeamsRequest } from "../../../modules/teams/teamsSlice";
@@ -61,7 +61,7 @@ export const TeamsList = () => {
 
   const handleSizeChage = (option: unknown) => {
     handlePageChange({ selected: 0 });
-    if (isSingleSelectOption(option)) {
+    if (isOptionAndType(option, "number")) {
       dispatch(setSize(option.value));
     }
   };

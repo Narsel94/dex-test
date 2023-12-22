@@ -27,7 +27,7 @@ export const getTeamLoader = (id?: string) => {
 
 export const getTeamsRequest = (params?: TGetTeamsRequest) => {
   const queries = getQueries(params);
-  return get(`/Team/GetTeams${queries}`, getCookie("token")).catch((error) => {
+  return get(`/Team/GetTeams${queries ? queries: ''}`, getCookie("token")).catch((error) => {
     throw new Error(error.status);
   });
 };

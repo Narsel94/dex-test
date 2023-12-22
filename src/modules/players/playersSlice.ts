@@ -21,10 +21,10 @@ const playersSlice = createSlice({
       state.pageData.count = action.payload.count;
       state.pageData.size = action.payload.size;
     },
-    setSize: (state, action) => {
+    setSize: (state, action:PayloadAction<number>) => {
       state.pageData.size = action.payload;
     },
-    setPage: (state, action) => {
+    setPage: (state, action:PayloadAction<number>) => {
       state.pageData.page = action.payload;
     },
   },

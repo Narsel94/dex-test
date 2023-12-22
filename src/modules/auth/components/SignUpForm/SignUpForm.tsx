@@ -7,6 +7,7 @@ import {
   Checkbox,
   Button,
 } from "../../../../common/components";
+import { useNavigate } from "react-router";
 import { useError } from "../../../../common/hooks/useError";
 import styles from './SignUpForm.module.css'
 
@@ -20,7 +21,7 @@ type TSignUpData = {
 
 export const SignUpForm = () => {
   const [isError, setIsError] = useError();
-
+const navigate = useNavigate()
   const { control, handleSubmit, formState, reset, watch } =
     useForm<TSignUpData>({ mode: "onBlur" });
   const { isValid, errors, isSubmitSuccessful } = formState;
@@ -33,7 +34,7 @@ export const SignUpForm = () => {
 
   const onSubmit = (data: TSignUpData) => {
     const { check, confirmPassword, ...rest } = data;
-    signUpRequest(rest).catch((error) => setIsError(error));
+    signUpRequest(rest).then(()=> navigate('/teams')).catch((error) => setIsError(error));
     reset();
   };
 

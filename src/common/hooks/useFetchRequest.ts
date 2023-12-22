@@ -3,13 +3,13 @@ import {
   AnyAction,
   ThunkDispatch,
 } from "@reduxjs/toolkit";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { RootState } from "../../core/redux/store";
 
 type TUseFetchRequest<T extends Object, C> = {
-  request: (args: T) => C | Promise<C>;
-  args: T;
+  request: (args?: T) => C | Promise<C>;
+  args?: T;
   actionCreator?: ActionCreatorWithPayload<any, string>;
 };
 
@@ -28,7 +28,7 @@ export const useFetchRequest = <T extends Object, C>({
     try {
       setIsLoading(true);
       setError(false);
-      const result = await request(args);
+      const result = args ? await request(args) : await request();
       if (!isLoading) {
         setResponse(result);
       }
@@ -46,11 +46,12 @@ export const useFetchRequest = <T extends Object, C>({
 
   const isChange = () => {
     let hasChanged = false;
-
-    for (const key in args) {
-      if (args[key] !== cachedArgs[key]) {
-        hasChanged = true;
-        break;
+    if (args && cachedArgs) {
+      for (const key in args) {
+        if (args[key] !== cachedArgs[key]) {
+          hasChanged = true;
+          break;
+        }
       }
     }
 
@@ -58,7 +59,6 @@ export const useFetchRequest = <T extends Object, C>({
       setCachedArgs(args);
       return false;
     }
-
     return true;
   };
 
