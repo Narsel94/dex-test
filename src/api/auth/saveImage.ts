@@ -8,7 +8,6 @@ export const saveImageRequest = (data?: File) => {
     formData.append("file", data);
     try {
       return post("/Image/SaveImage", formData, token);
-
     } catch (error) {
       return  Promise.reject(error)
     }

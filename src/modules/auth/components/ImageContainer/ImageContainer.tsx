@@ -8,7 +8,7 @@ type TImageContainer = {
 export const ImageContainer: FC<TImageContainer> = ({ src }) => {
   return (
     <div className={styles.container}>
-      <img src={src} alt="" className={styles.image} />
+      <img src={src} alt="background" className={styles.image} />
     </div>
   );
 };

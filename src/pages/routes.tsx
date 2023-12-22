@@ -26,6 +26,7 @@ import {
 import { getTeamLoader } from "../api/teams/teamsRequests";
 import { getPlayerLoader } from "../api/players/playersRequests";
 import { ErrorBoundary } from "../common/components/ErrorBoundary/ErrorBoundary";
+import { LoaderFunctionArgs } from "react-router";
 
 export const router = createBrowserRouter([
   {
@@ -88,7 +89,7 @@ export const router = createBrowserRouter([
                 path: `/teams/:teamId`,
                 element: <TeamInfo />,
                 handle: { title: "teamId", url: "/teams/:teamId" },
-                loader: async ({ params }) => {
+                loader: async ({ params }:LoaderFunctionArgs) => {
                   if (params.teamId) {
                     return getTeamLoader(params.teamId);
                   }
@@ -102,7 +103,7 @@ export const router = createBrowserRouter([
                   title: "Update Team",
                   url: "/teams/update-team",
                 },
-                loader: async ({ params }) => {
+                loader: async ({ params }:LoaderFunctionArgs) => {
                   if (params.teamId) {
                     return getTeamLoader(params.teamId);
                   }
@@ -134,7 +135,7 @@ export const router = createBrowserRouter([
                 path: "/players/:playerId",
                 element: <PlayerInfo />,
                 handle: { title: "playerId", url: "/players/:playerId" },
-                loader: async ({ params }) => {
+                loader: async ({ params }:LoaderFunctionArgs) => {
                   if (params.playerId) {
                     return getPlayerLoader(params);
                   }
@@ -153,7 +154,7 @@ export const router = createBrowserRouter([
                   title: "Update Player",
                   url: "/players/update-player",
                 },
-                loader: async ({ params }) => {
+                loader: async ({ params }:LoaderFunctionArgs) => {
                   if (params.playerId) {
                     return getPlayerLoader(params);
                   }

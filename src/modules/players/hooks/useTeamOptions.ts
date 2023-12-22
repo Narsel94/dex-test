@@ -6,7 +6,7 @@ type TTeamOption = {
   label: string;
 };
 
-export const useTeamOptions =  () => {
+export const useTeamOptions = () => {
   const [teamOptions, setTeamsOptions] = useState<TTeamOption[]>([]);
 
   useEffect(() => {

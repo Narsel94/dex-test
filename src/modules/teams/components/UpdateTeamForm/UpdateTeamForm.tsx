@@ -9,8 +9,8 @@ import {
 } from "../../../../common/components";
 import { updateTeamRequest } from "../../../../api/teams/teamsRequests";
 import { TTeamData } from "../../../../api/teams/TTeams";
-import styles from "./UpdateTeamForm.module.css";
 import { useError } from "../../../../common/hooks/useError";
+import styles from "./UpdateTeamForm.module.css";
 
 type TUpdateForm = {
   name: string;

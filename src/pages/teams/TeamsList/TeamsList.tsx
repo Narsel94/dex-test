@@ -77,7 +77,6 @@ export const TeamsList = () => {
 
   const debouncedSearch = debounce((e: ChangeEvent<HTMLInputElement>) => {
     handlePageChange({ selected: 0 });
-
     setSearchDebounced(e.target.value);
   }, 600);
 

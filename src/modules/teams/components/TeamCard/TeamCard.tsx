@@ -16,13 +16,11 @@ export const TeamCard: FC<TTeamCard> = ({ data, size }) => {
     [styles.name_long]: data.name.length >= 15,
     [styles.name_24]: size === 24,
     [styles.name_12]: size === 12
-
   })
 
   const textClassses = classNames(styles.text, {
     [styles.text_24]: size === 24,
     [styles.text_12]: size === 12
-
   })
 
   return (

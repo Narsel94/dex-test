@@ -1,4 +1,3 @@
-import { SerializedError } from "@reduxjs/toolkit";
 import { TPlayerData } from "../../api/players/TPlayers";
 
 export type TInitialPlayersState = {

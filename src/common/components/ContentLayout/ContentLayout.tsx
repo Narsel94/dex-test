@@ -32,6 +32,10 @@ export const ContentLayout = () => {
     [styles.navWrapperClose]: !isOpen,
   });
 
+  const overlay = classNames(styles.overlay, {
+    [styles.overlayOpen ]: isOpen
+  })
+
   return (
     <div className={styles.layout}>
       <div className={styles.header}>
@@ -42,11 +46,11 @@ export const ContentLayout = () => {
             status={isOpen}
           />
         </div>
-
         <AppLogo to="/teams"  />
         <div className={styles.infoWrapper}><UserInfo /></div>
       </div>
       <div className={styles.contentDesctop}>
+        <div className={overlay}></div>
         <div className={nanWrapperClasses} onClick={onWrapperClick}>
           <NavigationBar />
         </div>

@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { RosterElement } from "../RosterElement/RosterElement";
-import { usePlayersOfTeam } from "../../hooks/usePlayersOfTeam";
 import { TPlayerData } from "../../../../api/players/TPlayers";
 import styles from "./Roster.module.css";
 

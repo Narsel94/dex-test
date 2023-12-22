@@ -44,7 +44,6 @@ export const PlayerInfo: FC = () => {
             onTrashClick={removePlayer}
             onUpdateClick={onUpdateClick}
           />
-
           <section className={styles.section}>
             <div className={styles.imageWrapper}>
               <img

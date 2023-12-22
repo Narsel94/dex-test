@@ -24,11 +24,6 @@ body::-webkit-scrollbar-button {
   color: #c60e2e;
 }
 
-* {
-  /* outline: 1px solid yellowgreen; */
-  /* box-sizing: border-box; ,  */
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
