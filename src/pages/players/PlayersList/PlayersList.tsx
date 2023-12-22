@@ -13,13 +13,20 @@ import {
 import image from "../../../assests/images/empty-players.svg";
 import { PlayerCard } from "../../../modules/players/components";
 import { useTeamOptions } from "../../../modules/players/hooks/useTeamOptions";
-import { setSize, setPage, setPlayersRequest } from "../../../modules/players/playersSlice";
+import {
+  setSize,
+  setPage,
+  setPlayersRequest,
+} from "../../../modules/players/playersSlice";
 import { useAppDispatch } from "../../../common/hooks/useAppDispatch";
 import { useAppSelector } from "../../../common/hooks/useAppSelector";
-import { playersPageDataSelector, playersSelector } from "../../../modules/players/selectors";
+import {
+  playersPageDataSelector,
+  playersSelector,
+} from "../../../modules/players/selectors";
 import {
   isOptionAndType,
-  isOptionsArrayAndValue
+  isOptionsArrayAndValue,
 } from "../../../common/helpers/isSelectOption";
 import classNames from "classnames";
 import styles from "./PlayersList.module.css";
@@ -29,7 +36,7 @@ import { useFetchRequest } from "../../../common/hooks/useFetchRequest";
 
 export const PlayersList: FC = () => {
   const inputsData = useAppSelector(playersPageDataSelector);
-  const players = useAppSelector(playersSelector)
+  const players = useAppSelector(playersSelector);
   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const [search, setSearch] = useState<string>("");
   const [searchDebounced, setSearchDebounced] = useState<string>("");
@@ -57,11 +64,16 @@ export const PlayersList: FC = () => {
     },
   ];
 
-  const {isLoading, error} = useFetchRequest({
+  const { isLoading, error } = useFetchRequest({
     request: getCurrentPlayersRequest,
-    args: {name: searchDebounced, page: inputsData.page, size: inputsData.size, teams: selectedOptions},
-    actionCreator: setPlayersRequest
-  })
+    args: {
+      name: searchDebounced,
+      page: inputsData.page,
+      size: inputsData.size,
+      teams: selectedOptions,
+    },
+    actionCreator: setPlayersRequest,
+  });
 
   const cardContainerClasses = classNames(styles.card_container, {
     [styles.container_6]: inputsData.size === 6,
@@ -86,14 +98,14 @@ export const PlayersList: FC = () => {
   const handleSizeChage = (value: unknown) => {
     handlePageChange({ selected: 0 });
 
-    if (isOptionAndType(value, 'number')) {
+    if (isOptionAndType(value, "number")) {
       dispatch(setSize(value.value));
     }
   };
 
   const handleChange = (newValue: unknown) => {
     handlePageChange({ selected: 0 });
-    const value = isOptionsArrayAndValue(newValue, 'number');
+    const value = isOptionsArrayAndValue(newValue, "number");
     if (value instanceof Array) {
       setSelectedOptions(value.map((opt) => opt.value));
     } else {
@@ -119,13 +131,13 @@ export const PlayersList: FC = () => {
           </Button>
         </div>
       </ListHeader>
-      {isLoading && <Preloader />}
-      {!isLoading && !error && players.length === 0 && (
+      {isLoading ? (
+        <Preloader />
+      ) : error ? (
+        <ErrorBlock error={error} />
+      ) : players.length === 0 ? (
         <EmptyList image={image} message={"Add new player to continue"} />
-      )}
-      {!!error && !isLoading && <ErrorBlock error={error} />}
-
-      {!isLoading && !error && players.length > 0 && (
+      ) : (
         <div className={cardContainerClasses}>
           {players.map((player) => (
             <PlayerCard key={player.id} data={player} size={inputsData.size} />

@@ -1,5 +1,4 @@
 import { remove, get, post, put } from "../baseRequest";
-
 import { getCookie } from "../../common/helpers/cookies";
 import {
   TGetTeamsResponse,
@@ -27,8 +26,11 @@ export const getTeamLoader = (id?: string) => {
 
 export const getTeamsRequest = (params?: TGetTeamsRequest) => {
   const queries = getQueries(params);
-  return get(`/Team/GetTeams${queries ? queries: ''}`, getCookie("token")).catch((error) => {
-    throw new Error(error.status);
+  return get(
+    `/Team/GetTeams${queries ? queries : ""}`,
+    getCookie("token")
+  ).catch((error) => {
+    throw new Error(error?.status || "Something goes wrong");
   });
 };
 

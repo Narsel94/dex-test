@@ -39,6 +39,7 @@ const isPlayerData = (data: unknown): data is TGetPlayerData => {
     "teamName" in data && typeof data.teamName === 'string'
   );
 };
+
 export const usePlayerInfo = () => {
   const data = useLoaderData();
 

@@ -48,11 +48,12 @@ export const getCurrentPlayersRequest = (
   params?: TGetPlayersRequest
 ): Promise<TGetPlayersResponse> => {
   const queries = getQueries(params);
-  return get(`/Player/GetPlayers${queries? queries : ''}`, getCookie("token")).catch(
-    (error) => {
-      throw new Error(error.status);
-    }
-  );
+  return get(
+    `/Player/GetPlayers${queries ? queries : ""}`,
+    getCookie("token")
+  ).catch((error) => {
+    throw new Error(error?.status || "Something goes wrong");
+  });
 };
 
 export const removePlayerRequest = (id: number) => {
