@@ -1,15 +1,12 @@
 import React, { FC } from "react";
-import { TPlayerData } from "../../../../api/players/TPlayers";
-import { getAge } from "../../../players/helpers/getAge";
+import { TPlayerOfTeam } from "../../../../api/players/TPlayers";
 import styles from "./RosterElement.module.css";
 
 type TRosterElement = {
-  player: TPlayerData;
+  player: TPlayerOfTeam;
 };
 
 export const RosterElement: FC<TRosterElement> = ({ player }) => {
-  const age = getAge(player.birthday);
-
   return (
     <div className={styles.wrapper}>
       <span className={styles.number}>{player.number || "-"}</span>
@@ -26,7 +23,7 @@ export const RosterElement: FC<TRosterElement> = ({ player }) => {
         <div className={styles.info}>
           <span className={styles.span}>{player.height} cm</span>
           <span className={styles.span}>{player.weight} kg</span>
-          <span className={styles.span}>{age}</span>
+          <span className={styles.span}>{player.age}</span>
         </div>
       </div>
     </div>

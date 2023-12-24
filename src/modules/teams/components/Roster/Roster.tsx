@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { RosterElement } from "../RosterElement/RosterElement";
-import { TPlayerData } from "../../../../api/players/TPlayers";
+import { TPlayerOfTeam } from "../../../../api/players/TPlayers";
 import styles from "./Roster.module.css";
 
 type TRoster = {
-  players: TPlayerData[];
+  players: TPlayerOfTeam[];
 };
 
 export const Roster: FC<TRoster> = ({ players }) => {
@@ -21,10 +21,9 @@ export const Roster: FC<TRoster> = ({ players }) => {
             <span className={styles.span}>Age</span>
           </div>
         </div>
-        {players.length > 0 &&
-          players.map((player) => (
-            <RosterElement key={player.id} player={player}></RosterElement>
-          ))}
+        {players.map((player) => (
+          <RosterElement key={player.id} player={player}></RosterElement>
+        ))}
       </div>
     );
   }

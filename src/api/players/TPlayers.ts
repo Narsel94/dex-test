@@ -38,6 +38,10 @@ export type TPlayerData = TAddPlayerRequest & {
   id: number;
 };
 
+export type TPlayerOfTeam = TPlayerData & {
+  age?: number;
+};
+
 export type TGetPlayersRequest =
   | {
       name?: string;
