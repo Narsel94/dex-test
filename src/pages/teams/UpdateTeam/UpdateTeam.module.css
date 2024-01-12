@@ -12,22 +12,23 @@
   gap: 72px;
 }
 
-@media screen and (max-width: 1185px) {
+@media screen and (max-width: 1100px) {
   .wrapper {
-    gap: 40px;
+    gap: 38px;
+    padding: 20px 30px 36px;
   }
 }
 
 @media screen and (max-width: 880px) {
   .wrapper {
-    padding: 16px 16px 48px;
-    gap: 64px;
+    gap: 34px;
     border-radius: 0;
   }
 }
 
-@media screen and (max-height: 915px) {
+@media screen and (max-height: 790px) {
   .wrapper {
+    padding: 16px 16px 24px;
     gap: 32px;
   }
 }

@@ -4,12 +4,11 @@
   box-sizing: border-box;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
 }
 
 .contentDesctop {
-  height: 100vh;
-  max-height: 100vh;
+  height: 100dvh;
   width: 100%;
   display: flex;
   position: relative;
@@ -37,8 +36,25 @@
   display: flex;
   width: 100%;
   padding: 3.3649vh 5.555vw;
-  overflow: hidden;
+  overflow-y: auto;
 }
+
+
+.main::-webkit-scrollbar {
+  width: 8px;
+}
+
+.main::-webkit-scrollbar-thumb {
+  width: 8px;
+  border-radius: 3px;
+  background-color: var(--grey);
+}
+
+.main::-webkit-scrollbar-track {
+  background-color: var(--lightest-grey);
+}
+
+
 
 .navWrapper {
   background-color: #fff;
@@ -117,5 +133,17 @@
 
   .infoWrapper {
     display: none;
+  }
+}
+
+
+@media screen and (max-width: 550px) {
+  .main::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .main::-webkit-scrollbar-thumb {
+    width: 4px;
+    border-radius: 2px;
   }
 }

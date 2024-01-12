@@ -27,6 +27,8 @@ import { setTeamsRequest } from "../../../modules/teams/teamsSlice";
 import { useFetchRequest } from "../../../common/hooks/useFetchRequest";
 import { getTeamsRequest } from "../../../api/teams/teamsRequests";
 import { TGetTeamsResponse, TGetTeamsRequest } from "../../../api/teams/TTeams";
+import { MultiValue, SingleValue } from "react-select";
+import { TOption } from "../../../common/components/StyledSelect/StyledSelect";
 
 export const TeamsList = () => {
   const [name, setName] = useState<string>("");
@@ -68,7 +70,9 @@ export const TeamsList = () => {
     setName(e.target.value);
   };
 
-  const handleSizeChage = (option: unknown) => {
+  const handleSizeChage = (
+    option: MultiValue<TOption> | SingleValue<TOption>
+  ) => {
     handlePageChange({ selected: 0 });
     if (isOptionAndType(option, "number")) {
       dispatch(setSize(option.value));

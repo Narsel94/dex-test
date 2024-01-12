@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { usePositions } from "../../hooks/usePositions";
 import { useTeamOptions } from "../../hooks/useTeamOptions";
 import { useNavigate } from "react-router";
@@ -22,8 +22,12 @@ export const AddPlayerForm: FC = () => {
   const teamsOptions = useTeamOptions();
   const navigate = useNavigate();
 
-  const { reset, control, handleSubmit, formState } =
-    useForm<TAddNewPlayerForm>({ mode: "onBlur" });
+  const {
+    reset,
+    control,
+    handleSubmit,
+    formState,
+  } = useForm<TAddNewPlayerForm>({ mode: "all" });
 
   const { isValid, errors } = formState;
 

@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { signUpRequest } from "../../../../api/auth/signUp";
 import {
   Notification,
   ControledInput,
@@ -9,7 +8,11 @@ import {
 } from "../../../../common/components";
 import { useNavigate } from "react-router";
 import { useError } from "../../../../common/hooks/useError";
-import styles from './SignUpForm.module.css'
+import { useAppDispatch } from "../../../../common/hooks/useAppDispatch";
+import { TAuthThunk, signUpThunk } from "../../asynkThunk";
+import styles from "./SignUpForm.module.css";
+import { PayloadAction } from "@reduxjs/toolkit";
+import { TSignUpResponse } from "../../../../api/helpers/types/types";
 
 type TSignUpData = {
   check: boolean;
@@ -21,9 +24,10 @@ type TSignUpData = {
 
 export const SignUpForm = () => {
   const [isError, setIsError] = useError();
-const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { control, handleSubmit, formState, reset, watch } =
-    useForm<TSignUpData>({ mode: "onBlur" });
+    useForm<TSignUpData>({ mode: "all" });
   const { isValid, errors, isSubmitSuccessful } = formState;
 
   const password = watch("password");
@@ -32,10 +36,20 @@ const navigate = useNavigate()
     reset();
   }, [isSubmitSuccessful]);
 
-  const onSubmit = (data: TSignUpData) => {
+  const onSubmit = async (data: TSignUpData) => {
     const { check, confirmPassword, ...rest } = data;
-    signUpRequest(rest).then(()=> navigate('/teams')).catch((error) => setIsError(error));
-    reset();
+    try {
+      const { payload } = (await dispatch(signUpThunk(rest))) as PayloadAction<
+        TAuthThunk<TSignUpResponse>
+      >;
+      if (!payload.ok) {
+        setIsError(payload.error || "Something went wrong!");
+      } else {
+        navigate("/teams");
+      }
+    } catch (error) {
+      setIsError(error);
+    }
   };
 
   return (

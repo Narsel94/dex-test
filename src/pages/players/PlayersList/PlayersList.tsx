@@ -33,6 +33,8 @@ import styles from "./PlayersList.module.css";
 import { debounce } from "../../../common/helpers/debounce";
 import { getCurrentPlayersRequest } from "../../../api/players/playersRequests";
 import { useFetchRequest } from "../../../common/hooks/useFetchRequest";
+import { TOption } from "../../../common/components/StyledSelect/StyledSelect";
+import { MultiValue, SingleValue } from "react-select";
 
 export const PlayersList: FC = () => {
   const inputsData = useAppSelector(playersPageDataSelector);
@@ -95,7 +97,9 @@ export const PlayersList: FC = () => {
     navigate("/players/add-player");
   };
 
-  const handleSizeChage = (value: unknown) => {
+  const handleSizeChage = (
+    value: MultiValue<TOption> | SingleValue<TOption>
+  ) => {
     handlePageChange({ selected: 0 });
 
     if (isOptionAndType(value, "number")) {
@@ -103,7 +107,9 @@ export const PlayersList: FC = () => {
     }
   };
 
-  const handleChange = (newValue: unknown) => {
+  const handleChange = (
+    newValue: MultiValue<TOption> | SingleValue<TOption>
+  ) => {
     handlePageChange({ selected: 0 });
     const value = isOptionsArrayAndValue(newValue, "number");
     if (value instanceof Array) {

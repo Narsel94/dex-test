@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import {
   ControledInput,
   Button,
@@ -16,7 +16,7 @@ export const AddTeamForm: FC = () => {
   const [isError, setisError] = useError();
 
   const { control, handleSubmit, formState, reset } = useForm<TAddTeamForm>({
-    mode: "onBlur",
+    mode: "all",
   });
   const { isValid, errors } = formState;
   const navigate = useNavigate();

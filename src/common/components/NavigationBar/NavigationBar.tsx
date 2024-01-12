@@ -5,16 +5,20 @@ import { ButtonWithIcon, UserInfo } from "..";
 import { useLocation, useNavigate } from "react-router";
 import { removeCookie } from "../../helpers/cookies";
 import { Link } from "react-router-dom";
+
+
+import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { logOut } from "../../../modules/auth/authSlice";
+
 import styles from "./NavigationBar.module.css";
 
 export const NavigationBar = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch()
   const location = useLocation();
 
   const onLogoutClick = () => {
-    removeCookie("token");
-    removeCookie("name");
-    removeCookie("avatarUrl");
+    dispatch(logOut())
     navigate("/", { replace: true });
   };
 

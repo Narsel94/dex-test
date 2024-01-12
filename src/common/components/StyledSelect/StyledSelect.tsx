@@ -3,13 +3,12 @@ import Select, { Props } from "react-select";
 import classNames from "classnames";
 import styles from "./StyledSelect.module.css";
 
-type TOption = {
+export type TOption = {
   label: string | number;
   value: string | number;
 };
 
-interface StyledSelect extends Omit<Props, "options"> {
-  options: TOption[];
+interface StyledSelect extends Props<TOption> {
   label?: string;
   small?: true;
   isMulti?: boolean;
@@ -72,7 +71,7 @@ export const StyledSelect: FC<StyledSelect> = React.forwardRef<
           unstyled
           isMulti={isMulti}
           menuPlacement={menuPlacement}
-          defaultValue={small ? options[0] : undefined}
+          defaultValue={small && options && Array.isArray(options)?  options[0] : undefined }
           options={options}
           isClearable={!small}
           isSearchable={isSearchable}

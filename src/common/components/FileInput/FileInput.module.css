@@ -77,6 +77,13 @@
   border: 3px dotted var(--dark-grey);
 }
 
+@media screen and (max-width: 1185px) {
+  .wrapper {
+    width: 300px;
+    height: 233px;
+  }
+}
+
 @media screen and (max-width: 900px) {
   .wrapper {
     width: 282px;

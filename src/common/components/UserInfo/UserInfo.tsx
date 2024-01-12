@@ -7,8 +7,9 @@ import styles from "./UserInfo.module.css";
 
 
 export const UserInfo: FC = () => {
-  const name = getCookie("name");
-  const avatarUrl = getCookie("avatarUrl");
+  const name = sessionStorage.getItem('name');
+  const avatarUrl = sessionStorage.getItem("avatarUrl");
+
   const navigate = useNavigate()
 
   const avatarImg = avatarUrl? avatarUrl : nullAvatar;

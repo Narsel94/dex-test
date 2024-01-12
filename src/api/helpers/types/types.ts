@@ -20,7 +20,16 @@ export type TSignUpRequest = {
 };
 
 export type TUpdateUser = {
-  userName?: string;
+  userName?: string ;
+  avatarUrl?: string | File;
+}
+
+export type TUpdateUserRequest = {
+  userName?: string ;
   avatarUrl?: string;
 }
 
+export type TCustomError = {
+  isCustomError: boolean, 
+  status: number;
+}

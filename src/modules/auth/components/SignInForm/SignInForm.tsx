@@ -1,5 +1,4 @@
 import { useForm, Controller } from "react-hook-form";
-import { signInRequest } from "../../../../api/auth/signIn";
 import { useNavigate } from "react-router";
 import { useError } from "../../../../common/hooks/useError";
 import {
@@ -7,6 +6,11 @@ import {
   Button,
   Notification,
 } from "../../../../common/components";
+import { useAppDispatch } from "../../../../common/hooks/useAppDispatch";
+import { signInThunk, TAuthThunk } from "../../asynkThunk";
+import { TSignInResponse } from "../../../../api/helpers/types/types";
+import { PayloadAction } from "@reduxjs/toolkit";
+
 import styles from "./SignInForm.module.css";
 
 type TSignInFormValue = {
@@ -17,36 +21,32 @@ type TSignInFormValue = {
 export const SignInForm = () => {
   const [isError, setIsError] = useError();
 
-  const { control, handleSubmit, formState, reset, setError } =
-    useForm<TSignInFormValue>({ mode: "onBlur" });
+  const { control, handleSubmit, formState } =
+    useForm<TSignInFormValue>({ mode: "all" });
 
   const { isValid, errors } = formState;
   const navigate = useNavigate();
-  const onSubmit = (data: TSignInFormValue) => {
-    signInRequest(data)
-      .then(() => {
-        navigate("/teams");
-      })
-      .catch((error) => {
-        if (error.status === 401) {
+  const dispatch = useAppDispatch();
+
+  const onSubmit = async (data: TSignInFormValue) => {
+    try {
+      const { payload } = (await dispatch(signInThunk(data))) as PayloadAction<
+        TAuthThunk<TSignInResponse>
+      >;
+      if (!payload.ok) {
+        if (payload.error === "401") {
           setIsError(
             "User with the specified username / password was not found."
           );
-          setError("password", {
-            type: error.status.toString(),
-            message: "Wrong password. Please, try again.",
-          });
-          return;
+        } else {
+          setIsError(payload.error);
         }
-        if (error.status === 404) {
-          setError("password", {
-            type: error.status.toString(),
-            message: `Server Error. Error: ${error.status}`,
-          });
-          setIsError(error);
-        }
-        setIsError(error);
-      })
+      } else {
+        navigate("/teams");
+      }
+    } catch (err) {
+      setIsError(err);
+    }
   };
 
   return (

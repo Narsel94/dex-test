@@ -70,7 +70,7 @@ export const useFetchRequest = <T extends Object, C>({
     if (!isLoading) {
       fetchData();
     }
-  }, [request, actionCreator, cachedArgs]);
+  }, [cachedArgs]);
 
   return { response, isLoading, error };
 };

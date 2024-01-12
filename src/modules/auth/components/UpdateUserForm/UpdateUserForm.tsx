@@ -1,18 +1,17 @@
-import React, { useState } from "react";
 import {
   Button,
   ControledInput,
   FileInput,
-  Notification
+  Notification,
 } from "../../../../common/components";
 import { useForm, Controller } from "react-hook-form";
-import { updateUserRequest } from "../../../../api/auth/updateUser";
-import { saveImageRequest } from "../../../../api/auth/saveImage";
-import { getCookie, setCookie } from "../../../../common/helpers/cookies";
+import { TAuthThunk, updateUserThunk } from "../../asynkThunk";
+import { useAppDispatch } from "../../../../common/hooks/useAppDispatch";
 import { useNavigate } from "react-router";
 import styles from "./UpdateUserForm.module.css";
-
-const base = process.env.REACT_APP_IMAGES;
+import { PayloadAction } from "@reduxjs/toolkit";
+import { TUpdateUserRequest } from "../../../../api/helpers/types/types";
+import { useError } from "../../../../common/hooks/useError";
 
 type TUserForm = {
   userName?: string;
@@ -20,64 +19,30 @@ type TUserForm = {
 };
 
 export const UpdateUserForm = () => {
-  const [isError, setisError] = useState<unknown | undefined>(
-    undefined
-  );
-  const { control, handleSubmit, formState, setError, reset } =
+  const dispatch = useAppDispatch();
+  const [isError, setisError] = useError(undefined);
+  const { control, handleSubmit, formState, reset } =
     useForm<TUserForm>({
-      mode: "onBlur",
+      mode: "all",
     });
-  const avatarUrl = getCookie("avatarUrl");
-  const userName = getCookie("name");
+  const avatarUrl = sessionStorage.getItem("avatarUrl") || undefined;
+  const userName = sessionStorage.getItem("name") || undefined;
   const navigate = useNavigate();
   const { errors, isValid } = formState;
 
-  const onSubmit = (data: TUserForm) => {
-    if (!data.avatarUrl) {
-      const preparedData = {
-        userName: data.userName || userName,
-        avatarUrl: avatarUrl,
-      };
-      return updateUserRequest(preparedData)
-        ?.then((res) => {
-          if (res) {
-            if (preparedData.avatarUrl)
-              setCookie("avatarUrl", preparedData.avatarUrl);
-            if (preparedData.userName) setCookie("name", preparedData.userName);
-          }
-        })
-        .then(() => navigate("/teams")).catch(error => {
-          setisError(error)
-        });
+  const onSubmit = async (data: TUserForm) => {
+    const preparedData = {
+      userName: data.userName || userName,
+      avatarUrl: data.avatarUrl || avatarUrl,
+    };
+    const { payload } = (await dispatch(
+      updateUserThunk(preparedData)
+    )) as PayloadAction<TAuthThunk<TUpdateUserRequest>>;
+    if (payload.ok) {
+      navigate("/teams");
+    } else {
+      setisError(payload.error);
     }
-
-    saveImageRequest(data.avatarUrl)
-      ?.then((res) => {
-        const preparedData = {
-          userName: data.userName || userName,
-          avatarUrl: `${base}${res}`,
-        };
-        return updateUserRequest(preparedData)
-          ?.then((res) => {
-            if (res) {
-              if (preparedData.avatarUrl)
-                setCookie("avatarUrl", preparedData.avatarUrl);
-              if (preparedData.userName)
-                setCookie("name", preparedData.userName);
-            }
-          })
-          .then(() => navigate("/teams"));
-      })
-      .catch((error) => {
-        if (error instanceof TypeError) {
-          console.log(error.stack);
-
-          setError("avatarUrl", {
-            type: "Custom",
-            message: `Слишком большой файл`,
-          });
-        }
-      });
   };
 
   return (
@@ -85,6 +50,16 @@ export const UpdateUserForm = () => {
       <Controller
         control={control}
         name="avatarUrl"
+        rules={{
+          validate: (file) => {
+            const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+            if (file) {
+              return allowedTypes.includes(file.type)
+                ? true
+                : "Invalid file type";
+            }
+          },
+        }}
         render={({ field: { onChange, onBlur, value } }) => (
           <FileInput
             onBlurProp={onBlur}
@@ -97,6 +72,9 @@ export const UpdateUserForm = () => {
       <Controller
         control={control}
         defaultValue={userName}
+        rules={{
+          required: "Required",
+        }}
         name="userName"
         render={({ field: { onChange, onBlur, value } }) => (
           <ControledInput
@@ -116,7 +94,7 @@ export const UpdateUserForm = () => {
           Save
         </Button>
       </div>
-      <Notification error={isError}/>
+      <Notification error={isError} />
     </form>
   );
 };

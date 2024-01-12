@@ -38,8 +38,8 @@ export const AppNotification: FC<TNotification> = ({ error }) => {
         </div>
       );
     }
-    if (typeof error === "string") {
-      return <div className={errorClasses}>{error}</div>;
+    if (typeof error === "string" || typeof error === "number") {
+      return <div className={errorClasses}> Error: {error}</div>;
     }
 
     if (isCustomError(error)) {

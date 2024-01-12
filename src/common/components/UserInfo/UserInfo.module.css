@@ -12,6 +12,9 @@
 }
 
 .text {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 14px;
   font-weight: 500;
   color: var(--dark-grey);
@@ -40,6 +43,10 @@
     border-bottom: 0.5px solid var(--light-grey);
     gap: 12px;
     width: 100%;
+  }
+
+  .text {
+    max-width: 110px;
   }
 
   .avatar {
