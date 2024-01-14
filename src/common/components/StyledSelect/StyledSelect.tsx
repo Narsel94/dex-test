@@ -71,7 +71,9 @@ export const StyledSelect: FC<StyledSelect> = React.forwardRef<
           unstyled
           isMulti={isMulti}
           menuPlacement={menuPlacement}
-          defaultValue={small && options && Array.isArray(options)?  options[0] : undefined }
+          defaultValue={
+            small && options && Array.isArray(options) ? options[0] : undefined
+          }
           options={options}
           isClearable={!small}
           isSearchable={isSearchable}
